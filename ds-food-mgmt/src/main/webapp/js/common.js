@@ -16,6 +16,9 @@ $(function(){
     });
 });
 
+
+// jj 테스트 
+
 //scroll Top
 function scroll_top(){
     if($(window).scrollTop()<=1) {
