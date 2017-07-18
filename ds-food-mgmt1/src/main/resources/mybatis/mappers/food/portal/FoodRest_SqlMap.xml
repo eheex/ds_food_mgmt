@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.portal.mapper.FoodRestMapper">
+
+	<resultMap type="FoodRest" id="FoodRestInsert">
+		<result property="reqSeq" column="REQ_SEQ"/>
+		<result property="imgID"  column="IMG_ID"/>
+		<result property="imgPth" column="IMG_PTH"/>
+		<result property="imgNM"  column="IMG_NM"/>
+		<result property="modDT"  column="MDO_DT"/>
+	</resultMap>
+
+    <insert id="insertFoodRest" parameterType="FoodRest">
+    INSERT INTO 
+    FOOD_PROD_IMG (
+    			   REQ_SEQ,
+    			   IMG_ID,
+    			   IMG_PTH,
+    			   IMG_NM,
+    			   MOD_DT)
+	        VALUES(
+	        	   #{reqSeq},
+	        	   #{imgID},
+	        	   #{imgPth},
+	        	   #{imgNM},
+	        	   NOW()
+    </insert>
+</mapper>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.portal.mapper.SearchDetailResultMapper">
+
+	<resultMap type="FudDetail" id="FudDetailResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="fudStnCd" column="FUD_STN_CD"/>
+		<result property="fudOrgplceCd" column="FUD_ORGPLCE_CD"/>
+		<result property="prductStnCd" column="PRDUCT_STN_CD"/>
+		<result property="fudUrl" column="FUD_URL"/>
+		<result property="tag" column="TAG"/>
+		<result property="brand" column="BRAND"/>
+		<result property="allrgyIgdCt" column="ALLRGY_IGD_CT"/>
+		<result property="vlm" column="VLM"/>
+		<result property="crtDt" column="CRT_DT"/>
+		<result property="barcode" column="BARCODE"/>
+		<result property="itmRptNo" column="ITM_RPT_NO"/>
+		<result property="itmRptDt" column="ITM_RPT_DT"/>
+		<result property="dtiIdvMrk" column="DTI_IDV_MRK"/>
+		<result property="spcIgd" column="SPC_IGD"/>
+		<result property="ognCntn" column="OGN_CNTN"/>
+		<result property="foodGroup" column="FOOD_GROUP"/>
+		<result property="foodType" column="FOOD_TYPE"/>
+		<result property="notAdd" column="NOT_ADD"/>
+		<result property="mta01" column="MTA_01"/>
+		<result property="mta02" column="MTA_02"/>
+		<result property="mta03" column="MTA_03"/>
+		<result property="mta04" column="MTA_04"/>
+		<result property="mta05" column="MTA_05"/>
+		<result property="mta06" column="MTA_06"/>
+		<result property="mta07" column="MTA_07"/>
+		<result property="mta08" column="MTA_08"/>
+		<result property="mta09" column="MTA_09"/>
+		<result property="mta10" column="MTA_10"/>
+		<result property="mta11" column="MTA_11"/>
+		<result property="mta12" column="MTA_12"/>
+		<result property="pacForm" column="PAC_FORM"/>
+		<result property="pacMtrlCt" column="PAC_MTRL_CT"/>
+		<result property="rcspCt" column="RCSP_CT"/>
+		<result property="rcspMrk" column="RCSP_MRK"/>
+		<result property="rawmtrlRuleStrct" column="RAWMTRL_RULE_STRCT"/>
+	</resultMap>
+	
+	<resultMap type="NTR" id="NtrResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="untGnbnm" column="UNT_GNBNM"/>
+		<result property="ofrQt" column="OFR_QT"/>
+		<result property="ofrCnamt" column="OFR_CNAMT"/>
+		<result property="cal" column="CAL"/>
+		<result property="totOfrQt" column="TOT_OFR_QT"/>
+		<result property="totOfrCnamt" column="TOT_OFR_CNAMT"/>
+		<result property="totCal" column="TOT_CAL"/>
+		<result property="untCntnTypCd" column="UNT_CNTN_TYP_CD"/>
+		<result property="oppNtrIgdId" column="OPP_NTR_IGD_ID"/>
+		<result property="oppNtrIgdNm" column="OPP_NTR_IGD_NM"/>
+		<result property="cnamtNm" column="CNAMT_NM"/>
+		<result property="rate" column="RATE"/>
+		<result property="totCnamt" column="TOT_CNAMT"/>
+		<result property="totCnamtUntCd" column="TOT_CNAMT_UNT_CD"/>
+		<result property="totRate" column="TOT_RATE"/>
+		<result property="ntrIgdLvlNo" column="NTR_IGD_LVL_NO"/>
+		<result property="ntrIgdSrtNo" column="NTR_IGD_SRT_NO"/>
+	</resultMap>
+	
+	<resultMap type="CPN" id="CpnResult">
+		<result property="cpnCtgNm" column="CPN_CTG_NM"/>
+		<result property="cpnNm" column="CPN_NM"/>
+	</resultMap>
+
+<!-- 식품 상세조회 -->
+    <select id="selectSearchDetailResult" resultMap="FudDetailResult">
+    	<![CDATA[
+	    	SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD					/* 식품아이디,식품이름,식품구분코드,식품원산지코드*/
+			,      A.PRDUCT_STN_CD,A.FUD_URL,A.TAG,A.BRAND							/* 제품구분코드,식품정보URL(이미지),태그,브랜드*/
+			,      A.ALLRGY_IGD_CT,LOWER(CONCAT(A.VLM,A.VLM_UNT_CD)) VLM,A.CRT_DT	/* 알레르기,중량및 중량단위 ,등록일 */
+			,	   A.BARCODE,A.ITM_RPT_NO,A.ITM_RPT_DT								/* 바코드,품목보고번호 ,보고일 */
+			,	   A.DTI_IDV_MRK,A.SPC_IGD,CONCAT(A.OGN_CNTN,'%') OGN_CNTN			/* 개별표시,특정성분,유기농 성분  */
+			,	   C.FOOD_GROUP	,D.FOOD_TYPE										/* 식품분류,식품유형  */
+			,	   (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc WHERE fm.MTA_ID = 111 
+				   AND fm.FUD_ID= A.FUD_ID
+				   AND fm.MTA_ATRB = cc.CD_ID
+				   GROUP BY A.FUD_ID) AS NOT_ADD									/* 무첨가 */ 								  
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '103' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_01									/* 제조년월   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '104' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_02									/* 유통기한   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '105' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_03									/* 품질유지기한   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '106' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_04									/* 반품 및 교환 장소   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '107' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_05									/* 고객상담실   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '108' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_06									/* 주의사항   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '109' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_07									/* 제조시설 안내   */
+			,	   (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+				   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+				   GROUP BY A.FUD_ID) AS MTA_08										/* 인증 */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '112' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_09									/* 기타마케팅 문구    */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '113' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_10									/* 특허 */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '114' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_11									/* 실용시안   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '420' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_12									/* 유기농 */   
+			,		B.PAC_FORM,B.PAC_MTRL_CT,B.RCSP_CT,B.RCSP_MRK 					/*  포장형태,포장재질,분리배출표시,분리배출 상세    */
+			FROM FUD A LEFT JOIN (SELECT FUD_ID															
+						, CONCAT( (SELECT CD_NM FROM CM_CD WHERE CD=PAC_FORM_CD1 LIMIT 0,1) ,'/',
+								  (SELECT CD_NM FROM CM_CD WHERE CD=PAC_FORM_CD2 LIMIT 0,1) ) PAC_FORM 			/*  포장형태    */
+						, PAC_MTRL_CT, RCSP_CT																	/*  포장재질,분리배출표시     */
+						,(SELECT CD_NM FROM CM_CD WHERE CD= REPLACE(RCSP_MRK,',','')  LIMIT 0,1)  RCSP_MRK 		/*  포장형태    */
+					      FROM FUD_PAC
+					      WHERE FUD_ID = #{query.fudId}) B ON A.FUD_ID = B.FUD_ID
+			           LEFT JOIN (SELECT B.FUD_ID																/* 식품 분류  */
+						,    GROUP_CONCAT(A.CLS_NM SEPARATOR '>') AS FOOD_GROUP
+							FROM 
+							(
+								SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+								,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+								,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+								,		B.BAS_CLS_LVL_NO
+								FROM CLS A,CLS_RLT B
+								WHERE A.DLT_YN = 'N' 
+								  AND A.CLS_ID = B.OPP_CLS_ID
+								  AND A.CLS_TYP_CD = 'CLS'
+							) A , 
+							FUD_CLS_RLT B 
+							WHERE A .CLS_ID = B.CLS_ID
+						      AND B.FUD_ID = #{query.fudId}
+						GROUP BY B.FUD_ID ) C ON A.FUD_ID = C.FUD_ID
+			           LEFT JOIN (SELECT B.FUD_ID																/* 식품 유형   */
+					      ,      GROUP_CONCAT(A.CLS_NM SEPARATOR '>') FOOD_TYPE
+							FROM 
+							(
+								SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+								,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+								,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+								,		B.BAS_CLS_LVL_NO
+								 FROM CLS A,CLS_RLT B
+						  	    WHERE A.DLT_YN = 'N' 
+						  	      AND A.CLS_ID = B.OPP_CLS_ID
+								  AND A.CLS_TYP_CD = 'TYP'
+							) A , 
+							FUD_CLS_RLT B 
+							WHERE A.CLS_ID = B.CLS_ID
+			                  AND B.FUD_ID = #{query.fudId}
+						 GROUP BY B.FUD_ID) D ON A.FUD_ID = D.FUD_ID
+			WHERE A.FUD_ID = #{query.fudId}
+    	]]>
+    </select>
+    
+    <!-- 원재료 조회 -->
+    <select id="selectSearchDetailRawMTRL" resultMap="FudDetailResult">
+    	<![CDATA[
+    		SELECT A.FUD_ID,B.RAWMTRL_RULE_STRCT
+			FROM
+			(
+				SELECT  MAX(BAS_RAWMTRL_ID) BAS_RAWMTRL_ID ,FUD_ID
+				FROM    FUD_RAWMTRL
+				WHERE   RAWMTRL_SRT_NO = '0'
+				AND    ( RAWMTRL_RULE_STRCT IS NOT NULL AND length(RAWMTRL_RULE_STRCT)  <> 0)
+				GROUP BY FUD_ID
+			) A LEFT JOIN FUD_RAWMTRL B ON A.BAS_RAWMTRL_ID = B.BAS_RAWMTRL_ID
+						   AND A.FUD_ID = B.FUD_ID
+			WHERE A.FUD_ID = #{query.fudId}
+    	]]>
+    </select>
+    
+    <!-- 영양성분 조회 -->
+    <select id="selectSearchDetailNTR" resultMap="NtrResult">
+    	<![CDATA[
+    		SELECT CASE WHEN A.UNT_GBN ='1' THEN '1회 제공량' 
+			            WHEN A.UNT_GBN ='2' THEN '단위함량' ELSE '총 제공량' END UNT_GNBNM	/*  영양성분 구분    */
+			,      C.OFR_QT,C.OFR_CNAMT,C.CAL												/*  1회제공량 OR 단위제공량 중량 칼로리  */	
+			,      C.TOT_OFR_QT,C.TOT_OFR_CNAMT,TOT_CAL 									/*  총제공량  중량 칼로리   */	
+			,      A.FUD_ID, A.UNT_CNTN_TYP_CD,A.OPP_NTR_IGD_ID								/*  제품코드,구분  ,영양성분코드  */	   
+			,      A.OPP_NTR_IGD_NM															/*  영양성분 이름     */
+			,      LOWER(CONCAT(A.CNAMT,A.CNAMT_UNT_CD)) CNAMT_NM							/*  제공량 &  단위   */
+			,      LOWER(CONCAT(A.RATE,'%')) RATE											/*  함량(%)비율  */
+			,      A.TOT_CNAMT																/*  총함량  */
+			,      A.TOT_CNAMT_UNT_CD														/*  총함량 단위    */
+			,      A.TOT_RATE,A.NTR_IGD_LVL_NO,A.NTR_IGD_SRT_NO 							/*  영총함량 비율,표시순서 레벨   */
+			FROM
+			(
+				SELECT A.FUD_ID, A.UNT_CNTN_TYP_CD,A.OPP_NTR_IGD_ID
+				,      (SELECT NTR_IGD_NM FROM NTR_IGD WHERE  NTR_IGD_ID = A.OPP_NTR_IGD_ID) AS OPP_NTR_IGD_NM
+				,      A.BAS_NTR_IGD_ID,A.CNAMT,A.CNAMT_UNT_CD
+				,      A.RATE,B.CNAMT AS TOT_CNAMT
+				,      B.CNAMT_UNT_CD AS TOT_CNAMT_UNT_CD
+				,      B.RATE AS TOT_RATE,A.NTR_IGD_LVL_NO,A.NTR_IGD_SRT_NO 
+			    ,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+			                WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+			                ELSE '3' END UNT_GBN
+				FROM FUD_NTR_IGD_CNAMT A LEFT JOIN FUD_NTR_IGD_CNAMT B ON  B.UNT_CNTN_TYP_CD = 'TOT' 
+										       AND A.FUD_ID = B.FUD_ID 
+										       AND A.OPP_NTR_IGD_ID = B.OPP_NTR_IGD_ID
+				WHERE A.FUD_ID = #{query.fudId}  
+				  AND A.OPP_NTR_IGD_ID != 100000005
+			) A ,(SELECT A.FUD_ID,MIN(A.UNT_GBN) UNT_GBN 	/*  영양성분 순서 1(ONE):일제공량,2(UNT):단위제공량,3(TOT):총제공량   */
+					FROM
+						(
+						SELECT FUD_ID
+						,	   CASE WHEN UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+									WHEN UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+									ELSE '3' END  UNT_GBN
+						FROM FUD_NTR_IGD_CNAMT
+						GROUP BY FUD_ID,UNT_CNTN_TYP_CD
+					) A
+					GROUP BY A.FUD_ID
+			     ) B
+			    ,(SELECT A.FUD_ID,A.UNT_CNTN_TYP_CD /*  1회제공량 OR 단위제공량 정보 및 총제공량 정보   */
+					,	   CONCAT(A.OFR_QT, (SELECT CD_NM FROM CM_CD WHERE CD=A.OFR_QT_TYP_CD LIMIT 0,1))AS OFR_QT
+					,      CONCAT(A.OFR_CNAMT, (SELECT CD_NM FROM CM_CD WHERE CD=A.OFR_CNAMT_UNT_CD LIMIT 0,1))AS OFR_CNAMT
+					,      CONCAT(A.CAL, (SELECT CD_NM FROM CM_CD WHERE CD=A.CAL_UNT_CD LIMIT 0,1))AS CAL
+					,      A.TOT_OFR_CNAMT_YN
+					,      CONCAT(B.OFR_QT, (SELECT CD_NM FROM CM_CD WHERE CD=B.OFR_QT_TYP_CD LIMIT 0,1)) AS TOT_OFR_QT
+					,      CONCAT(B.OFR_CNAMT, (SELECT CD_NM FROM CM_CD WHERE CD=B.OFR_CNAMT_UNT_CD LIMIT 0,1)) AS TOT_OFR_CNAMT
+					,      CONCAT(B.CAL, (SELECT CD_NM FROM CM_CD WHERE CD=B.CAL_UNT_CD LIMIT 0,1))AS TOT_CAL
+					,      CASE WHEN  C.OFR_CNAMT IS NULL THEN 'N' ELSE 'Y' END AS ONE_OFR_CNAMT_YN
+					,      C.OFR_CNAMT AS ONE_OFR_CNAMT
+					,      C.OFR_CNAMT_UNT_CD AS ONE_OFR_CNAMT_UNT_CD
+					,      CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+								WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+								ELSE '3' END  UNT_GBN
+					FROM FUD_NTR_IGD_SER A 
+					LEFT JOIN FUD_NTR_IGD_SER B ON  B.UNT_CNTN_TYP_CD = 'TOT' AND A.FUD_ID = B.FUD_ID
+					LEFT JOIN FUD_NTR_IGD_SER C ON  C.UNT_CNTN_TYP_CD = 'ONE' AND A.FUD_ID = C.FUD_ID
+					WHERE A.FUD_ID = #{query.fudId} 
+			     ) C 
+			WHERE A.FUD_ID 	= B.FUD_ID
+			AND   A.UNT_GBN = B.UNT_GBN
+			AND   A.FUD_ID 	= C.FUD_ID
+			AND   B.FUD_ID 	= C.FUD_ID
+			AND   A.UNT_GBN = C.UNT_GBN
+			AND   B.UNT_GBN = C.UNT_GBN 
+    	]]>
+    </select>
+    
+     <!-- 업소명/소재지 조회 -->
+    <select id="selectSearchDetailCPN" resultMap="CpnResult">
+    	<![CDATA[
+    		SELECT A.CPN_CTG_NM , GROUP_CONCAT(A.CPN_NM SEPARATOR ' , ') AS CPN_NM
+			FROM
+			(
+				SELECT A.CPN_CTG_CD,A.FUD_ID
+				,	   A.CPN_ID,B.CPN_NM 
+				,	   (SELECT CD_NM FROM CM_CD WHERE CD = A.CPN_CTG_CD) CPN_CTG_NM 
+				FROM FUD_CPN A,CPN B
+				WHERE A.CPN_ID = B.CPN_ID
+				 AND  A.FUD_ID = #{query.fudId}
+				GROUP BY A.FUD_ID,A.CPN_ID,B.CPN_NM,A.CPN_CTG_CD
+				ORDER BY A.CPN_CTG_CD
+			) A 
+			GROUP BY A.CPN_CTG_NM
+    	]]>
+    </select>
+</mapper>
