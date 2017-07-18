@@ -20,6 +20,17 @@ $(function(){
 
 // ㅇㅇ
 
+
+
+
+
+
+
+
+
+
+
+
 //scroll Top
 function scroll_top(){
     if($(window).scrollTop()<=1) {
