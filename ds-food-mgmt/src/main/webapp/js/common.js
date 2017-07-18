@@ -16,27 +16,6 @@ $(function(){
     });
 });
 
-// jj 테스트 
-
-// ㅇㅇ
-
-
-
-
-
-
-
-
-
-// jj test
-
-
-//jj test
-
-
-
-
-
 //scroll Top
 function scroll_top(){
     if($(window).scrollTop()<=1) {
