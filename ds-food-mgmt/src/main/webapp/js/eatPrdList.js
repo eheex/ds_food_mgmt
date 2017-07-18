@@ -8,6 +8,7 @@ window.$EatPrdList = {
 		//Header 공통 그리기
 		$Layout.setSearchHeader();
 		 // 테스트
+		//  하나 더 추가
 		//식품 정보 가이드
 		$GuidePopup.open();
 		
