@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.portal.mapper.FoodProdReqMapper">
+
+	<resultMap type="FoodProdReq" id="FoodProdReqInsert">
+		<result property="reqSeq" column="REQ_SEQ"/>
+		<result property="reqGb" column="REQ_GB"/>
+		<result property="prdCd" column="PRD_CD"/>
+		<result property="prdNm" column="PRD_NM"/>
+		<result property="comNa" column="COM_NA"/>
+		<result property="barCd" column="BAR_CD"/>
+		<result property="modNt" column="MOD_NT"/>
+		<result property="modDt" column="MOD_DT"/>
+		<result property="regYn" column="REG_YN"/>
+		<result property="regDt" column="REG_DT"/>
+		<result property="email" column="EMAIL"/>
+	</resultMap>
+
+    <insert id="insertFoodProdReq" parameterType="FoodProdReq" useGeneratedKeys="true" keyProperty="reqSeq">
+    
+    INSERT INTO 
+    FOOD_PROD_REQ (
+    			   REQ_GB,
+    			   PRD_CD,
+    			   PRD_NM,
+    			   COM_NA,
+    			   BAR_CD,
+    			   MOD_NT,
+    			   MOD_DT,
+    			   REG_YN,
+    			   REG_DT,
+    			   EMAIL)
+	        VALUES(
+	        	   #{reqGb},
+	        	   '',
+	        	   #{prdNm},
+	        	   #{comNa},
+	        	   '',
+	        	   NOW(),
+	        	   NOW(),
+	        	   'Y',
+	        	   NOW(),
+	        	   #{email})
+   	        	   
+    </insert>
+   
+   
+</mapper>

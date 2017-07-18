@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="lazyLoadTriggerMethods" value="" />
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.food.portal.model.Fud"         alias="Fud"/>
+        <typeAlias type="com.food.portal.model.FudList"     alias="FudList"/>
+        <typeAlias type="com.food.portal.model.FudDetail"   alias="FudDetail"/>
+        <typeAlias type="com.food.portal.model.FoodProdReq" alias="FoodProdReq"/>
+        <typeAlias type="com.food.portal.model.NTR"   		alias="NTR"/>
+        <typeAlias type="com.food.portal.model.CPN"   		alias="CPN"/>
+        <typeAlias type="com.food.portal.model.FoodRest"    alias="FoodRest"/>
+        <typeAlias type="com.food.portal.model.Code"    	alias="Code"/>
+    </typeAliases>
+
+</configuration>
