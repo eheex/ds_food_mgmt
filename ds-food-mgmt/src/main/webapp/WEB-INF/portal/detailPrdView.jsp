@@ -14,6 +14,7 @@
 <script type="text/javascript" src="./js/detailPrdView.js"></script>
 <script>
 
+
 var fudId = "${fudId}";
 var fudNm = "${fudNm}";
 
