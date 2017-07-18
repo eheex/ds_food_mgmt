@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d [%-5p] [%.7thread] %c %L- %m%n"/>
+        </Console>
+        
+    </Appenders>
+    <Loggers>
+    	<Logger name="com.food.portal.mapper.SearchResultMapper" level="DEBUG" additivity="false">
+    		<AppenderRef ref="console" />
+		</Logger>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="net.sf.ehcache" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.jgroups" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.lge.apip.mgmt.common.web.controller.ExceptionControllerAdvice" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.springframework.amqp.rabbit" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.quartz" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Root level="debug">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+
+

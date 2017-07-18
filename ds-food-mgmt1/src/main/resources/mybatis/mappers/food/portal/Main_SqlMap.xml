@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.portal.mapper.MainMapper">
+
+	<resultMap type="Fud" id="FudResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="allrgyIgdCt" column="ALLRGY_IGD_CT"/>
+	</resultMap>
+
+    <!-- 실시간 검색 식품 조회 -->
+    <select id="selectMainRankList" resultMap="FudResult">
+        SELECT FUD_ID
+         	 , FUD_NM
+		     , ALLRGY_IGD_CT  	AS ALLRGY_IGD_CT
+		  FROM FUD
+		ORDER BY MDF_DT DESC LIMIT 10
+    </select>
+    
+</mapper>
