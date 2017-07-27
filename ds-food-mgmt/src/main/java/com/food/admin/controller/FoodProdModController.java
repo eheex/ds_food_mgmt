@@ -1,4 +1,4 @@
-package com.food.portal.controller;
+package com.food.admin.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,13 @@ import com.food.portal.model.FoodRest;
 import com.food.portal.service.FoodProdReqService;
 
 /**
- * 제품 등록요청 팝업 Contorller
+ * 제품 수정요청 리스트 Contorller
  * @author ksh
  *
  */
 @Controller
-@RequestMapping(value="/portal/prdReq")
-public class FoodProdReqController {
+@RequestMapping(value="/admin/prdMod")
+public class FoodProdModController {
 
 	@Autowired
 	FoodProdReqService foodProdReqServcie;

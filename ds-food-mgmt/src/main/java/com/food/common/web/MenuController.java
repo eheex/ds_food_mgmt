@@ -27,6 +27,18 @@ public class MenuController {
 		return new ModelAndView("/portal/eatPrdMain");
 	}
 	
+	
+
+	/**
+	 * Portal Mod 화면
+	 * @return
+	 */
+	@RequestMapping(value="/mod", method=RequestMethod.GET)
+	public ModelAndView showModPage(){
+		return new ModelAndView("/portal/eatModList");
+	}
+	
+	
 	/**
 	 * Portal List 화면
 	 * @return
