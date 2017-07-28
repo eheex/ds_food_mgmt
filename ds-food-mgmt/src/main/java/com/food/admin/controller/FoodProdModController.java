@@ -15,7 +15,7 @@ import com.food.portal.model.FoodRest;
 import com.food.portal.service.FoodProdReqService;
 
 /**
- * 제품 수정요청 리스트 Contorller
+ * 제품 수정요청 리스 Contorller 테스트
  * @author ksh
  *
  */
