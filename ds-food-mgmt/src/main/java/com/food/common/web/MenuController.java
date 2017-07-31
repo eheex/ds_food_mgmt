@@ -3,6 +3,7 @@ package com.food.common.web;
 import java.net.URLDecoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class MenuController {
 	
 	@Autowired
 	SearchDetailResultService searchDetailResultService;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 
 	/**
 	 * Portal Main 화면
@@ -26,18 +30,6 @@ public class MenuController {
 	public ModelAndView showMainPage(){
 		return new ModelAndView("/portal/eatPrdMain");
 	}
-	
-	
-
-	/**
-	 * Portal Mod 화면
-	 * @return
-	 */
-	@RequestMapping(value="/mod", method=RequestMethod.GET)
-	public ModelAndView showModPage(){
-		return new ModelAndView("/portal/eatModList");
-	}
-	
 	
 	/**
 	 * Portal List 화면
@@ -77,23 +69,60 @@ public class MenuController {
 		System.out.println("==============fudId==========="+fudId);
 		System.out.println("==============fudNm==========="+fudNm);
 		
-		/*
-		SearchRequest searchRequest = new SearchRequest();
-		
-		HashMap<String, Object> query = new HashMap<String, Object>();
-		query.put("fudId", fudId);
-		query.put("fudNm", URLDecoder.decode(fudNm, "UTF-8"));
-		
-		searchRequest.setQuery(query);
-		
-		FudDetail fudDetailInfo = searchDetailResultService.getDetailResult(searchRequest);
-		
-		map.addAttribute("fudDetailInfo", fudDetailInfo);
-		*/
 		map.addAttribute("fudId", fudId);
 		map.addAttribute("fudNm", URLDecoder.decode(fudNm, "UTF-8"));
 		
-		
 		return "/portal/detailPrdView";
+	}
+	
+	/**
+	 * 관리자 로그인 화면
+	 * @return
+	 */
+	@RequestMapping(value="/admin/login", method=RequestMethod.GET)
+	public ModelAndView showAdminLogin(){
+		return new ModelAndView("/admin/login");
+	}
+	
+	/**
+	 * 관리자 인기검색어 관리 리스트 화면
+	 * @return
+	 */
+	@RequestMapping(value="/admin/viewRank", method=RequestMethod.GET)
+	public ModelAndView goAdminRank(){
+		return new ModelAndView("/admin/adminRank");
+	}
+	
+	/**
+	 * 관리자 인기검색어 관리 수정 화면
+	 * @return
+	 */
+	@RequestMapping(value="/admin/rankMod", method=RequestMethod.GET)
+	public ModelAndView goRankModify(){
+		return new ModelAndView("/admin/adminRankModify");
+	}
+	
+	/**
+	 * 관리자 등록/수정요청 리스트 화면
+	 * @return
+	 */
+	@RequestMapping(value="/admin/viewList", method=RequestMethod.GET)
+	public ModelAndView goAdminViewList(ModelMap map,
+			@RequestParam(value="viewType", required=true, defaultValue="") String viewType){
+		map.addAttribute("viewType", viewType);
+		return new ModelAndView("/admin/adminViewList");
+	}
+	
+	/**
+	 * 관리자 등록/수정요청 상세화면
+	 * @return
+	 */
+	@RequestMapping(value="/admin/viewDetail", method=RequestMethod.GET)
+	public ModelAndView goAdminViewDetail(ModelMap map,
+			@RequestParam(value="seq", required=true, defaultValue="") int reqSeq,
+			@RequestParam(value="viewType", required=true, defaultValue="") String viewType){
+		map.addAttribute("reqSeq", reqSeq);
+		map.addAttribute("viewType", viewType);
+		return new ModelAndView("/admin/adminViewDetail");
 	}
 }

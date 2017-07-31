@@ -108,44 +108,8 @@ window.$Layout = {
 		// 화면에 태그값 삽입후 이벤트가 처리되어야지 정상적으로 스크롤이벤트가 발생함.
 		fnkeywordRoll();
 		
-		var xmlHttp;
-
-		function srvTime(){
-
-			if (window.XMLHttpRequest) {//분기하지 않으면 IE에서만 작동된다.
-			
-				xmlHttp = new XMLHttpRequest(); // IE 7.0 이상, 크롬, 파이어폭스 등
-				
-				xmlHttp.open('HEAD',window.location.href.toString(),false);
-				
-				xmlHttp.setRequestHeader("Content-Type", "text/html");
-				
-				xmlHttp.send('');
-				
-				return xmlHttp.getResponseHeader("Date");
-			
-			}else if (window.ActiveXObject) {
-			
-				xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
-				
-				xmlHttp.open('HEAD',window.location.href.toString(),false);
-				
-				xmlHttp.setRequestHeader("Content-Type", "text/html");
-				
-				xmlHttp.send('');
-				
-				return xmlHttp.getResponseHeader("Date");
-			
-			}
-
-		}
-
-		var st = srvTime();
-
-		// 현재시간 셋팅하기		
-		var now = new Date(st);
-
-		var dayinfo = now.getFullYear() + "."+ (now.getMonth()+1)  + "." + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + " 기준";
+		var dayinfo = $ServerInfo.dateTime.getFullYear() + "."+ ($ServerInfo.dateTime.getMonth()+1)  + "." + $ServerInfo.dateTime.getDate() 
+			+ " " + $ServerInfo.dateTime.getHours() + ":" + $ServerInfo.dateTime.getMinutes() + " 기준";
 		
 		$("#dayinfo").html(dayinfo);
 

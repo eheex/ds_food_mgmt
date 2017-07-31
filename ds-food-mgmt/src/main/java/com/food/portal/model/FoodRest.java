@@ -13,6 +13,8 @@ public class FoodRest  {
 	private String imgPth;
 	
 	private String imgNM;
+	
+	private String modDt;
 
 	public int getReqSeq() {
 		return reqSeq;
@@ -46,5 +48,12 @@ public class FoodRest  {
 		this.imgNM = imgNM;
 	}
 
+	public String getModDt() {
+		return modDt;
+	}
+
+	public void setModDt(String modDt) {
+		this.modDt = modDt;
+	}
 
 }

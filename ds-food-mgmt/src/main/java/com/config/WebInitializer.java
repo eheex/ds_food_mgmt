@@ -113,7 +113,8 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{AppContext.class};
+        //2017.07.25 로그인 필요없었을 때 return new Class<?>[]{AppContext.class};
+    	return new Class<?>[]{AppContext.class, CustomWebSecurityConfigurerAdapter.class};
     }
     
     @Override

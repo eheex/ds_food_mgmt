@@ -16,6 +16,10 @@
         <typeAlias type="com.food.portal.model.CPN"   		alias="CPN"/>
         <typeAlias type="com.food.portal.model.FoodRest"    alias="FoodRest"/>
         <typeAlias type="com.food.portal.model.Code"    	alias="Code"/>
+        
+        <typeAlias type="com.food.admin.model.FoodAdmin"    	  alias="FoodAdmin"/>
+        <typeAlias type="com.food.admin.model.FoodProdHitMgmt"    alias="FoodProdHitMgmt"/>
+        
     </typeAliases>
 
 </configuration>

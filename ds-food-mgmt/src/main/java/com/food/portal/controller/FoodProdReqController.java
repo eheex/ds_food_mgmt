@@ -29,10 +29,10 @@ public class FoodProdReqController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
 	public int setFoodProdReq(@RequestBody FoodProdReq foodProdReq) throws Exception{
-//		System.out.println("FoodProdReqController, setFoodProdReq ---------------------pass");
+		System.out.println("FoodProdReqController, setFoodProdReq ---------------------pass");
 		
-//		System.out.println("FoodProdReqController, foodProdReq ["+foodProdReq.getPrdNm()+"]");
-//		System.out.println("FoodProdReqController, getFoodRest ["+foodProdReq.getFoodRest().size()+"]");
+		System.out.println("FoodProdReqController, foodProdReq ["+foodProdReq.getPrdNm()+"]");
+		System.out.println("FoodProdReqController, getFoodRest ["+foodProdReq.getFoodRest().size()+"]");
 		
 //		System.out.println("FoodProdReqController foodProdReq = [" + foodProdReq+ "]");
 //		System.out.println("FoodProdReqController foodRest = [" + foodRest+ "]");

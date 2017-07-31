@@ -53,8 +53,13 @@
         <net.java.amateras.db.visual.model.ColumnModel>
           <columnName>PWD</columnName>
           <logicalName>비밀번호</logicalName>
-          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel/columnType"/>
-          <size>20</size>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>VARCHAR</name>
+            <logicalName>String</logicalName>
+            <supportSize>true</supportSize>
+            <type>12</type>
+          </columnType>
+          <size>256</size>
           <notNull>true</notNull>
           <primaryKey>false</primaryKey>
           <description></description>
