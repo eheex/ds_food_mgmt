@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../font/notokr-regular.eot'); 
+  src: local("※"),
+		url('../font/notokr-regular.eot?#iefix') format('embedded-opentype'),
+        url('../font/notokr-regular.woff2') format('woff2'),
+        url('../font/notokr-regular.woff') format('woff'),
+        url('../font/notokr-regular.ttf') format('truetype'),
+        url('../font/notokr-regular.svg#notokr-regular') format('svg');
+}
+@font-face {
+  font-family: 'notokrm';
+  font-weight: 400;
+  src: url('../font/notokr-medium.eot');  
+  src: local("※"),
+		url('../font/notokr-medium.eot?#iefix') format('embedded-opentype'),
+         url('../font/notokr-medium.woff2') format('woff2'),
+         url('../font/notokr-medium.woff') format('woff'),
+         url('../font/notokr-medium.ttf') format('truetype'),
+         url('../font/notokr-medium.svg#notokr-medium') format('svg');
+}
+@font-face {
+  font-family: 'notokrb';
+  font-weight: 500;
+  src: url('../font/notokr-bold.eot');
+  src: local("※"),
+		url('../font/notokr-bold.eot?#iefix') format('embedded-opentype'),
+        url('../font/notokr-bold.woff2') format('woff2'),
+        url('../font/notokr-bold.woff') format('woff'),
+        url('../font/notokr-bold.ttf') format('truetype'),
+        url('../font/notokr-bold.svg#notokr-bold') format('svg');
+}
+
+
+/* common */
+*{-webkit-text-size-adjust:none;font-family: "Noto Sans KR", '맑은 고딕', '돋움', sans-serif;}
+body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, th, td, input, textarea,button,select{margin:0;padding:0; font-size:16px; color:#7d7d7d; line-height:1; -webkit-text-size-adjust: none;/*아이폰 글자크기 자동조정 방지*/ /*overflow:scroll; overflow-x:hidden;*/}
+body{-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+li{list-style:none}
+address, caption, em, var{font-style:normal;font-weight:normal}
+input, textarea, select{letter-spacing:normal}
+ol, ul, dl{list-style:none}
+fieldset, img{border:0}
+legend, caption{display:none;font-size:0; line-height:0; visibility:hidden; overflow:hidden;}
+img{border:0;vertical-align:top}
+hr{display:none}
+table{border-collapse:collapse;border-spacing:0}
+br{letter-spacing:normal}
+p{letter-spacing:normal}
+input{vertical-align:middle}
+input[type="text"], input[type="password"]{-webkit-appearance:none}
+input[type="checkbox"]{-webkit-appearance:none;-webkit-border-radius:0}
+input:checked[type="checkbox"]{-webkit-appearance:checkbox}
+input[type="radio"]{border:none;/* -webkit-appearance:none */}
+button,input[type="button"],input[type="submit"],input[type="reset"],input[type="file"]{-webkit-appearance:button;border-radius:0}
+textarea{-webkit-appearance:none}
+/* select{-webkit-appearance:menulist-text} */
+a{text-decoration:none}
+a[href^="tel"]{ font-style:normal}
+a:link,a:visited			{color:#666; text-decoration:none;}
+a:hover,a:active,a:focus	{color:#666; text-decoration:none}
