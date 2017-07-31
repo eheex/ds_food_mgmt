@@ -4,10 +4,6 @@
  *	푸드TFT 
  */
 window.$DetailSearchPopup = {
-	bigTxt: "",
-	middleTxt: "",
-	smallTxt: "",
-	_isOpen : false,
 	_jPopUpElement: $('<!-- detail search -->'+
 						'<div id="srh_detail" class="srh_detail">'+
 							'<button class="srh_detail_close">상세검색<img src="../images/common/btn_detailminus.gif" alt="닫기" /></button>'+
@@ -18,7 +14,7 @@ window.$DetailSearchPopup = {
 										'<div class="finder_cell _big">'+
 											'<h4 class="finder_cell_tit">대분류</h4>'+
 											'<ul class="finder_list"><!--클릭 선택시 class=on-->'+
-												'<li><a href="#" class="_big1 on">가공식품</a></li>'+
+												'<li><a href="#" class="_big1">가공식품</a></li>'+
 												'<li><a href="#" class="_big2">냉장/냉동/반찬/간편식</a></li>'+
 												'<li><a href="#" class="_big3">건강/친환경식품</a></li>'+
 												'<li><a href="#" class="_big4">정육/계란류</a></li>'+
@@ -29,7 +25,7 @@ window.$DetailSearchPopup = {
 										'</div>'+
 										'<div class="finder_cell _mid">'+
 											'<h4 class="finder_cell_tit">중분류</h4>'+
-											'<ul class="finder_list _mid1"><!--가공식품-->'+
+											'<ul class="finder_list _mid1 hidden"><!--가공식품-->'+
 												'<li><a href="#" class="on">라면/컵라면/면식품</a></li>'+
 												'<li><a href="#">분유/두유/이유식></a></li>'+
 												'<li><a href="#">우유/요구르트/치즈/아이스크림</a></li>'+
@@ -83,7 +79,7 @@ window.$DetailSearchPopup = {
 										'</div>'+
 										'<div class="finder_cell last _small">'+
 											'<h4 class="finder_cell_tit">소분류</h4>'+
-											'<ul class="finder_list _small1"><!--가공-라면-->'+
+											'<ul class="finder_list _small1 hidden"><!--가공-라면-->'+
 												'<li><a href="#" class="_small1-1 on">냉면/메밀면</a></li>'+
 												'<li><a href="#" class="_small1-2">파스타</a></li>'+
 												'<li><a href="#" class="_small1-3">당면</a></li>'+
@@ -462,40 +458,155 @@ window.$DetailSearchPopup = {
 									'<div class="finder_col _nutrition">'+
 										'<h3 class="finder_tit _nutrition"><strong>영양성분</strong></h3>'+
 										'<ul class="finder_range_list">'+
-											'<li>'+
-												'<span class="rang_tit">열량</span>'+
-												'<div id="kcal" class="range_in"></div>'+
-												'<input id="kcalMin" type="text" title="열량검색 최소값" class="rangenum" placeholder="0" />~<input id="kcalMax" type="text" title="열량검색 최대값" class="rangenum" placeholder="0" />kcal'+
+											'<li id="100000005">'+
+											  '<span class="rang_tit">열량</span>'+
+											  '<div id="nutritive1" class="range_in"></div>'+
+											  '<input id="nutritive1Min" type="text" title="열량검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive1Max" type="text" title="열량검색 최대값" class="rangenum" placeholder="0" />kcal'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">탄수화물</span>'+
-												'<div id="car" class="range_in"></div>'+
-												'<input id="carMin" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="carMax" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
+											'<li id="100000006">'+
+											  '<span class="rang_tit">탄수화물</span>'+
+											  '<div id="nutritive2" class="range_in"></div>'+
+											  '<input id="nutritive2Min" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive2Max" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">당류</span>'+
-												'<div id="sugars" class="range_in"></div>'+
-												'<input id="sugarsMin" type="text" title="열량검색 최소값" class="rangenum" placeholder="0" />~<input id="sugarsMax" type="text" title="열량검색 최대값" class="rangenum" placeholder="0" />kcal'+
+											'<li id="100000007">'+
+											  '<span class="rang_tit">당류</span>'+
+											  '<div id="nutritive3" class="range_in"></div>'+
+											  '<input id="nutritive3Min" type="text" title="당류검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive3Max" type="text" title="당류검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">단백질</span>'+
-												'<div id="protein" class="range_in"></div>'+
-												'<input id="proteinMin" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="proteinMax" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
+											'<li id="100000008">'+
+											  '<span class="rang_tit">단백질</span>'+
+											  '<div id="nutritive4" class="range_in"></div>'+
+											  '<input id="nutritive4Min" type="text" title="단백질검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive4Max" type="text" title="단백질검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">지방</span>'+
-												'<div id="fat" class="range_in"></div>'+
-												'<input id="fatMin" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="fatMax" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
+											'<li id="100000009">'+
+											  '<span class="rang_tit">지방</span>'+
+											  '<div id="nutritive5" class="range_in"></div>'+
+											  '<input id="nutritive5Min" type="text" title="지방검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive5Max" type="text" title="지방검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">포화지방</span>'+
-												'<div id="sFat" class="range_in"></div>'+
-												'<input id="sFatMin" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="sFatMax" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
+											'<li id="100000010">'+
+											  '<span class="rang_tit">콜레스테롤</span>'+
+											  '<div id="nutritive6" class="range_in"></div>'+
+											  '<input id="nutritive6Min" type="text" title="콜레스테롤검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive6Max" type="text" title="콜레스테롤검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
-											'<li>'+
-												'<span class="rang_tit">나트륨</span>'+
-												'<div id="na" class="range_in"></div>'+
-												'<input id="naMin" type="text" title="탄수화물검색 최소값" class="rangenum" placeholder="0" />~<input id="naMax" type="text" title="탄수화물검색 최대값" class="rangenum" placeholder="0" />g'+
+											'<li id="100000011">'+
+											  '<span class="rang_tit">나트륨</span>'+
+											  '<div id="nutritive7" class="range_in"></div>'+
+											  '<input id="nutritive7Min" type="text" title="나트륨검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive7Max" type="text" title="나트륨검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000012">'+
+											  '<span class="rang_tit">포화지방</span>'+
+											  '<div id="nutritive8" class="range_in"></div>'+
+											  '<input id="nutritive8Min" type="text" title="포화지방검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive8Max" type="text" title="포화지방검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000013">'+
+											  '<span class="rang_tit">식이섬유</span>'+
+											  '<div id="nutritive9" class="range_in"></div>'+
+											  '<input id="nutritive9Min" type="text" title="식이섬유검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive9Max" type="text" title="식이섬유검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000016">'+
+											  '<span class="rang_tit">트랜스지방</span>'+
+											  '<div id="nutritive10" class="range_in"></div>'+
+											  '<input id="nutritive10Min" type="text" title="트랜스지방검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive10Max" type="text" title="트랜스지방검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000043">'+
+											  '<span class="rang_tit">칼슘</span>'+
+											  '<div id="nutritive11" class="range_in"></div>'+
+											  '<input id="nutritive11Min" type="text" title="칼슘검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive11Max" type="text" title="칼슘검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000045">'+
+											  '<span class="rang_tit">철</span>'+
+											  '<div id="nutritive12" class="range_in"></div>'+
+											  '<input id="nutritive12Min" type="text" title="철검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive12Max" type="text" title="철검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000047">'+
+											  '<span class="rang_tit">마그네슘</span>'+
+											  '<div id="nutritive13" class="range_in"></div>'+
+											  '<input id="nutritive13Min" type="text" title="마그네슘검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive13Max" type="text" title="마그네슘검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000048">'+
+											  '<span class="rang_tit">망간</span>'+
+											  '<div id="nutritive14" class="range_in"></div>'+
+											  '<input id="nutritive14Min" type="text" title="망간검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive14Max" type="text" title="망간검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000049">'+
+											  '<span class="rang_tit">아연</span>'+
+											  '<div id="nutritive15" class="range_in"></div>'+
+											  '<input id="nutritive15Min" type="text" title="아연검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive15Max" type="text" title="아연검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000056">'+
+											  '<span class="rang_tit">철분</span>'+
+											  '<div id="nutritive16" class="range_in"></div>'+
+											  '<input id="nutritive16Min" type="text" title="철분검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive16Max" type="text" title="철분검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000066">'+
+											  '<span class="rang_tit">비타민A</span>'+
+											  '<div id="nutritive17" class="range_in"></div>'+
+											  '<input id="nutritive17Min" type="text" title="비타민A검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive17Max" type="text" title="비타민A검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000067">'+
+											  '<span class="rang_tit">비타민B1</span>'+
+											  '<div id="nutritive18" class="range_in"></div>'+
+											  '<input id="nutritive18Min" type="text" title="비타민B1검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive18Max" type="text" title="비타민B1검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000068">'+
+											  '<span class="rang_tit">비타민B2</span>'+
+											  '<div id="nutritive19" class="range_in"></div>'+
+											  '<input id="nutritive19Min" type="text" title="비타민B2검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive19Max" type="text" title="비타민B2검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000069">'+
+											  '<span class="rang_tit">비타민C</span>'+
+											  '<div id="nutritive20" class="range_in"></div>'+
+											  '<input id="nutritive20Min" type="text" title="비타민C검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive20Max" type="text" title="비타민C검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000070">'+
+											  '<span class="rang_tit">나이아신</span>'+
+											  '<div id="nutritive21" class="range_in"></div>'+
+											  '<input id="nutritive21Min" type="text" title="나이아신검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive21Max" type="text" title="나이아신검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000071">'+
+											  '<span class="rang_tit">비타민B6</span>'+
+											  '<div id="nutritive22" class="range_in"></div>'+
+											  '<input id="nutritive22Min" type="text" title="비타민B6검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive22Max" type="text" title="비타민B6검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000072">'+
+											  '<span class="rang_tit">판토텐산</span>'+
+											  '<div id="nutritive23" class="range_in"></div>'+
+											  '<input id="nutritive23Min" type="text" title="판토텐산검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive23Max" type="text" title="판토텐산검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000073">'+
+											  '<span class="rang_tit">비타민B12</span>'+
+											  '<div id="nutritive24" class="range_in"></div>'+
+											  '<input id="nutritive24Min" type="text" title="비타민B12검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive24Max" type="text" title="비타민B12검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000074">'+
+											  '<span class="rang_tit">엽산</span>'+
+											  '<div id="nutritive25" class="range_in"></div>'+
+											  '<input id="nutritive25Min" type="text" title="엽산검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive25Max" type="text" title="엽산검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000075">'+
+											  '<span class="rang_tit">비타민D</span>'+
+											  '<div id="nutritive26" class="range_in"></div>'+
+											  '<input id="nutritive26Min" type="text" title="비타민D검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive26Max" type="text" title="비타민D검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000076">'+
+											  '<span class="rang_tit">비타민E</span>'+
+											  '<div id="nutritive27" class="range_in"></div>'+
+											  '<input id="nutritive27Min" type="text" title="비타민E검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive27Max" type="text" title="비타민E검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000078">'+
+											  '<span class="rang_tit">비타민D₃</span>'+
+											  '<div id="nutritive28" class="range_in"></div>'+
+											  '<input id="nutritive28Min" type="text" title="비타민D₃검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive28Max" type="text" title="비타민D₃검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000080">'+
+											  '<span class="rang_tit">비오틴</span>'+
+											  '<div id="nutritive29" class="range_in"></div>'+
+											  '<input id="nutritive29Min" type="text" title="비오틴검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive29Max" type="text" title="비오틴검색 최대값" class="rangenum" placeholder="0" />g'+
+											'</li>'+
+											'<li id="100000239">'+
+											  '<span class="rang_tit">카페인</span>'+
+											  '<div id="nutritive30" class="range_in"></div>'+
+											  '<input id="nutritive30Min" type="text" title="카페인검색 최소값" class="rangenum" placeholder="0" />~<input id="nutritive30Max" type="text" title="카페인검색 최대값" class="rangenum" placeholder="0" />g'+
 											'</li>'+
 										'</ul>'+
 									'</div>'+
@@ -530,8 +641,6 @@ window.$DetailSearchPopup = {
 								'</div>'+
 								'<!-- 상세검색>선택값 -->'+
 								'<div class="choicewrap">'+
-									'<span class="title">선택한 속성</span>'+
-									'<span class="choice_value"><a class="choice_cancel"></a></span>'+
 									'<button class="srh_detail_apply">적용</button>'+
 								'</div>'+
 							'</div>'+
@@ -545,7 +654,6 @@ window.$DetailSearchPopup = {
 
 		this._getData();
 		this._onClickEvent();
-		this._setSelectTxt();
 	},
 	_getData:function(){
 		var _this = this;
@@ -607,8 +715,6 @@ window.$DetailSearchPopup = {
 		$(".finder_cell._big li a").on("click", function(event){
 			event.preventDefault();
 			
-			_this.bigTxt = $(this).text();
-			
 			$(".finder_cell._big li a").removeClass("on");
 			$(this).addClass("on");
 			
@@ -618,23 +724,15 @@ window.$DetailSearchPopup = {
 			
 			$("div.finder_cell._mid .finder_list").addClass("hidden");
 			$("div.finder_cell._mid .finder_list._mid"+sBigClassNo).removeClass("hidden");
-			
-			_this._setSelectTxt("big");
-			
-			$("div.finder_cell._mid .finder_list._mid"+sBigClassNo).children().eq(0).find("a").click();
 		});
 		$(".finder_cell._mid li a").on("click", function(event){
 			event.preventDefault();
-			
-			_this.middleTxt = $(this).text();
 			
 			$(".finder_cell._mid li a").removeClass("on");
 			$(this).addClass("on");
 			
 			//해당 소분류영역 Show 처리
 			//ul class="finder_list _mid2
-			
-			_this._setSelectTxt("mid");
 		});
 		/*$(".finder_cell._small li a").on("click", function(event){
 			event.preventDefault();
@@ -644,7 +742,6 @@ window.$DetailSearchPopup = {
 			$(".finder_cell._small li").find("a").removeClass("on");
 			$(this).addClass("on");
 			
-			_this._setSelectTxt("small");
 		});*/
 		
 		//중분류 hidden 제어
@@ -663,7 +760,7 @@ window.$DetailSearchPopup = {
 		});*/
 		
 		//소분류 hidden 제어
-	   $(".finder_cell._mid li a").on("click", function(event){
+	   /*$(".finder_cell._mid li a").on("click", function(event){
 			event.preventDefault();
 			var low = $(this).attr('class').substr(0,$(this).attr('class').length-3)
 			
@@ -671,46 +768,7 @@ window.$DetailSearchPopup = {
 			$(".finder_cell._small li").find("a").addClass("hidden");
 			$(_low).removeClass("hidden");
 
-		});
-	   
-	   //choice 제어
-	   $("div._allergy ul li input, div._certify ul li input, div._noadd ul li input").on("click", function(event){
-		   
-		   var _code = $(this).parents("li").data("cData").cd;
-		   var _codeNm = $(this).parents("li").data("cData").cdNm;
-		   var _jEl = $("div.choicewrap", _this._jPopUpElement);
-		   
-		   if($(this).is(":checked")){
-			   //append
-			   _jEl.append('<span class="choice_valueexcept"><a id="'+_code+'" href="#" class="choice_cancel">'+_codeNm+'<img id="onRemove" src="../images/common/btn_close2.png" alt="선택취소" /></a></span>').on("click", "img#onRemove", function(event){
-				   event.preventDefault();
-				   //삭제처리
-				   //_jEl.find("#"+_code).parents("span").remove();
-			   });
-		   }else{
-			   //remove
-			   _jEl.find("#"+_code).parents("span").remove();
-		   }
-		   
-		   
-		   //$("div.choicewrap", _this._jPopUpElement).append('<span class="choice_valueexcept"><a href="#" class="choice_cancel">씨발<img src="../images/common/btn_close2.png" alt="선택취소" /></a></span>');
-	   });
-	},
-	_setSelectTxt:function(sArea){
-		
-		// 대,중,소 선택한 속성 처리
-		this.bigTxt = (sArea == undefined || (sArea == "big" || sArea == "mid" || sArea == "small")) ? $("div.finder_cell._big").find("a.on").text() : "";
-		this.middleTxt = (sArea == undefined || (sArea == "mid" || sArea == "small")) ? " > " + $("div.finder_cell._mid").find("a.on").text() : "";
-		this.smallTxt = (sArea == undefined || sArea == "small") ? " > " + $("div.finder_cell._small").find("a.on").text() : "";
-		
-		var _selectTxt = this.bigTxt+this.middleTxt+this.smallTxt;
-		
-		$("div.choicewrap .choice_value a", this._jPopUpElement).html(_selectTxt+
-				'<img src="../images/common/btn_close2.png" alt="선택취소" />').on("click", "img", function(event){
-					event.preventDefault();
-					$(this).parents("a").html("");
-				}
-		);
+		});*/
 	},
 	destroy: function(){
 		var _jEl = $("#container");

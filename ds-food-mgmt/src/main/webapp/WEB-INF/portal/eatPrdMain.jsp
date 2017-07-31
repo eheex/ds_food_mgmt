@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,6 +27,16 @@
 	<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <script type="text/javascript" src="./js/popup/categoryPopup.js"></script>
+<script>
+window.$ServerInfo = {
+	ip:"<%=request.getServerName()%>",
+	port:"<%=request.getServerPort()%>",
+	dateTime: new Date(<%=(new Date()).getTime()%>),
+	getURL:function(){
+		return "http://" + this.ip + ":" + this.port;
+	}
+};
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -66,7 +77,41 @@ $(document).ready(function(){
 			    	  for(var i=0; i<_tags.length; i++){
 			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
 			    	  }
-		    	  }
+		    	}
+		    	
+		    	/* 원재료 처리 */
+	    	  	var _materialTxt = "";
+	    	  	if(typeof this.rawmtrlRuleStrct != "undefined" && this.rawmtrlRuleStrct != ""){
+					var _materialData = this.rawmtrlRuleStrct;
+	    		  	_materialData = _materialData.replace(/\#\|\MTRL\|/g, '<span class="static-text" data-type="MTRL" data-name="" data-code="" data-nick="" data-highlight="" data-agree="">');
+	    		  	_materialData = _materialData.replace(/\#\|\ORIGIN\|/g, '<span class="static-text" data-type="ORIGIN" data-name="" data-code="" data-nick="">');
+	    		  	_materialData = _materialData.replace(/\#\|\CNAMT\|/g, '<span class="static-text" data-type="CNAMT" data-number="" data-unittext="" data-unitcode="">');
+	    		  	_materialData = _materialData.replace(/\|\#/g, '</span>');
+	    		  	_materialData = _materialData.replace(/\<b\>/g, '<b class="bold">');
+	    		  	_materialData = _materialData.replace(/\<em\>/g, '<em class="big">');
+	    		  
+	    		  	var _dom = $('<div></div>');
+	              	_dom.append(_materialData);
+	              	var elements = _dom.find('span')
+	    		  	$.each(elements, function(){
+	    			 
+	    			  	var text = $(this).text().split('|'),
+	                    	type = $(this).data('type'),
+	                    	html, node, currenttext;
+	    			  
+	    			  	//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
+	    			  	if(type == "CNAMT" && type =="ORIGIN"){}
+	    			  
+	    			  	if (type == 'MTRL'){
+	    				  	_materialTxt += text[0];
+	                  	}else if (type == 'ORIGIN'){
+	                	  	_materialTxt += (text[2] !== '') ? text[2] : text[0];
+	                  	}else if (type == 'CNAMT'){
+	                	  	_materialTxt += (text[1] !== '') ? text[0] + ' ' + text[1] : text[0];
+	                  	}
+
+	    		  	});
+	    	  	}
 	    		
     			var _jEl = $("<li class='slide' id='"+this.fudId+"'>"+
 								"<img src='"+_fudUrl+"' alt='"+this.fudNm+"' />"+
@@ -82,7 +127,7 @@ $(document).ready(function(){
 										"</span>"+
 									"</div>"+
 									"<div class='info2'><span class='prdname'>"+this.fudNm+"</span><span class='kcal1-1'>"+_cal+"</span><span class='kcal1-2'>kcal</span></div>"+
-									"<div class='info3'><span class='materialname'>주원재료명 00%(원산지</span></div>"+
+									"<div class='info3'><span class='materialname'>"+_materialTxt+"</span></div>"+
 									"<div class='info4'><a href='#'><span class='hashtag'>#태그</span></a><a href='#'><span class='hashtag'>#태그</span></a></div>"+
 								"</li>").data("rowData", this).on("click", function(event){
 									//해당 식품 상세화면으로 이동
@@ -161,8 +206,6 @@ $(document).ready(function(){
 		realTimeData = rData;	
 	    var loopCount = 1;
 	    var loopCountSub = 1;
-	    console.log(realTimeData);
-	    
 
 		$.each(realTimeData, function(){
 
@@ -179,48 +222,9 @@ $(document).ready(function(){
 		// 화면에 태그값 삽입후 이벤트가 처리되어야지 정상적으로 스크롤이벤트가 발생함.
 		fnkeywordRoll();
 		
-		
-
-		var xmlHttp;
-
-		function srvTime(){
-
-			  if (window.XMLHttpRequest) {//분기하지 않으면 IE에서만 작동된다.
-			
-				  xmlHttp = new XMLHttpRequest(); // IE 7.0 이상, 크롬, 파이어폭스 등
-				
-				  xmlHttp.open('HEAD',window.location.href.toString(),false);
-				
-				  xmlHttp.setRequestHeader("Content-Type", "text/html");
-				
-				  xmlHttp.send('');
-				
-				  return xmlHttp.getResponseHeader("Date");
-			
-			  }else if (window.ActiveXObject) {
-			
-				  xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
-				
-				  xmlHttp.open('HEAD',window.location.href.toString(),false);
-				
-				  xmlHttp.setRequestHeader("Content-Type", "text/html");
-				
-				  xmlHttp.send('');
-				
-				  return xmlHttp.getResponseHeader("Date");
-			
-			  }
-
-		}
-
-		var st = srvTime();
-
-		// 현재시간 셋팅하기		
-		var now = new Date(st);
-		var dayinfo = now.getFullYear() + "."+ (now.getMonth()+1)  + "." + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + " 기준";
-		
+		var dayinfo = $ServerInfo.dateTime.getFullYear() + "."+ ($ServerInfo.dateTime.getMonth()+1)  + "." + $ServerInfo.dateTime.getDate() 
+			+ " " + $ServerInfo.dateTime.getHours() + ":" + $ServerInfo.dateTime.getMinutes() + " 기준";
 		$("#dayinfo").html(dayinfo);
-	
 	});
   
 });

@@ -8,7 +8,6 @@ window.$EatPrdList = {
 		//Header 공통 그리기
 		$Layout.setSearchHeader();
 		 // 테스트
-		//  하나 더 추가
 		//식품 정보 가이드
 		$GuidePopup.open();
 		
@@ -209,18 +208,38 @@ window.$EatPrdList = {
 		           /* 알레르기 */
 		           if(typeof data.allrgyIgdCt != "undefined" && data.allrgyIgdCt != ""){
 		        	   $("span.mark1",row).removeClass("visibility").find(".infodetail strong").html("포함 성분 : " + data.allrgyIgdCt);
+		        	   if(data.allrgyIgdCt.length > 20){
+		        		   var _length = (data.allrgyIgdCt.length-20) * 7;
+		        		   var _infoDetailW = 200;
+		        		   $("span.mark1 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+		        	   }
 		           }
 		           /* 인증 */
 		           if(typeof data.cert != "undefined" && data.cert != ""){
 		        	   $("span.mark2",row).removeClass("visibility").find(".infodetail strong").html(data.cert);
+		        	   if(data.cert.length > 20){
+		        		   var _length = (data.cert.length-20) * 7;
+		        		   var _infoDetailW = 200;
+		        		   $("span.mark2 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+		        	   }
 		           }
 		           /* 무첨가 */
 		           if(typeof data.notAdd != "undefined" && data.notAdd != ""){
 		        	   $("span.mark3",row).removeClass("visibility").find(".infodetail strong").html("무첨가 : " + data.notAdd);
+		        	   if(data.notAdd.length > 20){
+		        		   var _length = (data.notAdd.length-20) * 8;
+		        		   var _infoDetailW = 200;
+		        		   $("span.mark3 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+		        	   }
 		           }
 		           /* 영양영분주의 */
 		           if(typeof data.ntrIgdNm != "undefined" && data.ntrIgdNm != ""){
-		        	   $("span.mark4",row).removeClass("visibility").find(".infodetail").html("해당 제품의 "+data.ntrIgdNm+"은(는) 1일 영양성분 기준치에 50%를 넘습니다.");
+		        	   $("span.mark4",row).removeClass("visibility").find(".infodetail").html("해당 제품의 <strong>"+data.ntrIgdNm+"</strong>은(는) 1일 영양성분 기준치에 50%를 넘습니다.");
+		        	   if(data.ntrIgdNm.length > 16){
+		        		   var _length = (data.ntrIgdNm.length-16) * 2;
+		        		   var _infoDetailW = 200;
+		        		   $("span.mark4 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+		        	   }
 		           }
 		           
 		           //Row 클릭 시 제품상세페이지로 이동

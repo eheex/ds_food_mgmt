@@ -147,10 +147,10 @@ a.detail_tit:hover{background:#59504a;}
 .srh_detail .finder_list li .on{color:#f45329;text-decoration:underline}
 .srh_detail .finder_list li .off{color:#666;}
 .srh_detail ._nutrition{width:398px}
-.srh_detail .finder_range_list{margin:11px 0 0 21px;height:203px;overflow-y:auto;}
+.srh_detail .finder_range_list{margin:11px 0 0 15px;height:203px;overflow-y:auto;}
 .srh_detail .finder_range_list li{height:31px;line-height:30px;}
 .srh_detail .finder_range_list li:last-child{margin-bottom:11px}
-.srh_detail .rang_tit{display:block;float:left;width:59px;font-size:12px;color:#666;}
+.srh_detail .rang_tit{display:block;float:left;width:65px;font-size:12px;color:#666;}
 .srh_detail .range_in{width:153px;padding-right:12px;}
 .srh_detail .rangenum {width:28px;height:21px;margin:0 3px;padding:0 5px;text-align:right;font-size:12px;color:#666;}
 .srh_detail ._allergy{width:599px;border-right:1px solid #ddd;}

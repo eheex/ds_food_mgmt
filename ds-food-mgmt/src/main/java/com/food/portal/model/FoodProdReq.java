@@ -1,6 +1,5 @@
 package com.food.portal.model;
 
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -11,14 +10,6 @@ public class FoodProdReq {
 
 	private int reqSeq;
 	
-	public int getReqSeq() {
-		return reqSeq;
-	}
-
-	public void setReqSeq(int reqSeq) {
-		this.reqSeq = reqSeq;
-	}
-
 	private String reqGb;
 	
 	private String prdCd;
@@ -31,19 +22,20 @@ public class FoodProdReq {
 	
 	private String modNt;
 	
-	private Date modDt;
+	private String modDt;
 	
 	private String regYn;
 	
-	private Date regDt;
+	private String regDt;
 	
 	private String email;
 	
-	private List<FoodRest> foodRest;
-	
 	/* 
 	 *  이미지 추가건
-	 * */
+	 */
+	private List<FoodRest> foodRest;
+	
+	private String imgID;
 	
 	public List<FoodRest> getFoodRest() {
 		return foodRest;
@@ -52,8 +44,14 @@ public class FoodProdReq {
 	public void setFoodRest(List<FoodRest> foodRest) {
 		this.foodRest = foodRest;
 	}
+	
+	public int getReqSeq() {
+		return reqSeq;
+	}
 
-	private String imgID;
+	public void setReqSeq(int reqSeq) {
+		this.reqSeq = reqSeq;
+	}
 	
 	public String getImgID() {
 		return imgID;
@@ -133,14 +131,6 @@ public class FoodProdReq {
 		this.modNt = modNt;
 	}
 
-	public Date getModDt() {
-		return modDt;
-	}
-
-	public void setModDt(Date modDt) {
-		this.modDt = modDt;
-	}
-
 	public String getRegYn() {
 		return regYn;
 	}
@@ -149,20 +139,28 @@ public class FoodProdReq {
 		this.regYn = regYn;
 	}
 
-	public Date getRegDt() {
-		return regDt;
-	}
-
-	public void setRegDt(Date regDt) {
-		this.regDt = regDt;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getModDt() {
+		return modDt;
+	}
+
+	public void setModDt(String modDt) {
+		this.modDt = modDt;
+	}
+
+	public String getRegDt() {
+		return regDt;
+	}
+
+	public void setRegDt(String regDt) {
+		this.regDt = regDt;
 	}
 	
 }
