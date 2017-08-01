@@ -74,7 +74,12 @@ $(document).ready(function(){
 			    	  
 			    	  _tags = this.tag.split(",");
 			    	  
-			    	  for(var i=0; i<_tags.length; i++){
+			    	  var maxCount = 3;
+			    	  if(_tags.length < 3){
+			    		  maxCount = _tags.length;
+			    	  } 
+			    	  
+			    	  for(var i=0; i < maxCount; i++){
 			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
 			    	  }
 		    	}
@@ -128,7 +133,8 @@ $(document).ready(function(){
 									"</div>"+
 									"<div class='info2'><span class='prdname'>"+this.fudNm+"</span><span class='kcal1-1'>"+_cal+"</span><span class='kcal1-2'>kcal</span></div>"+
 									"<div class='info3'><span class='materialname'>"+_materialTxt+"</span></div>"+
-									"<div class='info4'><a href='#'><span class='hashtag'>#태그</span></a><a href='#'><span class='hashtag'>#태그</span></a></div>"+
+									//"<div class='info4'><a href='#'><span class='hashtag'>#태그</span></a><a href='#'><span class='hashtag'>#태그</span></a></div>"+
+									"<div class='info4'><a href='#'>"+_tagEl+"</a></div>"+
 								"</li>").data("rowData", this).on("click", function(event){
 									//해당 식품 상세화면으로 이동
 									var _fudId = $(this).data("rowData").fudId;
@@ -307,8 +313,8 @@ $(document).ready(function(){
 			<!-- footer -->	
 			<div class="footer">
 				<div class="footerwrap">
-					서울시 중랑구 면목로470 대상빌딩 4층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />
-					Copyright 2014 daesangit.com. All Rights Reserved
+					서울시 중랑구 면목로470 대상빌딩 5층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />
+					Copyright 2017 daesangit.com. All Rights Reserved
 				</div>
 			</div>
 			<!-- //footer -->	
