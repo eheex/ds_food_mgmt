@@ -156,7 +156,7 @@ $(document).ready(function() {
 							<td id="email"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminhp">요청 일시</label></th>
+							<th scope="row"><label for="adminhp">   요청 일시</label></th>
 							<td id="regDt"></td>
 						</tr>
 					</tbody>
