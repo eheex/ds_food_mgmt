@@ -1,0 +1,1801 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.portal.mapper.SearchDetailResultMapper">
+
+	<resultMap type="FudDetail" id="FudDetailResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="fudStnCd" column="FUD_STN_CD"/>
+		<result property="fudOrgplceCd" column="FUD_ORGPLCE_CD"/>
+		<result property="prductStnCd" column="PRDUCT_STN_CD"/>
+		<result property="fudUrl" column="FUD_URL"/>
+		<result property="tag" column="TAG"/>
+		<result property="brand" column="BRAND"/>
+		<result property="allrgyIgdCt" column="ALLRGY_IGD_CT"/>
+		<result property="vlm" column="VLM"/>
+		<result property="crtDt" column="CRT_DT"/>
+		<result property="barcode" column="BARCODE"/>
+		<result property="itmRptNo" column="ITM_RPT_NO"/>
+		<result property="itmRptDt" column="ITM_RPT_DT"/>
+		<result property="dtiIdvMrk" column="DTI_IDV_MRK"/>
+		<result property="spcIgd" column="SPC_IGD"/>
+		<result property="ognCntn" column="OGN_CNTN"/>
+		<result property="foodGroup" column="FOOD_GROUP"/>
+		<result property="foodType" column="FOOD_TYPE"/>
+		<result property="notAdd" column="NOT_ADD"/>
+		<result property="mta01" column="MTA_01"/>
+		<result property="mta02" column="MTA_02"/>
+		<result property="mta03" column="MTA_03"/>
+		<result property="mta04" column="MTA_04"/>
+		<result property="mta05" column="MTA_05"/>
+		<result property="mta06" column="MTA_06"/>
+		<result property="mta07" column="MTA_07"/>
+		<result property="mta08" column="MTA_08"/>
+		<result property="mta09" column="MTA_09"/>
+		<result property="mta10" column="MTA_10"/>
+		<result property="mta11" column="MTA_11"/>
+		<result property="mta12" column="MTA_12"/>
+		<result property="pacForm" column="PAC_FORM"/>
+		<result property="pacMtrlCt" column="PAC_MTRL_CT"/>
+		<result property="rcspCt" column="RCSP_CT"/>
+		<result property="rcspMrk" column="RCSP_MRK"/>
+		<result property="rawmtrlRuleStrct" column="RAWMTRL_RULE_STRCT"/>
+	</resultMap>
+	
+	<resultMap type="Fud" id="FudResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="fudUrl" column="FUD_URL"/>
+		<result property="tag" column="TAG"/>
+		<result property="brand" column="BRAND"/>
+		<result property="vlm" column="VLM"/>
+		<result property="cal" column="CAL"/>
+		<result property="rawmtrlRuleStrct" column="RAWMTRL_RULE_STRCT"/>
+		<result property="allrgyIgdCt" column="ALLRGY_IGD_CT"/>
+		<result property="cert" column="CERT"/>
+		<result property="notAdd" column="NOT_ADD"/>
+		<result property="ntrIgdNm" column="NTR_IGD_NM"/>
+		<result property="crtDt" column="CRT_DT"/>
+		<result property="hiscnt" column="HISCNT"/>
+	</resultMap>
+	
+	<resultMap type="NTR" id="NtrResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="untGnbnm" column="UNT_GNBNM"/>
+		<result property="ofrQt" column="OFR_QT"/>
+		<result property="ofrCnamt" column="OFR_CNAMT"/>
+		<result property="cal" column="CAL"/>
+		<result property="totOfrQt" column="TOT_OFR_QT"/>
+		<result property="totOfrCnamt" column="TOT_OFR_CNAMT"/>
+		<result property="totCal" column="TOT_CAL"/>
+		<result property="untCntnTypCd" column="UNT_CNTN_TYP_CD"/>
+		<result property="oppNtrIgdId" column="OPP_NTR_IGD_ID"/>
+		<result property="oppNtrIgdNm" column="OPP_NTR_IGD_NM"/>
+		<result property="cnamtNm" column="CNAMT_NM"/>
+		<result property="rate" column="RATE"/>
+		<result property="totCnamt" column="TOT_CNAMT"/>
+		<result property="totCnamtUntCd" column="TOT_CNAMT_UNT_CD"/>
+		<result property="totRate" column="TOT_RATE"/>
+		<result property="ntrIgdLvlNo" column="NTR_IGD_LVL_NO"/>
+		<result property="ntrIgdSrtNo" column="NTR_IGD_SRT_NO"/>
+	</resultMap>
+	
+	<resultMap type="CPN" id="CpnResult">
+		<result property="cpnCtgNm" column="CPN_CTG_NM"/>
+		<result property="cpnNm" column="CPN_NM"/>
+	</resultMap>
+	
+	<resultMap type="Code" id="Code">
+		<result property="cd" column="CD_ID"/>
+		<result property="cdNm" column="CD_NM"/>
+	</resultMap>
+	
+	<resultMap type="FudList" id="FudListResult">
+		<result property="fudId" column="FUD_ID"/>
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="fudStnCd" column="FUD_STN_CD"/>
+		<result property="fudOrgplceCd" column="FUD_ORGPLCE_CD"/>
+		<result property="prductStnCd" column="PRDUCT_STN_CD"/>
+		<result property="fudUrl" column="FUD_URL"/>
+		<result property="spcIgd" column="SPC_IGD"/>
+		<result property="tag" column="TAG"/>
+		<result property="brand" column="BRAND"/>
+		<result property="vlm" column="VLM"/>
+		<result property="cal" column="CAL"/>
+		<result property="rawmtrlRuleStrct" column="RAWMTRL_RULE_STRCT"/>
+		<result property="cpnNm" column="CPN_NM"/>
+		<result property="totcnt" column="TOTCNT"/>
+		<result property="allrgyIgdCt" column="ALLRGY_IGD_CT"/>
+		<result property="allrgyGbn" column="ALLRGY_GBN"/>
+		<result property="cert" column="CERT"/>
+		<result property="notAdd" column="NOT_ADD"/>
+		<result property="ntrIgdNm" column="NTR_IGD_NM"/>
+		<result property="hiscnt" column="HISCNT"/>
+		<result property="crtDt" column="CRT_DT"/>
+		<result property="sortHiscnt" column="SORT_HISCNT"/>
+		<result property="sortCal" column="SORT_CAL"/>
+		<result property="clsGroup" column="CLS_GROUP"/>
+	</resultMap>
+
+	<!-- 식품 상세조회 -->
+    <select id="selectSearchDetailResult" resultMap="FudDetailResult">
+    	<![CDATA[
+	    	SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD					/* 식품아이디,식품이름,식품구분코드,식품원산지코드*/
+			,      A.PRDUCT_STN_CD,A.FUD_URL,A.TAG,A.BRAND							/* 제품구분코드,식품정보URL(이미지),태그,브랜드*/
+			,      A.ALLRGY_IGD_CT,LOWER(CONCAT(A.VLM,A.VLM_UNT_CD)) VLM,A.CRT_DT	/* 알레르기,중량및 중량단위 ,등록일 */
+			,	   A.BARCODE,A.ITM_RPT_NO,A.ITM_RPT_DT								/* 바코드,품목보고번호 ,보고일 */
+			,	   A.DTI_IDV_MRK,A.SPC_IGD,CONCAT(A.OGN_CNTN,'%') OGN_CNTN			/* 개별표시,특정성분,유기농 성분  */
+			,	   C.FOOD_GROUP	,D.FOOD_TYPE										/* 식품분류,식품유형  */
+			,	   (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc WHERE fm.MTA_ID = 111 
+				   AND fm.FUD_ID= A.FUD_ID
+				   AND fm.MTA_ATRB = cc.CD_ID
+				   GROUP BY A.FUD_ID) AS NOT_ADD									/* 무첨가 */ 								  
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '103' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_01									/* 제조년월   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '104' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_02									/* 유통기한   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '105' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_03									/* 품질유지기한   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '106' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_04									/* 반품 및 교환 장소   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '107' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_05									/* 고객상담실   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '108' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_06									/* 주의사항   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '109' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_07									/* 제조시설 안내   */
+			,	   (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+				   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+				   GROUP BY A.FUD_ID) AS MTA_08										/* 인증 */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '112' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_09									/* 기타마케팅 문구    */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '113' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_10									/* 특허 */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '114' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_11									/* 실용시안   */
+			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
+			        WHERE AA.MTA_ID = '420' AND AA.FUD_ID = A.FUD_ID 
+			        GROUP BY AA.FUD_ID) AS MTA_12									/* 유기농 */   
+			,		B.PAC_FORM,B.PAC_MTRL_CT,B.RCSP_CT,B.RCSP_MRK 					/*  포장형태,포장재질,분리배출표시,분리배출 상세    */
+			FROM FUD A LEFT JOIN (SELECT FUD_ID															
+						, CONCAT( (SELECT CD_NM FROM CM_CD WHERE CD=PAC_FORM_CD1 LIMIT 0,1) ,'/',
+								  (SELECT CD_NM FROM CM_CD WHERE CD=PAC_FORM_CD2 LIMIT 0,1) ) PAC_FORM 			/*  포장형태    */
+						, PAC_MTRL_CT, RCSP_CT																	/*  포장재질,분리배출표시     */
+						,(SELECT CD_NM FROM CM_CD WHERE CD= REPLACE(RCSP_MRK,',','')  LIMIT 0,1)  RCSP_MRK 		/*  포장형태    */
+					      FROM FUD_PAC
+					      WHERE FUD_ID = #{query.fudId}) B ON A.FUD_ID = B.FUD_ID
+			           LEFT JOIN (SELECT B.FUD_ID																/* 식품 분류  */
+						,    GROUP_CONCAT(A.CLS_NM SEPARATOR '>') AS FOOD_GROUP
+							FROM 
+							(
+								SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+								,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+								,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+								,		B.BAS_CLS_LVL_NO
+								FROM CLS A,CLS_RLT B
+								WHERE A.DLT_YN = 'N' 
+								  AND A.CLS_ID = B.OPP_CLS_ID
+								  AND A.CLS_TYP_CD = 'CLS'
+							) A , 
+							FUD_CLS_RLT B 
+							WHERE A .CLS_ID = B.CLS_ID
+						      AND B.FUD_ID = #{query.fudId}
+						GROUP BY B.FUD_ID ) C ON A.FUD_ID = C.FUD_ID
+			           LEFT JOIN (SELECT B.FUD_ID																/* 식품 유형   */
+					      ,      GROUP_CONCAT(A.CLS_NM SEPARATOR '>') FOOD_TYPE
+							FROM 
+							(
+								SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+								,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+								,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+								,		B.BAS_CLS_LVL_NO
+								 FROM CLS A,CLS_RLT B
+						  	    WHERE A.DLT_YN = 'N' 
+						  	      AND A.CLS_ID = B.OPP_CLS_ID
+								  AND A.CLS_TYP_CD = 'TYP'
+							) A , 
+							FUD_CLS_RLT B 
+							WHERE A.CLS_ID = B.CLS_ID
+			                  AND B.FUD_ID = #{query.fudId}
+						 GROUP BY B.FUD_ID) D ON A.FUD_ID = D.FUD_ID
+			WHERE A.FUD_ID = #{query.fudId}
+    	]]>
+    </select>
+    
+    <!-- 식품 상세조회 - 원재료 조회 -->
+    <select id="selectSearchDetailRawMTRL" resultMap="FudDetailResult">
+    	<![CDATA[
+    		SELECT A.FUD_ID,B.RAWMTRL_RULE_STRCT
+			FROM
+			(
+				SELECT  MAX(BAS_RAWMTRL_ID) BAS_RAWMTRL_ID ,FUD_ID
+				FROM    FUD_RAWMTRL
+				WHERE   RAWMTRL_SRT_NO = '0'
+				AND    ( RAWMTRL_RULE_STRCT IS NOT NULL AND length(RAWMTRL_RULE_STRCT)  <> 0)
+				GROUP BY FUD_ID
+			) A LEFT JOIN FUD_RAWMTRL B ON A.BAS_RAWMTRL_ID = B.BAS_RAWMTRL_ID
+						   AND A.FUD_ID = B.FUD_ID
+			WHERE A.FUD_ID = #{query.fudId}
+    	]]>
+    </select>
+    
+    <!-- 식품 상세조회 - 영양성분 조회 -->
+    <select id="selectSearchDetailNTR" resultMap="NtrResult">
+    	<![CDATA[
+    		SELECT CASE WHEN A.UNT_GBN ='1' THEN '1회 제공량' 
+			            WHEN A.UNT_GBN ='2' THEN '단위함량' ELSE '총 제공량' END UNT_GNBNM	/*  영양성분 구분    */
+			,      C.OFR_QT,C.OFR_CNAMT,C.CAL												/*  1회제공량 OR 단위제공량 중량 칼로리  */	
+			,      C.TOT_OFR_QT,C.TOT_OFR_CNAMT,TOT_CAL 									/*  총제공량  중량 칼로리   */	
+			,      A.FUD_ID, A.UNT_CNTN_TYP_CD,A.OPP_NTR_IGD_ID								/*  제품코드,구분  ,영양성분코드  */	   
+			,      A.OPP_NTR_IGD_NM															/*  영양성분 이름     */
+			,      LOWER(CONCAT(A.CNAMT,A.CNAMT_UNT_CD)) CNAMT_NM							/*  제공량 &  단위   */
+			,      LOWER(CONCAT(A.RATE,'%')) RATE											/*  함량(%)비율  */
+			,      A.TOT_CNAMT																/*  총함량  */
+			,      A.TOT_CNAMT_UNT_CD														/*  총함량 단위    */
+			,      A.TOT_RATE,A.NTR_IGD_LVL_NO,A.NTR_IGD_SRT_NO 							/*  영총함량 비율,표시순서 레벨   */
+			FROM
+			(
+				SELECT A.FUD_ID, A.UNT_CNTN_TYP_CD,A.OPP_NTR_IGD_ID
+				,      (SELECT NTR_IGD_NM FROM NTR_IGD WHERE  NTR_IGD_ID = A.OPP_NTR_IGD_ID) AS OPP_NTR_IGD_NM
+				,      A.BAS_NTR_IGD_ID,A.CNAMT,A.CNAMT_UNT_CD
+				,      A.RATE,B.CNAMT AS TOT_CNAMT
+				,      B.CNAMT_UNT_CD AS TOT_CNAMT_UNT_CD
+				,      B.RATE AS TOT_RATE,A.NTR_IGD_LVL_NO,A.NTR_IGD_SRT_NO 
+			    ,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+			                WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+			                ELSE '3' END UNT_GBN
+				FROM FUD_NTR_IGD_CNAMT A LEFT JOIN FUD_NTR_IGD_CNAMT B ON  B.UNT_CNTN_TYP_CD = 'TOT' 
+										       AND A.FUD_ID = B.FUD_ID 
+										       AND A.OPP_NTR_IGD_ID = B.OPP_NTR_IGD_ID
+				WHERE A.FUD_ID = #{query.fudId}  
+				  AND A.OPP_NTR_IGD_ID != 100000005
+			) A ,(SELECT A.FUD_ID,MIN(A.UNT_GBN) UNT_GBN 	/*  영양성분 순서 1(ONE):일제공량,2(UNT):단위제공량,3(TOT):총제공량   */
+					FROM
+						(
+						SELECT FUD_ID
+						,	   CASE WHEN UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+									WHEN UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+									ELSE '3' END  UNT_GBN
+						FROM FUD_NTR_IGD_CNAMT
+						GROUP BY FUD_ID,UNT_CNTN_TYP_CD
+					) A
+					GROUP BY A.FUD_ID
+			     ) B
+			    ,(SELECT A.FUD_ID,A.UNT_CNTN_TYP_CD /*  1회제공량 OR 단위제공량 정보 및 총제공량 정보   */
+					,	   CONCAT(A.OFR_QT, (SELECT CD_NM FROM CM_CD WHERE CD=A.OFR_QT_TYP_CD LIMIT 0,1))AS OFR_QT
+					,      CONCAT(A.OFR_CNAMT, (SELECT CD_NM FROM CM_CD WHERE CD=A.OFR_CNAMT_UNT_CD LIMIT 0,1))AS OFR_CNAMT
+					,      CONCAT(A.CAL, (SELECT CD_NM FROM CM_CD WHERE CD=A.CAL_UNT_CD LIMIT 0,1))AS CAL
+					,      A.TOT_OFR_CNAMT_YN
+					,      CONCAT(B.OFR_QT, (SELECT CD_NM FROM CM_CD WHERE CD=B.OFR_QT_TYP_CD LIMIT 0,1)) AS TOT_OFR_QT
+					,      CONCAT(B.OFR_CNAMT, (SELECT CD_NM FROM CM_CD WHERE CD=B.OFR_CNAMT_UNT_CD LIMIT 0,1)) AS TOT_OFR_CNAMT
+					,      CONCAT(B.CAL, (SELECT CD_NM FROM CM_CD WHERE CD=B.CAL_UNT_CD LIMIT 0,1))AS TOT_CAL
+					,      CASE WHEN  C.OFR_CNAMT IS NULL THEN 'N' ELSE 'Y' END AS ONE_OFR_CNAMT_YN
+					,      C.OFR_CNAMT AS ONE_OFR_CNAMT
+					,      C.OFR_CNAMT_UNT_CD AS ONE_OFR_CNAMT_UNT_CD
+					,      CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1' 
+								WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'
+								ELSE '3' END  UNT_GBN
+					FROM FUD_NTR_IGD_SER A 
+					LEFT JOIN FUD_NTR_IGD_SER B ON  B.UNT_CNTN_TYP_CD = 'TOT' AND A.FUD_ID = B.FUD_ID
+					LEFT JOIN FUD_NTR_IGD_SER C ON  C.UNT_CNTN_TYP_CD = 'ONE' AND A.FUD_ID = C.FUD_ID
+					WHERE A.FUD_ID = #{query.fudId} 
+			     ) C 
+			WHERE A.FUD_ID 	= B.FUD_ID
+			AND   A.UNT_GBN = B.UNT_GBN
+			AND   A.FUD_ID 	= C.FUD_ID
+			AND   B.FUD_ID 	= C.FUD_ID
+			AND   A.UNT_GBN = C.UNT_GBN
+			AND   B.UNT_GBN = C.UNT_GBN 
+    	]]>
+    </select>
+    
+    <!-- 식품 상세조회 - 카테고리 인기제품 조회 -->
+    <select id="selectCategoryRank" resultMap="FudResult">
+    	<![CDATA[
+			SELECT B.FUD_ID,B.FUD_NM									/* 식품아이디,식품이름 */
+			,	   B.FUD_URL,B.TAG,B.BRAND								/* 식품정보URL,TAG,브랜드 */
+			,	   B.VLM												/* 중량 */
+			,	   B.CAL 												/* 칼로리 */
+			,	   B.RAWMTRL_RULE_STRCT									/* 주재료 */ 
+			,	   B.ALLRGY_IGD_CT										/* 알레르기성분 */
+			,	   B.CERT												/* 인증 */
+			,	   B.NOT_ADD											/* 무첨가 */
+			,	   B.NTR_IGD_NM 										/* 영양성분주의 */
+			,	   B.CRT_DT												/* 제품등록일  */
+			,	   A.HISCNT												/* 인기 카운트수*/
+			FROM
+			(
+				/* 조회되는 식품의 소분류 카테고리에 등록되있는 제품리스를 가져온다.
+				   인기검색이 많은 식품으로 4개로 가져온다. 조회하는 소분류의 인기 식품이
+				   없을경우 에는 최근에 등록된 식품을 가져온다.
+				*/
+				SELECT A.FUD_ID ,A.CRT_DT,B.HISCNT CHKHISCNT
+				,	   CASE WHEN LENGTH(IFNULL(B.HISCNT,DATE_FORMAT(A.CRT_DT,'%Y%m%d'))) <> 8 THEN 90000000 + B.HISCNT 
+							ELSE DATE_FORMAT(A.CRT_DT,'%Y%m%d') END  HISCNT						/* 인기순카운트 */
+				FROM
+				(
+					SELECT B.FUD_ID,C.CRT_DT 
+					FROM
+						(
+						SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+						FROM CLS A,CLS_RLT B,FUD_CLS_RLT C
+						WHERE A.DLT_YN = 'N' AND A.CLS_ID = B.OPP_CLS_ID
+						AND   A.CLS_TYP_CD = 'CLS'
+						AND   B.OPP_CLS_LVL_NO = '3' #소분류의 카테고리 ID를 가져온다.
+						AND   A.CLS_ID = C.CLS_ID
+						AND   C.FUD_ID = #{query.fudId}
+					) A ,FUD_CLS_RLT B,FUD C 
+					WHERE A.CLS_ID = B.CLS_ID 
+					AND   B.FUD_ID = C.FUD_ID
+				) A LEFT JOIN(SELECT PRD_CD,COUNT(*) HISCNT  
+							FROM FOOD_PROD_HIS
+							GROUP BY PRD_CD) B ON A.FUD_ID = B.PRD_CD
+				ORDER BY A.CRT_DT DESC
+				LIMIT 4
+			) A,
+			(
+				SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		
+				,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	
+				,	   A.VLM												
+				,	   B.CAL 												
+				,	   C.RAWMTRL_RULE_STRCT									
+				,	   A.ALLRGY_IGD_CT										
+				,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+					   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+					   GROUP BY A.FUD_ID) AS CERT							/* 인증 */
+				,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc WHERE fm.MTA_ID = 111 
+					   AND fm.FUD_ID= A.FUD_ID
+					   AND fm.MTA_ATRB = cc.CD_ID
+					   GROUP BY A.FUD_ID) AS NOT_ADD						/* 무첨가 */
+				,	  (SELECT GROUP_CONCAT(BB.NTR_IGD_NM SEPARATOR ',') 
+					   FROM FUD_NTR_IGD_CNAMT AA ,NTR_IGD BB 
+					   WHERE AA.RATE > 50 AND   AA.OPP_NTR_IGD_ID = BB.NTR_IGD_ID
+					   AND AA.FUD_ID = A.FUD_ID 
+					   GROUP BY A.FUD_ID) NTR_IGD_NM 						/* 영양성분주의 */
+				,	   A.CRT_DT												
+				FROM
+				(
+					SELECT FUD_ID,FUD_NM,FUD_STN_CD,FUD_ORGPLCE_CD	
+					,      PRDUCT_STN_CD,FUD_URL,SPC_IGD,TAG,BRAND	
+					,      ALLRGY_IGD_CT		
+					,      LOWER(CONCAT(VLM,VLM_UNT_CD)) VLM,CRT_DT
+					FROM FUD
+				) A LEFT JOIN FUD_NTR_IGD_SER B ON A.FUD_ID = B.FUD_ID 
+								   AND B.UNT_CNTN_TYP_CD = 'TOT'
+				/*  주재료 : 여려개의 주재료가 있을경우에는 처음한개만가져온다. */
+					LEFT JOIN (SELECT A.FUD_ID,B.RAWMTRL_RULE_STRCT
+						FROM
+						(
+							SELECT  MAX(BAS_RAWMTRL_ID) BAS_RAWMTRL_ID ,FUD_ID
+							FROM FUD_RAWMTRL
+							WHERE  RAWMTRL_SRT_NO = '0'
+							AND    ( RAWMTRL_RULE_STRCT IS NOT NULL AND length(RAWMTRL_RULE_STRCT)  <> 0)
+							GROUP BY FUD_ID
+						) A LEFT JOIN FUD_RAWMTRL B ON A.BAS_RAWMTRL_ID = B.BAS_RAWMTRL_ID
+									   AND A.FUD_ID = B.FUD_ID
+									   AND B.RAWMTRL_SRT_NO = '0') C ON A.FUD_ID = C.FUD_ID 
+			) B
+			WHERE A.FUD_ID = B.FUD_ID
+		]]>
+    </select>
+    
+    <!-- 상세검색 팝업 - 업소명/소재지 조회 -->
+    <select id="selectSearchDetailCPN" resultMap="CpnResult">
+    	<![CDATA[
+    		SELECT A.CPN_CTG_NM , GROUP_CONCAT(A.CPN_NM SEPARATOR ' , ') AS CPN_NM
+			FROM
+			(
+				SELECT A.CPN_CTG_CD,A.FUD_ID
+				,	   A.CPN_ID,B.CPN_NM 
+				,	   (SELECT CD_NM FROM CM_CD WHERE CD = A.CPN_CTG_CD) CPN_CTG_NM 
+				FROM FUD_CPN A,CPN B
+				WHERE A.CPN_ID = B.CPN_ID
+				 AND  A.FUD_ID = #{query.fudId}
+				GROUP BY A.FUD_ID,A.CPN_ID,B.CPN_NM,A.CPN_CTG_CD
+				ORDER BY A.CPN_CTG_CD
+			) A 
+			GROUP BY A.CPN_CTG_NM
+    	]]>
+    </select>
+    
+    <!-- 상세검색 팝업 - 알레르기 조회 -->
+    <select id="selectSearchAllergyCd" resultMap="Code">
+    	SELECT A.RAWMTRL_ID AS CD, 
+    		   A.RAWMTRL_NM AS CD_NM
+		  FROM RAWMTRL A, FUD_ALLRGY B
+		 WHERE A.RAWMTRL_ID = B.ALLRGY_RAWMTRL_ID
+		 GROUP BY A.RAWMTRL_ID,A.RAWMTRL_NM
+    </select>
+    
+    <!-- 상세검색 팝업 - 인증 조회 -->
+    <select id="selectSearchCertifyCd" resultMap="Code">
+    	SELECT B.CD_ID, 
+    		   B.CD_NM 
+		  FROM FUD_MTA A,CM_CD B ,FUD C
+		 WHERE A.MTA_ATRB 	= B.CD_ID 
+		   AND A.MTA_ID 	= '110' 
+		   AND A.FUD_ID 	= C.FUD_ID 
+		 GROUP BY B.CD_NM
+    </select>
+    
+    <!-- 상세검색 팝업 - 무첨가 조회 -->
+    <select id="selectSearchNotAddCd" resultMap="Code">
+    	SELECT B.CD_ID, 
+    		   B.CD_NM 
+		  FROM FUD_MTA A,CM_CD B ,FUD C
+		 WHERE A.MTA_ATRB 	= B.CD_ID 
+		   AND A.MTA_ID 	= '111' 
+		   AND A.FUD_ID		= C.FUD_ID 
+		 GROUP BY B.CD_NM
+    </select>
+    
+    <select id="selectDetailSearchAll" resultMap="FudListResult">
+    	SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		/* 식품아이디,식품이름,식품구분코드,식품원산지코드 */
+		,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	/* 제품구분코드,식품정보URL,식품번들출력코드,브랜드 */
+		,	   A.VLM												/* 중량 */
+		,	   A.CAL 												/* 칼로리 */
+		,	   A.RAWMTRL_RULE_STRCT									/* 주재료 */ 
+		,	   A.CPN_NM												/* 판매처 */
+		,	   A.ALLRGY_IGD_CT,A.ALLRGY_GBN							/* 알레르기성분,알레르기성분 유무(Y:있음,N:없음) */
+		,	   A.CERT												/* 인증 */
+		,	   A.NOT_ADD											/* 무첨가 */
+		,	   A.HISCNT       										/* 인기순카운트 */
+		,      A.SORT_HISCNT										/* 정렬 인기순카운트 */
+		,      A.SORT_CAL											/* 정렬 칼로리 */
+		,	   A.CRT_DT												/* 제품등록일  */
+		,	   A.FOOD_GROUP,A.FOOD_GROUPID ,@RNUM := @RNUM + 1 AS NO
+		FROM
+		(
+			SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		
+			,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	
+			,	   A.VLM												
+			,	   A.CAL 												
+			,	   A.RAWMTRL_RULE_STRCT									
+			,	   A.CPN_NM												
+			,	   A.ALLRGY_IGD_CT,A.ALLRGY_GBN							
+			,	   A.CERT												
+			,	   A.NOT_ADD											
+			,	   A.HISCNT       										
+			,      A.SORT_HISCNT										
+			,      A.SORT_CAL											
+			,	   A.CRT_DT												
+			,	   A.FOOD_GROUP,A.FOOD_GROUPID
+			FROM
+			(
+				<![CDATA[
+				SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		
+				,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	
+				,	   A.VLM												
+				,	   B.CAL 												
+				,	   C.RAWMTRL_RULE_STRCT									
+				,	   E.CPN_NM												
+				,	   A.ALLRGY_IGD_CT,A.ALLRGY_GBN							
+				,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+					   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+					   GROUP BY A.FUD_ID) AS CERT							
+				,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc WHERE fm.MTA_ID = 111 
+					   AND fm.FUD_ID= A.FUD_ID
+					   AND fm.MTA_ATRB = cc.CD_ID
+					   GROUP BY A.FUD_ID) AS NOT_ADD						
+				,	  (SELECT GROUP_CONCAT(BB.NTR_IGD_NM SEPARATOR ',') 
+						 FROM FUD_NTR_IGD_CNAMT AA ,NTR_IGD BB 
+					   WHERE AA.RATE > 50 AND   AA.OPP_NTR_IGD_ID = BB.NTR_IGD_ID
+					   AND AA.FUD_ID = A.FUD_ID 
+					   GROUP BY A.FUD_ID) NTR_IGD_NM 						
+				,	   F.HISCNT AS HISCNT       							
+				,      CASE WHEN LENGTH(IFNULL(F.HISCNT,DATE_FORMAT(A.CRT_DT,'%Y%m%d'))) <> 8 THEN 90000000 + F.HISCNT 
+							ELSE DATE_FORMAT(A.CRT_DT,'%Y%m%d') END  SORT_HISCNT						/* 정렬 인기순카운트 */
+				,      CASE WHEN LENGTH(IFNULL(B.CAL,DATE_FORMAT(A.CRT_DT,'%Y%m%d'))) <> 8 THEN 90000000 + B.CAL
+							ELSE DATE_FORMAT(A.CRT_DT,'%Y%m%d') END  SORT_CAL							/* 정렬 칼로리 */
+				]]>							
+				,	   A.CRT_DT														/* 제품등록일  */
+				,	   G.FOOD_GROUP,G.FOOD_GROUPID
+				FROM
+				(
+					SELECT FUD_ID,FUD_NM,FUD_STN_CD,FUD_ORGPLCE_CD	
+					,      PRDUCT_STN_CD,FUD_URL,SPC_IGD,TAG,BRAND	
+					,      ALLRGY_IGD_CT,CASE WHEN 	ALLRGY_IGD_CT IS NOT NULL THEN 'Y' ELSE 'N' END ALLRGY_GBN		
+					,      LOWER(CONCAT(VLM,VLM_UNT_CD)) VLM,CRT_DT
+					FROM FUD
+				) A LEFT JOIN FUD_NTR_IGD_SER B ON A.FUD_ID = B.FUD_ID 
+								   AND B.UNT_CNTN_TYP_CD = 'TOT'
+					/*  주재료 : 여려개의 주재료가 있을경우에는 처음한개만가져온다. */
+					LEFT JOIN (SELECT A.FUD_ID,B.RAWMTRL_RULE_STRCT
+						FROM
+						(
+							<![CDATA[
+							SELECT  MAX(BAS_RAWMTRL_ID) BAS_RAWMTRL_ID ,FUD_ID
+							FROM    FUD_RAWMTRL
+							WHERE   RAWMTRL_SRT_NO = '0'
+							#AND    FUD_ID = '10000030'
+							AND    ( RAWMTRL_RULE_STRCT IS NOT NULL AND length(RAWMTRL_RULE_STRCT)  <> 0)
+							]]>
+							GROUP BY FUD_ID
+						) A LEFT JOIN FUD_RAWMTRL B ON A.BAS_RAWMTRL_ID = B.BAS_RAWMTRL_ID
+									   AND A.FUD_ID = B.FUD_ID
+									   AND B.RAWMTRL_SRT_NO = '0') C ON A.FUD_ID = C.FUD_ID 
+						/* 판매점 표시순서
+					   1.CPN_CTG_DIS 유통전문판매원,2.CPN_CTG_SLM 판매원,3.CPN_CTG_EXP	수입판매원
+					   4.CPN_CTG_SEP 소분/판매원,5.CPN_CTG_EXP_1수입원,6CPN_CTG_MAF 제조원,7CPN_CTG_SUB 소분원 */
+					LEFT JOIN (SELECT A.FUD_ID,MAX(A.CPN_ID) CPN_ID								
+						,	   (SELECT CPN_NM FROM CPN WHERE CPN_ID = A.CPN_ID) CPN_NM
+						FROM
+						(
+							SELECT A.FUD_ID,A.CPN_ID,MIN(SORT) SORT
+								FROM
+								(
+									SELECT FUD_ID,CPN_CTG_CD,CPN_ID 
+								,	   CASE WHEN CPN_CTG_CD = 'CPN_CTG_DIS' THEN '1' 
+										WHEN CPN_CTG_CD = 'CPN_CTG_SLM' THEN '2'
+										WHEN CPN_CTG_CD = 'CPN_CTG_EXP' THEN '3'
+										WHEN CPN_CTG_CD = 'CPN_CTG_SEP' THEN '4'
+										WHEN CPN_CTG_CD = 'CPN_CTG_EXP_1' THEN '5'
+										WHEN CPN_CTG_CD = 'CPN_CTG_MAF' THEN '6'
+										ELSE '7' END SORT 
+									FROM FUD_CPN 
+								) A
+								GROUP BY A.FUD_ID,A.CPN_ID
+						) A 
+						GROUP BY A.FUD_ID) E ON A.FUD_ID = E.FUD_ID
+					LEFT JOIN (SELECT PRD_CD, COUNT(*) HISCNT  FROM FOOD_PROD_HIS
+							   GROUP BY PRD_CD) F ON A.FUD_ID = F.PRD_CD    
+					LEFT JOIN (SELECT B.FUD_ID											/* 식품 분류  */
+								,    GROUP_CONCAT(A.CLS_NM SEPARATOR '>') AS FOOD_GROUP
+								,    GROUP_CONCAT(A.CLS_ID SEPARATOR '>') AS FOOD_GROUPID
+									FROM 
+									(
+										SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+										,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+										,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+										,		B.BAS_CLS_LVL_NO
+										FROM CLS A,CLS_RLT B
+										 WHERE A.DLT_YN = 'N' AND A.CLS_ID = B.OPP_CLS_ID
+										 AND A.CLS_TYP_CD = 'CLS'
+									) A , FUD_CLS_RLT B 
+									WHERE A .CLS_ID = B.CLS_ID
+								GROUP BY B.FUD_ID) G ON A.FUD_ID = G.FUD_ID   
+			) A
+			WHERE  1=1
+			<choose>
+				<when test="query.noAdds != null and query.noAdds != '' 
+				and query.certifys != null and query.certifys != ''">
+				 AND   A.FUD_ID   IN  ( SELECT A.FUD_ID						/* 무첨가 성분  */
+										FROM FUD_MTA A ,CM_CD B,FUD C
+										WHERE A.MTA_ID = 111 
+										AND A.MTA_ATRB = B.CD_ID
+										AND A.FUD_ID = C.FUD_ID
+										AND B.CD_ID  IN  (${query.noAdds})
+										GROUP BY A.FUD_ID 
+										UNION
+										SELECT A.FUD_ID						/* 인증  */
+										FROM FUD_MTA A ,CM_CD B,FUD C
+										WHERE A.MTA_ID = '110' 
+										AND A.MTA_ATRB = B.CD_ID
+										AND A.FUD_ID = C.FUD_ID
+										AND B.CD_ID IN (${query.certifys})
+										GROUP BY A.FUD_ID
+										)
+				</when>
+				<when test="query.noAdds != null and query.noAdds != ''">
+					AND   A.FUD_ID   IN  ( SELECT A.FUD_ID					/* 무첨가 성분  */
+										   FROM FUD_MTA A ,CM_CD B,FUD C
+										   WHERE A.MTA_ID = 111 
+										   AND A.MTA_ATRB = B.CD_ID
+										   AND A.FUD_ID = C.FUD_ID
+										   AND B.CD_ID  IN  (${query.noAdds})
+										   GROUP BY A.FUD_ID
+									      )
+				</when>
+				<when test="query.certifys != null and query.certifys != ''">
+					AND   A.FUD_ID   IN  ( SELECT A.FUD_ID					/* 인증  */
+										   FROM FUD_MTA A ,CM_CD B,FUD C
+										   WHERE A.MTA_ID = '110' 
+										   AND A.MTA_ATRB = B.CD_ID
+										   AND A.FUD_ID = C.FUD_ID
+										   AND B.CD_ID IN (${query.certifys})
+										   GROUP BY A.FUD_ID
+										)
+				</when>
+			</choose>
+			<if test="query.allergys != null and query.allergys != ''">
+			AND    A.FUD_ID NOT IN (SELECT A.FUD_ID					/* 알레르기   */
+									FROM FUD_ALLRGY A,RAWMTRL B
+									WHERE A.ALLRGY_RAWMTRL_ID = B.RAWMTRL_ID
+									AND   B.RAWMTRL_ID  IN (${query.allergys})
+									GROUP BY A.FUD_ID)
+			</if>
+			<if test="query.categoryId != null and query.categoryId != ''">
+			AND    A.FOOD_GROUPID LIKE '%' #{query.categoryId} '%'	/* 카데고리 */
+			</if>
+		) A
+		
+		<if test='query.isNutriYn != null and query.isNutriYn == "Y"'>
+		WHERE A.FUD_ID IN (SELECT A.FUD_ID				/* 영양성분, 영양성분이 없고 나머지 검색이 있을경우에는 WHERE A.FUD_ID IN 조건을 빼준다.  */
+							FROM						
+							(
+								SELECT A.FUD_ID
+								,IFNULL(B.CNAMT1,0) CNAMT1,IFNULL(C.CNAMT2,0) CNAMT2,IFNULL(D.CNAMT3,0) CNAMT3,IFNULL(E.CNAMT4,0) CNAMT4,IFNULL(F.CNAMT5,0) CNAMT5
+								,IFNULL(G.CNAMT6,0) CNAMT6,IFNULL(H.CNAMT7,0) CNAMT7,IFNULL(I.CNAMT8,0) CNAMT8,IFNULL(J.CNAMT9,0) CNAMT9,IFNULL(K.CNAMT10,0) CNAMT10
+								,IFNULL(L.CNAMT11,0) CNAMT11,IFNULL(M.CNAMT12,0) CNAMT12,IFNULL(N.CNAMT13,0) CNAMT13,IFNULL(O.CNAMT14,0) CNAMT14,IFNULL(P.CNAMT15,0) CNAMT15
+								,IFNULL(Q.CNAMT16,0) CNAMT16,IFNULL(R.CNAMT17,0) CNAMT17,IFNULL(S.CNAMT18,0) CNAMT18,IFNULL(T.CNAMT19,0) CNAMT19,IFNULL(U.CNAMT20,0) CNAMT20
+								,IFNULL(V.CNAMT21,0) CNAMT21,IFNULL(W.CNAMT22,0) CNAMT22,IFNULL(X.CNAMT23,0) CNAMT23,IFNULL(Y.CNAMT24,0) CNAMT24,IFNULL(Z.CNAMT25,0) CNAMT25
+								,IFNULL(AA.CNAMT26,0) CNAMT26,IFNULL(AB.CNAMT27,0) CNAMT27,IFNULL(AC.CNAMT28,0) CNAMT28,IFNULL(AD.CNAMT29,0) CNAMT29,IFNULL(AE.CNAMT30,0) CNAMT30
+		
+								FROM
+								(
+									SELECT DISTINCT FUD_ID
+									FROM FUD_NTR_IGD_CNAMT
+								) A LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT1,MIN(UNT_GBN) UNT_GBN						/* 열량 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         /*  1회 제공량  */
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				/* 단위 함량 */
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			/* 단위내용량당 */
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			/* 일일제공량 */
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			/* 총내용량 */
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000005'
+												) A 
+												GROUP BY A.FUD_ID) B ON A.FUD_ID = B.FUD_ID 
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT2,MIN(UNT_GBN) UNT_GBN						/* 탄수화물 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000006'
+												) A 
+												GROUP BY A.FUD_ID) C ON A.FUD_ID = C.FUD_ID 
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT3,MIN(UNT_GBN) UNT_GBN						/* 당류 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000007'
+												) A 
+												GROUP BY A.FUD_ID) D ON A.FUD_ID = D.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT4,MIN(UNT_GBN) UNT_GBN						/* 단백질 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000008'
+												) A 
+												GROUP BY A.FUD_ID) E ON A.FUD_ID = E.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT5,MIN(UNT_GBN) UNT_GBN						/* 지방 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000009'
+												) A 
+												GROUP BY A.FUD_ID) F ON A.FUD_ID = F.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT6,MIN(UNT_GBN) UNT_GBN						/* 콜레스테롤 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000010'
+												) A 
+												GROUP BY A.FUD_ID) G ON A.FUD_ID = G.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT7,MIN(UNT_GBN) UNT_GBN						/* 나트륨 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000011'
+												) A 
+												GROUP BY A.FUD_ID) H ON A.FUD_ID = H.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT8,MIN(UNT_GBN) UNT_GBN						/* 포화지방 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000012'
+												) A 
+												GROUP BY A.FUD_ID) I ON A.FUD_ID = I.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT9,MIN(UNT_GBN) UNT_GBN						/* 식이섬유 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000013'
+												) A 
+												GROUP BY A.FUD_ID) J ON A.FUD_ID = J.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT10,MIN(UNT_GBN) UNT_GBN						/* 트랜스지방 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000016'
+												) A 
+												GROUP BY A.FUD_ID) K ON A.FUD_ID = K.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT11,MIN(UNT_GBN) UNT_GBN						/* 칼슘 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000043'
+												) A 
+												GROUP BY A.FUD_ID) L ON A.FUD_ID = L.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT12,MIN(UNT_GBN) UNT_GBN						/* 철 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000045'
+												) A 
+												GROUP BY A.FUD_ID) M ON A.FUD_ID = M.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT13,MIN(UNT_GBN) UNT_GBN						/* 마그네슘 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000047'
+												) A 
+												GROUP BY A.FUD_ID) N ON A.FUD_ID = N.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT14,MIN(UNT_GBN) UNT_GBN						/* 망간 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000048'
+												) A 
+												GROUP BY A.FUD_ID) O ON A.FUD_ID = O.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT15,MIN(UNT_GBN) UNT_GBN						/* 아연 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000049'
+												) A 
+												GROUP BY A.FUD_ID) P ON A.FUD_ID = P.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT16,MIN(UNT_GBN) UNT_GBN						/* 철분 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000056'
+												) A 
+												GROUP BY A.FUD_ID) Q ON A.FUD_ID = Q.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT17,MIN(UNT_GBN) UNT_GBN						/* 비타민A */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000066'
+												) A 
+												GROUP BY A.FUD_ID) R ON A.FUD_ID = R.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT18,MIN(UNT_GBN) UNT_GBN						/* 비타민B1 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000067'
+												) A 
+												GROUP BY A.FUD_ID) S ON A.FUD_ID = S.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT19,MIN(UNT_GBN) UNT_GBN						/* 비타민B2 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000068'
+												) A 
+												GROUP BY A.FUD_ID) T ON A.FUD_ID = T.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT20,MIN(UNT_GBN) UNT_GBN						/* 비타민C */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000069'
+												) A 
+												GROUP BY A.FUD_ID) U ON A.FUD_ID = U.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT21,MIN(UNT_GBN) UNT_GBN						/* 나이아신 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000070'
+												) A 
+												GROUP BY A.FUD_ID) V ON A.FUD_ID = V.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT22,MIN(UNT_GBN) UNT_GBN						/* 비타민B6 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000071'
+												) A 
+												GROUP BY A.FUD_ID) W ON A.FUD_ID = W.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT23,MIN(UNT_GBN) UNT_GBN						/* 판토텐산 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000072'
+												) A 
+												GROUP BY A.FUD_ID) X ON A.FUD_ID = X.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT24,MIN(UNT_GBN) UNT_GBN						/* 비타민B12 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000073'
+												) A 
+												GROUP BY A.FUD_ID) Y ON A.FUD_ID = Y.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT25,MIN(UNT_GBN) UNT_GBN						/* 엽산 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000074'
+												) A 
+												GROUP BY A.FUD_ID) Z ON A.FUD_ID = Z.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT26,MIN(UNT_GBN) UNT_GBN						/* 비타민D */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000075'
+												) A 
+												GROUP BY A.FUD_ID) AA ON A.FUD_ID = AA.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT27,MIN(UNT_GBN) UNT_GBN						/* 비타민E */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000076'
+												) A 
+												GROUP BY A.FUD_ID) AB ON A.FUD_ID = AB.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT28,MIN(UNT_GBN) UNT_GBN						/* 비타민D₃ */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000078'
+												) A 
+												GROUP BY A.FUD_ID) AC ON A.FUD_ID = AC.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT29,MIN(UNT_GBN) UNT_GBN						/* 비오틴 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000080'
+												) A 
+												GROUP BY A.FUD_ID) AD ON A.FUD_ID = AD.FUD_ID
+									LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT30,MIN(UNT_GBN) UNT_GBN						/* 카페인 */
+												FROM
+												(
+												SELECT A.FUD_ID,A.CNAMT CNAMT
+												,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+														WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+														WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+														WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+														ELSE '6' END UNT_GBN
+												FROM FUD_NTR_IGD_CNAMT A
+												WHERE A.OPP_NTR_IGD_ID = '100000239'
+												) A 
+												GROUP BY A.FUD_ID) AE ON A.FUD_ID = AE.FUD_ID
+							) A,( SELECT @RNUM := 0 ) B
+							WHERE 1=1
+							<if test="query.CNAMT1Max != null and query.CNAMT1Max != ''">
+							  AND A.CNAMT1 BETWEEN #{query.CNAMT1Min} AND #{query.CNAMT1Max}
+							</if>
+							<if test="query.CNAMT2Max != null and query.CNAMT2Max != ''">								  
+							  AND A.CNAMT2 BETWEEN #{query.CNAMT2Min} AND #{query.CNAMT2Max}	/*  열량,탄수화물   	*/
+							</if>
+							<if test="query.CNAMT3Max != null and query.CNAMT3Max != ''">
+							  AND A.CNAMT3 BETWEEN #{query.CNAMT3Min} AND #{query.CNAMT3Max}
+							</if>
+							<if test="query.CNAMT4Max != null and query.CNAMT4Max != ''">
+							  AND A.CNAMT4 BETWEEN #{query.CNAMT4Min} AND #{query.CNAMT4Max}	/*  당류,단백질  		*/
+							</if>
+							<if test="query.CNAMT5Max != null and query.CNAMT5Max != ''">  
+							  AND A.CNAMT5 BETWEEN #{query.CNAMT5Min} AND #{query.CNAMT5Max}
+							</if>
+							<if test="query.CNAMT6Max != null and query.CNAMT6Max != ''">
+							  AND A.CNAMT6 BETWEEN #{query.CNAMT6Min} AND #{query.CNAMT6Max}	/*  지방,콜레스테롤 	*/
+							</if>
+							<if test="query.CNAMT7Max != null and query.CNAMT7Max != ''">
+							  AND A.CNAMT7 BETWEEN #{query.CNAMT7Min} AND #{query.CNAMT7Max}
+							</if>
+							<if test="query.CNAMT8Max != null and query.CNAMT8Max != ''">
+							  AND A.CNAMT8 BETWEEN #{query.CNAMT8Min} AND #{query.CNAMT8Max}	/*  나트륨,포화지방  	*/
+							</if>
+							<if test="query.CNAMT9Max != null and query.CNAMT9Max != ''">
+							  AND A.CNAMT9 BETWEEN #{query.CNAMT9Min} AND #{query.CNAMT9Max}
+							</if>
+							<if test="query.CNAMT10Max != null and query.CNAMT10Max != ''">
+							  AND A.CNAMT10 BETWEEN #{query.CNAMT10Min} AND #{query.CNAMT10Max}	/*  식이섬유,트렌스지방 */
+							</if>
+							<if test="query.CNAMT11Max != null and query.CNAMT11Max != ''">
+							  AND A.CNAMT11 BETWEEN #{query.CNAMT11Min} AND #{query.CNAMT11Max}
+							</if>
+							<if test="query.CNAMT12Max != null and query.CNAMT12Max != ''">
+							  AND A.CNAMT12 BETWEEN #{query.CNAMT12Min} AND #{query.CNAMT12Max}	/*  칼슘,철  			*/
+							</if>
+							<if test="query.CNAMT13Max != null and query.CNAMT13Max != ''">
+							  AND A.CNAMT13 BETWEEN #{query.CNAMT13Min} AND #{query.CNAMT13Max}
+							</if>
+							<if test="query.CNAMT14Max != null and query.CNAMT14Max != ''">
+							  AND A.CNAMT14 BETWEEN #{query.CNAMT14Min} AND #{query.CNAMT14Max}	/*  마그네슘,망간  		*/
+							</if>
+							<if test="query.CNAMT15Max != null and query.CNAMT15Max != ''">
+							  AND A.CNAMT15 BETWEEN #{query.CNAMT15Min} AND #{query.CNAMT15Max}
+							</if>
+							<if test="query.CNAMT16Max != null and query.CNAMT16Max != ''">
+							  AND A.CNAMT16 BETWEEN #{query.CNAMT16Min} AND #{query.CNAMT16Max}	/*  아연,철분  			*/
+							</if>											  
+							<if test="query.CNAMT17Max != null and query.CNAMT17Max != ''">
+							  AND A.CNAMT17 BETWEEN #{query.CNAMT17Min} AND #{query.CNAMT17Max}
+							</if>
+							<if test="query.CNAMT18Max != null and query.CNAMT18Max != ''">
+							  AND A.CNAMT18 BETWEEN #{query.CNAMT18Min} AND #{query.CNAMT18Max}	/*  비타미A,비타민B1  	*/
+							</if>
+							<if test="query.CNAMT19Max != null and query.CNAMT19Max != ''">
+							  AND A.CNAMT19 BETWEEN #{query.CNAMT19Min} AND #{query.CNAMT19Max}
+							</if>
+							<if test="query.CNAMT20Max != null and query.CNAMT20Max != ''">
+							  AND A.CNAMT20 BETWEEN #{query.CNAMT20Min} AND #{query.CNAMT20Max}	/*  비타민B2 비타민C 	*/
+							</if>
+							<if test="query.CNAMT21Max != null and query.CNAMT21Max != ''">
+							  AND A.CNAMT21 BETWEEN #{query.CNAMT21Min} AND #{query.CNAMT21Max}
+							</if>
+							<if test="query.CNAMT22Max != null and query.CNAMT22Max != ''">
+							  AND A.CNAMT22 BETWEEN #{query.CNAMT22Min} AND #{query.CNAMT22Max}	/*  나이아신,비타민B6  	*/
+							</if>
+							<if test="query.CNAMT23Max != null and query.CNAMT23Max != ''">
+							  AND A.CNAMT23 BETWEEN #{query.CNAMT23Min} AND #{query.CNAMT23Max}
+							</if>
+							<if test="query.CNAMT24Max != null and query.CNAMT24Max != ''">
+							  AND A.CNAMT24 BETWEEN #{query.CNAMT24Min} AND #{query.CNAMT24Max}	/*  판토텐산,비타민B12  */
+							</if>
+							<if test="query.CNAMT25Max != null and query.CNAMT25Max != ''">
+							  AND A.CNAMT25 BETWEEN #{query.CNAMT25Min} AND #{query.CNAMT25Max}
+							</if>
+							<if test="query.CNAMT26Max != null and query.CNAMT26Max != ''">
+							  AND A.CNAMT26 BETWEEN #{query.CNAMT26Min} AND #{query.CNAMT26Max}	/*  엽산,비타민D   		*/
+							</if>
+							<if test="query.CNAMT27Max != null and query.CNAMT27Max != ''">
+							  AND A.CNAMT27 BETWEEN #{query.CNAMT27Min} AND #{query.CNAMT27Max}
+							</if>
+							<if test="query.CNAMT28Max != null and query.CNAMT28Max != ''">
+							  AND A.CNAMT28 BETWEEN #{query.CNAMT28Min} AND #{query.CNAMT28Max}	/*  비타민E,비타민Ds  	*/
+							</if>
+							<if test="query.CNAMT29Max != null and query.CNAMT29Max != ''">
+							  AND A.CNAMT29 BETWEEN #{query.CNAMT29Min} AND #{query.CNAMT29Max}
+							</if>
+							<if test="query.CNAMT30Max != null and query.CNAMT30Max != ''">
+							  AND A.CNAMT30 BETWEEN #{query.CNAMT30Min} AND #{query.CNAMT30Max}	/*  비오린,카페인  		*/
+							</if>
+							)
+		</if>
+		ORDER BY @RNUM := @RNUM + 1 DESC
+    </select>
+    
+    <!-- 상세조회  검색 - 영양성분만 -->
+    <select id="selectDetailSearchOnlyNutri" resultMap="FudListResult">
+    	SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		/* 식품아이디,식품이름,식품구분코드,식품원산지코드 */
+		,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	/* 제품구분코드,식품정보URL,식품번들출력코드,브랜드 */
+		,	   A.VLM												/* 중량 */
+		,	   A.CAL 												/* 칼로리 */
+		,	   A.RAWMTRL_RULE_STRCT									/* 주재료 */ 
+		,	   A.CPN_NM												/* 판매처 */
+		,	   A.ALLRGY_IGD_CT,A.ALLRGY_GBN							/* 알레르기성분,알레르기성분 유무(Y:있음,N:없음) */
+		,	   A.CERT												/* 인증 */
+		,	   A.NOT_ADD											/* 무첨가 */
+		,	   A.HISCNT       										/* 인기순카운트 */
+		,      A.SORT_HISCNT										/* 정렬 인기순카운트 */
+		,      A.SORT_CAL											/* 정렬 칼로리 */
+		,	   A.CRT_DT												/* 제품등록일  */
+		,	   A.FOOD_GROUP,A.FOOD_GROUPID ,@RNUM := @RNUM + 1 AS NO
+		FROM
+		(
+			<![CDATA[
+			SELECT A.FUD_ID,A.FUD_NM,A.FUD_STN_CD,A.FUD_ORGPLCE_CD		
+			,	   A.PRDUCT_STN_CD,A.FUD_URL,A.SPC_IGD,A.TAG,A.BRAND	
+			,	   A.VLM												
+			,	   B.CAL 												
+			,	   C.RAWMTRL_RULE_STRCT									
+			,	   E.CPN_NM												
+			,	   A.ALLRGY_IGD_CT,A.ALLRGY_GBN							
+			,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+				   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+				   GROUP BY A.FUD_ID) AS CERT							/* 인증 */
+			,	  (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc WHERE fm.MTA_ID = 111 
+				   AND fm.FUD_ID= A.FUD_ID
+				   AND fm.MTA_ATRB = cc.CD_ID
+				   GROUP BY A.FUD_ID) AS NOT_ADD						/* 무첨가 */
+			,	  (SELECT GROUP_CONCAT(BB.NTR_IGD_NM SEPARATOR ',') 
+					 FROM FUD_NTR_IGD_CNAMT AA ,NTR_IGD BB 
+				   WHERE AA.RATE > 50 AND   AA.OPP_NTR_IGD_ID = BB.NTR_IGD_ID
+				   AND AA.FUD_ID = A.FUD_ID 
+				   GROUP BY A.FUD_ID) NTR_IGD_NM 						/* 영양성분주의 */
+			,	   F.HISCNT AS HISCNT       							/* 인기순카운트 */
+			,      CASE WHEN LENGTH(IFNULL(F.HISCNT,DATE_FORMAT(A.CRT_DT,'%Y%m%d'))) <> 8 THEN 90000000 + F.HISCNT 
+						ELSE DATE_FORMAT(A.CRT_DT,'%Y%m%d') END  SORT_HISCNT						/* 정렬 인기순카운트 */
+			,      CASE WHEN LENGTH(IFNULL(B.CAL,DATE_FORMAT(A.CRT_DT,'%Y%m%d'))) <> 8 THEN 90000000 + B.CAL
+						ELSE DATE_FORMAT(A.CRT_DT,'%Y%m%d') END  SORT_CAL							/* 정렬 칼로리 */
+						
+			,	   A.CRT_DT														/* 제품등록일  */
+			,	   G.FOOD_GROUP,G.FOOD_GROUPID
+			]]>
+			FROM
+			(
+				SELECT FUD_ID,FUD_NM,FUD_STN_CD,FUD_ORGPLCE_CD	
+				,      PRDUCT_STN_CD,FUD_URL,SPC_IGD,TAG,BRAND	
+				,      ALLRGY_IGD_CT,CASE WHEN 	ALLRGY_IGD_CT IS NOT NULL THEN 'Y' ELSE 'N' END ALLRGY_GBN		
+				,      LOWER(CONCAT(VLM,VLM_UNT_CD)) VLM,CRT_DT
+				FROM FUD
+			) A LEFT JOIN FUD_NTR_IGD_SER B ON A.FUD_ID = B.FUD_ID 
+							   AND B.UNT_CNTN_TYP_CD = 'TOT'
+				/*  주재료 : 여려개의 주재료가 있을경우에는 처음한개만가져온다. */
+				LEFT JOIN (SELECT A.FUD_ID,B.RAWMTRL_RULE_STRCT
+					FROM
+					(
+						<![CDATA[
+						SELECT  MAX(BAS_RAWMTRL_ID) BAS_RAWMTRL_ID ,FUD_ID
+						FROM    FUD_RAWMTRL
+						WHERE   RAWMTRL_SRT_NO = '0'
+						#AND    FUD_ID = '10000030'
+						AND    ( RAWMTRL_RULE_STRCT IS NOT NULL AND length(RAWMTRL_RULE_STRCT)  <> 0)
+						]]>
+						GROUP BY FUD_ID
+					) A LEFT JOIN FUD_RAWMTRL B ON A.BAS_RAWMTRL_ID = B.BAS_RAWMTRL_ID
+								   AND A.FUD_ID = B.FUD_ID
+								   AND B.RAWMTRL_SRT_NO = '0') C ON A.FUD_ID = C.FUD_ID 
+					/* 판매점 표시순서
+				   1.CPN_CTG_DIS 유통전문판매원,2.CPN_CTG_SLM 판매원,3.CPN_CTG_EXP	수입판매원
+				   4.CPN_CTG_SEP 소분/판매원,5.CPN_CTG_EXP_1수입원,6CPN_CTG_MAF 제조원,7CPN_CTG_SUB 소분원 */
+				LEFT JOIN (SELECT A.FUD_ID,MAX(A.CPN_ID) CPN_ID								
+					,	   (SELECT CPN_NM FROM CPN WHERE CPN_ID = A.CPN_ID) CPN_NM
+					FROM
+					(
+						SELECT A.FUD_ID,A.CPN_ID,MIN(SORT) SORT
+							FROM
+							(
+								SELECT FUD_ID,CPN_CTG_CD,CPN_ID 
+							,	   CASE WHEN CPN_CTG_CD = 'CPN_CTG_DIS' THEN '1' 
+									WHEN CPN_CTG_CD = 'CPN_CTG_SLM' THEN '2'
+									WHEN CPN_CTG_CD = 'CPN_CTG_EXP' THEN '3'
+									WHEN CPN_CTG_CD = 'CPN_CTG_SEP' THEN '4'
+									WHEN CPN_CTG_CD = 'CPN_CTG_EXP_1' THEN '5'
+									WHEN CPN_CTG_CD = 'CPN_CTG_MAF' THEN '6'
+									ELSE '7' END SORT 
+								FROM FUD_CPN 
+							) A
+							GROUP BY A.FUD_ID,A.CPN_ID
+					) A 
+					GROUP BY A.FUD_ID) E ON A.FUD_ID = E.FUD_ID
+				LEFT JOIN (SELECT PRD_CD, COUNT(*) HISCNT  FROM FOOD_PROD_HIS
+						   GROUP BY PRD_CD) F ON A.FUD_ID = F.PRD_CD    
+				LEFT JOIN (SELECT B.FUD_ID											/* 식품 분류  */
+							,    GROUP_CONCAT(A.CLS_NM SEPARATOR '>') AS FOOD_GROUP
+							,    GROUP_CONCAT(A.CLS_ID SEPARATOR '>') AS FOOD_GROUPID
+								FROM 
+								(
+									SELECT  A.CLS_ID,A.CLS_NM,B.OPP_CLS_ID
+									,		B.BAS_CLS_ID,B.OPP_CLS_SRT_NO
+									,		B.BAS_CLS_SRT_NO,B.OPP_CLS_LVL_NO
+									,		B.BAS_CLS_LVL_NO
+									FROM CLS A,CLS_RLT B
+									 WHERE A.DLT_YN = 'N' AND A.CLS_ID = B.OPP_CLS_ID
+									 AND A.CLS_TYP_CD = 'CLS'
+								) A , FUD_CLS_RLT B 
+								WHERE A .CLS_ID = B.CLS_ID
+									#AND   B.FUD_ID = '10030740'
+							GROUP BY B.FUD_ID) G ON A.FUD_ID = G.FUD_ID   
+		) A ,( SELECT @RNUM := 0 ) B
+		WHERE  A.FUD_ID   IN  ( 
+								SELECT A.FUD_ID				/* 영양성분 */
+								FROM
+								(
+									SELECT A.FUD_ID
+									,IFNULL(B.CNAMT1,0) CNAMT1,IFNULL(C.CNAMT2,0) CNAMT2,IFNULL(D.CNAMT3,0) CNAMT3,IFNULL(E.CNAMT4,0) CNAMT4,IFNULL(F.CNAMT5,0) CNAMT5
+									,IFNULL(G.CNAMT6,0) CNAMT6,IFNULL(H.CNAMT7,0) CNAMT7,IFNULL(I.CNAMT8,0) CNAMT8,IFNULL(J.CNAMT9,0) CNAMT9,IFNULL(K.CNAMT10,0) CNAMT10
+									,IFNULL(L.CNAMT11,0) CNAMT11,IFNULL(M.CNAMT12,0) CNAMT12,IFNULL(N.CNAMT13,0) CNAMT13,IFNULL(O.CNAMT14,0) CNAMT14,IFNULL(P.CNAMT15,0) CNAMT15
+									,IFNULL(Q.CNAMT16,0) CNAMT16,IFNULL(R.CNAMT17,0) CNAMT17,IFNULL(S.CNAMT18,0) CNAMT18,IFNULL(T.CNAMT19,0) CNAMT19,IFNULL(U.CNAMT20,0) CNAMT20
+									,IFNULL(V.CNAMT21,0) CNAMT21,IFNULL(W.CNAMT22,0) CNAMT22,IFNULL(X.CNAMT23,0) CNAMT23,IFNULL(Y.CNAMT24,0) CNAMT24,IFNULL(Z.CNAMT25,0) CNAMT25
+									,IFNULL(AA.CNAMT26,0) CNAMT26,IFNULL(AB.CNAMT27,0) CNAMT27,IFNULL(AC.CNAMT28,0) CNAMT28,IFNULL(AD.CNAMT29,0) CNAMT29,IFNULL(AE.CNAMT30,0) CNAMT30
+		
+									FROM
+									(
+										SELECT DISTINCT FUD_ID
+										FROM FUD_NTR_IGD_CNAMT
+									) A LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT1,MIN(UNT_GBN) UNT_GBN						/* 열량 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         /*  1회 제공량  */
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				/* 단위 함량 */
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			/* 단위내용량당 */
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			/* 일일제공량 */
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			/* 총내용량 */
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000005'
+													) A 
+													GROUP BY A.FUD_ID) B ON A.FUD_ID = B.FUD_ID 
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT2,MIN(UNT_GBN) UNT_GBN						/* 탄수화물 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000006'
+													) A 
+													GROUP BY A.FUD_ID) C ON A.FUD_ID = C.FUD_ID 
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT3,MIN(UNT_GBN) UNT_GBN						/* 당류 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000007'
+													) A 
+													GROUP BY A.FUD_ID) D ON A.FUD_ID = D.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT4,MIN(UNT_GBN) UNT_GBN						/* 단백질 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000008'
+													) A 
+													GROUP BY A.FUD_ID) E ON A.FUD_ID = E.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT5,MIN(UNT_GBN) UNT_GBN						/* 지방 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000009'
+													) A 
+													GROUP BY A.FUD_ID) F ON A.FUD_ID = F.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT6,MIN(UNT_GBN) UNT_GBN						/* 콜레스테롤 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000010'
+													) A 
+													GROUP BY A.FUD_ID) G ON A.FUD_ID = G.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT7,MIN(UNT_GBN) UNT_GBN						/* 나트륨 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000011'
+													) A 
+													GROUP BY A.FUD_ID) H ON A.FUD_ID = H.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT8,MIN(UNT_GBN) UNT_GBN						/* 포화지방 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000012'
+													) A 
+													GROUP BY A.FUD_ID) I ON A.FUD_ID = I.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT9,MIN(UNT_GBN) UNT_GBN						/* 식이섬유 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000013'
+													) A 
+													GROUP BY A.FUD_ID) J ON A.FUD_ID = J.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT10,MIN(UNT_GBN) UNT_GBN						/* 트랜스지방 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000016'
+													) A 
+													GROUP BY A.FUD_ID) K ON A.FUD_ID = K.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT11,MIN(UNT_GBN) UNT_GBN						/* 칼슘 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000043'
+													) A 
+													GROUP BY A.FUD_ID) L ON A.FUD_ID = L.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT12,MIN(UNT_GBN) UNT_GBN						/* 철 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000045'
+													) A 
+													GROUP BY A.FUD_ID) M ON A.FUD_ID = M.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT13,MIN(UNT_GBN) UNT_GBN						/* 마그네슘 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000047'
+													) A 
+													GROUP BY A.FUD_ID) N ON A.FUD_ID = N.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT14,MIN(UNT_GBN) UNT_GBN						/* 망간 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000048'
+													) A 
+													GROUP BY A.FUD_ID) O ON A.FUD_ID = O.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT15,MIN(UNT_GBN) UNT_GBN						/* 아연 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000049'
+													) A 
+													GROUP BY A.FUD_ID) P ON A.FUD_ID = P.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT16,MIN(UNT_GBN) UNT_GBN						/* 철분 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000056'
+													) A 
+													GROUP BY A.FUD_ID) Q ON A.FUD_ID = Q.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT17,MIN(UNT_GBN) UNT_GBN						/* 비타민A */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000066'
+													) A 
+													GROUP BY A.FUD_ID) R ON A.FUD_ID = R.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT18,MIN(UNT_GBN) UNT_GBN						/* 비타민B1 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000067'
+													) A 
+													GROUP BY A.FUD_ID) S ON A.FUD_ID = S.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT19,MIN(UNT_GBN) UNT_GBN						/* 비타민B2 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000068'
+													) A 
+													GROUP BY A.FUD_ID) T ON A.FUD_ID = T.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT20,MIN(UNT_GBN) UNT_GBN						/* 비타민C */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000069'
+													) A 
+													GROUP BY A.FUD_ID) U ON A.FUD_ID = U.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT21,MIN(UNT_GBN) UNT_GBN						/* 나이아신 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000070'
+													) A 
+													GROUP BY A.FUD_ID) V ON A.FUD_ID = V.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT22,MIN(UNT_GBN) UNT_GBN						/* 비타민B6 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000071'
+													) A 
+													GROUP BY A.FUD_ID) W ON A.FUD_ID = W.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT23,MIN(UNT_GBN) UNT_GBN						/* 판토텐산 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000072'
+													) A 
+													GROUP BY A.FUD_ID) X ON A.FUD_ID = X.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT24,MIN(UNT_GBN) UNT_GBN						/* 비타민B12 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000073'
+													) A 
+													GROUP BY A.FUD_ID) Y ON A.FUD_ID = Y.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT25,MIN(UNT_GBN) UNT_GBN						/* 엽산 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000074'
+													) A 
+													GROUP BY A.FUD_ID) Z ON A.FUD_ID = Z.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT26,MIN(UNT_GBN) UNT_GBN						/* 비타민D */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000075'
+													) A 
+													GROUP BY A.FUD_ID) AA ON A.FUD_ID = AA.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT27,MIN(UNT_GBN) UNT_GBN						/* 비타민E */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000076'
+													) A 
+													GROUP BY A.FUD_ID) AB ON A.FUD_ID = AB.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT28,MIN(UNT_GBN) UNT_GBN						/* 비타민D₃ */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000078'
+													) A 
+													GROUP BY A.FUD_ID) AC ON A.FUD_ID = AC.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT29,MIN(UNT_GBN) UNT_GBN						/* 비오틴 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000080'
+													) A 
+													GROUP BY A.FUD_ID) AD ON A.FUD_ID = AD.FUD_ID
+										LEFT JOIN (SELECT A.FUD_ID,A.CNAMT CNAMT30,MIN(UNT_GBN) UNT_GBN						/* 카페인 */
+													FROM
+													(
+													SELECT A.FUD_ID,A.CNAMT CNAMT
+													,	   CASE WHEN A.UNT_CNTN_TYP_CD = 'ONE' THEN '1'         
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT' THEN '2'				
+															WHEN A.UNT_CNTN_TYP_CD = 'UNT_N' THEN '3'			
+															WHEN A.UNT_CNTN_TYP_CD = 'ONE_N' THEN '4'			
+															WHEN A.UNT_CNTN_TYP_CD = 'TOT_N' THEN '5'			
+															ELSE '6' END UNT_GBN
+													FROM FUD_NTR_IGD_CNAMT A
+													WHERE A.OPP_NTR_IGD_ID = '100000239'
+													) A 
+													GROUP BY A.FUD_ID) AE ON A.FUD_ID = AE.FUD_ID
+								) A
+								WHERE 1=1
+								<if test="query.CNAMT1Max != null and query.CNAMT1Max != ''">
+								  AND A.CNAMT1 BETWEEN #{query.CNAMT1Min} AND #{query.CNAMT1Max}
+								</if>
+								<if test="query.CNAMT2Max != null and query.CNAMT2Max != ''">								  
+								  AND A.CNAMT2 BETWEEN #{query.CNAMT2Min} AND #{query.CNAMT2Max}	/*  열량,탄수화물   	*/
+								</if>
+								<if test="query.CNAMT3Max != null and query.CNAMT3Max != ''">
+								  AND A.CNAMT3 BETWEEN #{query.CNAMT3Min} AND #{query.CNAMT3Max}
+								</if>
+								<if test="query.CNAMT4Max != null and query.CNAMT4Max != ''">
+								  AND A.CNAMT4 BETWEEN #{query.CNAMT4Min} AND #{query.CNAMT4Max}	/*  당류,단백질  		*/
+								</if>
+								<if test="query.CNAMT5Max != null and query.CNAMT5Max != ''">  
+								  AND A.CNAMT5 BETWEEN #{query.CNAMT5Min} AND #{query.CNAMT5Max}
+								</if>
+								<if test="query.CNAMT6Max != null and query.CNAMT6Max != ''">
+								  AND A.CNAMT6 BETWEEN #{query.CNAMT6Min} AND #{query.CNAMT6Max}	/*  지방,콜레스테롤 	*/
+								</if>
+								<if test="query.CNAMT7Max != null and query.CNAMT7Max != ''">
+								  AND A.CNAMT7 BETWEEN #{query.CNAMT7Min} AND #{query.CNAMT7Max}
+								</if>
+								<if test="query.CNAMT8Max != null and query.CNAMT8Max != ''">
+								  AND A.CNAMT8 BETWEEN #{query.CNAMT8Min} AND #{query.CNAMT8Max}	/*  나트륨,포화지방  	*/
+								</if>
+								<if test="query.CNAMT9Max != null and query.CNAMT9Max != ''">
+								  AND A.CNAMT9 BETWEEN #{query.CNAMT9Min} AND #{query.CNAMT9Max}
+								</if>
+								<if test="query.CNAMT10Max != null and query.CNAMT10Max != ''">
+								  AND A.CNAMT10 BETWEEN #{query.CNAMT10Min} AND #{query.CNAMT10Max}	/*  식이섬유,트렌스지방 */
+								</if>
+								<if test="query.CNAMT11Max != null and query.CNAMT11Max != ''">
+								  AND A.CNAMT11 BETWEEN #{query.CNAMT11Min} AND #{query.CNAMT11Max}
+								</if>
+								<if test="query.CNAMT12Max != null and query.CNAMT12Max != ''">
+								  AND A.CNAMT12 BETWEEN #{query.CNAMT12Min} AND #{query.CNAMT12Max}	/*  칼슘,철  			*/
+								</if>
+								<if test="query.CNAMT13Max != null and query.CNAMT13Max != ''">
+								  AND A.CNAMT13 BETWEEN #{query.CNAMT13Min} AND #{query.CNAMT13Max}
+								</if>
+								<if test="query.CNAMT14Max != null and query.CNAMT14Max != ''">
+								  AND A.CNAMT14 BETWEEN #{query.CNAMT14Min} AND #{query.CNAMT14Max}	/*  마그네슘,망간  		*/
+								</if>
+								<if test="query.CNAMT15Max != null and query.CNAMT15Max != ''">
+								  AND A.CNAMT15 BETWEEN #{query.CNAMT15Min} AND #{query.CNAMT15Max}
+								</if>
+								<if test="query.CNAMT16Max != null and query.CNAMT16Max != ''">
+								  AND A.CNAMT16 BETWEEN #{query.CNAMT16Min} AND #{query.CNAMT16Max}	/*  아연,철분  			*/
+								</if>											  
+								<if test="query.CNAMT17Max != null and query.CNAMT17Max != ''">
+								  AND A.CNAMT17 BETWEEN #{query.CNAMT17Min} AND #{query.CNAMT17Max}
+								</if>
+								<if test="query.CNAMT18Max != null and query.CNAMT18Max != ''">
+								  AND A.CNAMT18 BETWEEN #{query.CNAMT18Min} AND #{query.CNAMT18Max}	/*  비타미A,비타민B1  	*/
+								</if>
+								<if test="query.CNAMT19Max != null and query.CNAMT19Max != ''">
+								  AND A.CNAMT19 BETWEEN #{query.CNAMT19Min} AND #{query.CNAMT19Max}
+								</if>
+								<if test="query.CNAMT20Max != null and query.CNAMT20Max != ''">
+								  AND A.CNAMT20 BETWEEN #{query.CNAMT20Min} AND #{query.CNAMT20Max}	/*  비타민B2 비타민C 	*/
+								</if>
+								<if test="query.CNAMT21Max != null and query.CNAMT21Max != ''">
+								  AND A.CNAMT21 BETWEEN #{query.CNAMT21Min} AND #{query.CNAMT21Max}
+								</if>
+								<if test="query.CNAMT22Max != null and query.CNAMT22Max != ''">
+								  AND A.CNAMT22 BETWEEN #{query.CNAMT22Min} AND #{query.CNAMT22Max}	/*  나이아신,비타민B6  	*/
+								</if>
+								<if test="query.CNAMT23Max != null and query.CNAMT23Max != ''">
+								  AND A.CNAMT23 BETWEEN #{query.CNAMT23Min} AND #{query.CNAMT23Max}
+								</if>
+								<if test="query.CNAMT24Max != null and query.CNAMT24Max != ''">
+								  AND A.CNAMT24 BETWEEN #{query.CNAMT24Min} AND #{query.CNAMT24Max}	/*  판토텐산,비타민B12  */
+								</if>
+								<if test="query.CNAMT25Max != null and query.CNAMT25Max != ''">
+								  AND A.CNAMT25 BETWEEN #{query.CNAMT25Min} AND #{query.CNAMT25Max}
+								</if>
+								<if test="query.CNAMT26Max != null and query.CNAMT26Max != ''">
+								  AND A.CNAMT26 BETWEEN #{query.CNAMT26Min} AND #{query.CNAMT26Max}	/*  엽산,비타민D   		*/
+								</if>
+								<if test="query.CNAMT27Max != null and query.CNAMT27Max != ''">
+								  AND A.CNAMT27 BETWEEN #{query.CNAMT27Min} AND #{query.CNAMT27Max}
+								</if>
+								<if test="query.CNAMT28Max != null and query.CNAMT28Max != ''">
+								  AND A.CNAMT28 BETWEEN #{query.CNAMT28Min} AND #{query.CNAMT28Max}	/*  비타민E,비타민Ds  	*/
+								</if>
+								<if test="query.CNAMT29Max != null and query.CNAMT29Max != ''">
+								  AND A.CNAMT29 BETWEEN #{query.CNAMT29Min} AND #{query.CNAMT29Max}
+								</if>
+								<if test="query.CNAMT30Max != null and query.CNAMT30Max != ''">
+								  AND A.CNAMT30 BETWEEN #{query.CNAMT30Min} AND #{query.CNAMT30Max}	/*  비오린,카페인  		*/
+								</if>
+								)
+		ORDER BY @RNUM := @RNUM + 1 DESC
+    	
+    </select>
+</mapper>
