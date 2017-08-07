@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+ 			<PatternLayout pattern="%d [%-5p] [%.7thread] %c %L- %m%n"/>
+		</Console>
+		
+	</Appenders>
+	<Loggers>
+		<Logger name="org.springframework" level="info" additivity="true">
+			<AppenderRef ref="console"/>
+		</Logger>
+		<Logger name="java.sql.ResultSet" level="DEBUG" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>
+   		<Logger name="net.sf.ehcache" level="info" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>
+   		<Logger name="org.jgroups" level="info" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>
+        <Logger name="com.lge.apip.mgmt.common.web.controller.ExceptionControllerAdvice" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="com.apip.mgmt.common.web.filter" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.springframework.amqp.rabbit" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.quartz" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+		<Root level="info">
+			<AppenderRef ref="console"/>
+ 		</Root>
+	</Loggers>
+</Configuration>
+
+

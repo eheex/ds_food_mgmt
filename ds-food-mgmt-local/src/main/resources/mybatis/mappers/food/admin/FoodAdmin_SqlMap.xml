@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.food.admin.mapper.FoodAdminMapper">
+
+	<resultMap type="FoodAdmin" id="FoodAdminResult">
+		<result property="adminId" column="ID"/>
+		<result property="adminPwd" column="PWD"/>
+		<result property="adminName" column="NAME"/>
+		<result property="modDt" column="MOD_DT"/>
+	</resultMap>
+	
+	<resultMap type="FoodProdReq" id="FoodProdReqResult">
+		<result property="reqSeq" column="REQ_SEQ"/>
+		<result property="reqGb" column="REQ_GB"/>
+		<result property="prdCd" column="PRD_CD"/>
+		<result property="prdNm" column="PRD_NM"/>
+		<result property="comNa" column="COM_NA"/>
+		<result property="barCd" column="BAR_CD"/>
+		<result property="modNt" column="MOD_NT"/>
+		<result property="modDt" column="MOD_DT"/>
+		<result property="regYn" column="REG_YN"/>
+		<result property="regDt" column="REG_DT"/>
+		<result property="email" column="EMAIL"/>
+		<result property="addrUrl" column="ADDR_URL"/>
+	</resultMap>
+	
+	<resultMap type="FoodRest" id="FoodRestResult">
+		<result property="reqSeq" column="REQ_SEQ"/>
+		<result property="imgID" column="IMG_ID"/>
+		<result property="imgPth" column="IMG_PTH"/>
+		<result property="imgNM" column="IMG_NM"/>
+		<result property="modDt" column="MOD_DT"/>
+	</resultMap>
+	
+	<resultMap type="FoodProdHitMgmt" id="FoodProdHitMgmtResult">
+		<result property="fudNm" column="FUD_NM"/>
+		<result property="cnt" column="CNT"/>
+		<result property="seq" column="SEQ"/>
+		<result property="no" column="NO"/>
+		<result property="gbn" column="GBN"/>
+		<result property="stYmd" column="ST_YMD"/>
+		<result property="stTime" column="ST_TIME"/>
+		<result property="edYmd" column="ED_YMD"/>
+		<result property="edTime" column="ED_TIME"/>
+		<result property="prdNm" column="PRD_NM"/>
+		<result property="refTime" column="REF_TIME"/>
+		<result property="modDt" column="MOD_DT"/>
+	</resultMap>
+	
+	<!-- 관리자 로그인정보 조회 -->
+	<select id="selectFoodAdminInfo" resultMap="FoodAdminResult">
+		SELECT ID,
+			   PWD,
+			   NAME
+		  FROM FOOD_ADMIN
+		 WHERE 1=1
+		 <if test="adminId != null">
+		   AND ID			= #{adminId}
+		 </if>
+	</select>
+	
+	<!-- 인기검색어 조회 -->
+    <select id="selectRankList" resultMap="FoodProdHitMgmtResult">
+    	<![CDATA[
+	     SELECT A.PRD_NM AS FUD_NM, CNT
+			FROM
+			(
+				SELECT PRD_NM, 90000000 + COUNT(*) CNT 
+				FROM FOOD_PROD_HIS
+				WHERE MOD_DT >= DATE_ADD(NOW(), INTERVAL -1 DAY) /* 현재 날짜 하루 이전 */
+				GROUP BY PRD_NM
+				UNION ALL
+				SELECT A.FUD_NM,A.CNT
+				FROM
+				(
+					SELECT FUD_NM, 1 AAA, DATE_FORMAT(CRT_DT,'%Y%m%d') CNT
+					FROM FUD
+					ORDER BY CRT_DT DESC
+					LIMIT 10 
+				) A
+			) A
+			ORDER BY CNT DESC
+			LIMIT 10 
+		]]>
+    </select>
+    
+    <!-- 인기검색어 검색 시간 조회-->
+   <select id="selectMaualOption" resultMap="FoodProdHitMgmtResult">
+	   <![CDATA[
+		   SELECT A.PRD_NM AS FUD_NM,      
+		    	  CASE WHEN A.CNT >= 90000000 THEN A.CNT - 90000000 ELSE 0 END CNT
+			FROM
+			(
+				SELECT A.PRD_NM, CNT
+				FROM
+				(
+					SELECT PRD_NM, 90000000 + COUNT(*) CNT 
+					FROM FOOD_PROD_HIS
+					WHERE MOD_DT >= DATE_ADD(NOW(), INTERVAL - #{searchTime}  day_hour) /* 시간 입력 */
+					GROUP BY PRD_NM
+					UNION ALL
+					SELECT A.FUD_NM,A.CNT
+					FROM
+					(
+						SELECT FUD_NM, 1 AAA, DATE_FORMAT(CRT_DT,'%Y%m%d') CNT
+						FROM FUD
+						ORDER BY CRT_DT DESC
+						LIMIT 10 
+					) A
+				) A
+				ORDER BY CNT DESC
+				LIMIT 10 
+			) A
+	   	]]>
+    </select>
+	
+	<select id="selectFoodProdReq" resultMap="FoodProdReqResult">
+		SELECT REQ_SEQ, 
+			   REQ_GB, 
+			   PRD_CD, 
+			   PRD_NM, 
+			   COM_NA, 
+			   BAR_CD, 
+			   MOD_NT, 
+			   DATE_FORMAT(MOD_DT,'%Y-%m-%d %T') AS MOD_DT, 
+			   REG_YN, 
+			   DATE_FORMAT(REG_DT,'%Y-%m-%d %T') AS REG_DT, 
+			   EMAIL,
+			   ADDR_URL
+		  FROM FOOD_PROD_REQ
+		 WHERE 1=1
+		 <if test="query.reqGb != null and query.reqGb != ''">
+		   AND REQ_GB				= #{query.reqGb}
+		 </if>
+		 <if test="query.reqSeq != null and query.reqSeq != ''">
+		   AND REQ_SEQ				= #{query.reqSeq}		 	
+		 </if>
+	</select>
+	
+	<select id="selectFoodProdImg" resultMap="FoodProdReqResult">
+		SELECT REQ_SEQ, 
+			   IMG_ID, 
+			   IMG_PTH, 
+			   IMG_NM, 
+			   DATE_FORMAT(MOD_DT,'%Y-%m-%d %T') AS MOD_DT 
+		  FROM FOOD_PROD_IMG
+		 WHERE 1=1
+		 <if test="query.reqSeq != null and query.reqSeq != ''">
+		   AND REQ_SEQ				= #{query.reqSeq}		 	
+		 </if>
+	</select>
+	
+	<delete id="deleteFoodProdHitMgmt">
+    	DELETE FROM FOOD_PROD_HIT_MGMT
+    </delete>
+	
+	<insert id="insertSaveKeyword" parameterType="FoodProdHitMgmt">
+		<![CDATA[
+			INSERT INTO 
+		    FOOD_PROD_HIT_MGMT (
+		    			   SEQ,
+		    			   NO,
+		    			   GBN,
+		    			   ST_YMD,
+		    			   ST_TIME,
+		    			   ED_YMD,
+		    			   ED_TIME,
+		    			   PRD_NM,
+		    			   REF_TIME,
+		    			   MOD_DT)
+			        VALUES(
+			        	   #{seq}
+			        	   , #{no}
+			        	   , #{gbn}
+			        	   , #{stYmd}
+			        	   , #{stTime}
+			        	   , #{edYmd}
+			        	   , #{edTime}
+			        	   , #{prdNm}
+			        	   , #{refTime}
+			        	   , NOW()
+			        	  )
+		]]>
+	</insert>
+	
+	<update id="updateFoodProdReq" parameterType="FoodProdReq">
+        UPDATE FOOD_PROD_REQ
+        SET
+              ADDR_URL 	= #{addrUrl}
+            , MOD_DT 	= NOW()
+        WHERE REQ_SEQ 	= #{reqSeq}
+    </update>
+</mapper>
