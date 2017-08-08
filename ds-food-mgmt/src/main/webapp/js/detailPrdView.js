@@ -235,8 +235,6 @@ window.$DetailPrdView = {
 		
 		if(!_isNullChk(categoryRankData)){
 			$.each(categoryRankData, function(){
-				console.log("categoryRankData>>>>>" + this.rawmtrlRuleStrct);
-				
 				var _cal = !_isNullChk(this.cal) ? this.cal : "-";
 				var _fudUrl = !_isNullChk(this.fudUrl) ? this.fudUrl : "../images/common/noimg145.jpg";
 				var _materialTxt = "";
@@ -246,9 +244,16 @@ window.$DetailPrdView = {
 				var _tagEl = "";
 		    	if(!_isNullChk(this.tag)){
 		    		  var _tags = this.tag.split(",");
-			    	  $.each(_tags, function(i){
-			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
-			    	  });
+		    		  
+		    		  //태그 한줄에 3개만 표시처리
+		    		  var maxCount = 3;
+			    	  if(_tags.length < 3){
+			    		  maxCount = _tags.length;
+			    	  } 
+			    	  
+			    	  for(var i=0; i < maxCount; i++){
+			    		  _tagEl += '<a href="#" title="'+_tags[i]+'"><span class="hashtag">#'+_tags[i]+'</span></a>';
+			    	  }
 		    	}
 				var _jEl = $('<li id="'+this.fudId+'">'+
 								'<img src="'+_fudUrl+'" alt="'+this.fudNm+'" />'+

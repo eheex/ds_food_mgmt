@@ -543,5 +543,5 @@ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; white-space: nor
 .prdhit .main_prd .info3 .materialname{color:#666;font-size:12px;line-height:1.35;
 white-space: nowrap; overflow: hidden; text-overflow: ellipsis; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
 .prdhit .main_prd .info4{padding:0 15px;margin-top:10px;letter-spacing:-0.0025em;}
-.prdhit .main_prd .info4 .hashtag{display:inline-block;color:#888;background:#e9e9e9;font-family: 'notokrl';font-size:12px;height:18px;line-height:18px;padding: 0 4px 0 3px;margin-right:5px;}
+.prdhit .main_prd .info4 .hashtag{display:inline-block;color:#888;background:#e9e9e9;font-family: 'notokrl';font-size:12px;height:18px;line-height:18px;padding: 0 4px 0 3px;margin-right:5px;width:50px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
 .prdhit .main_prd .info4 .hashtag:hover{color:#333;background:#d1d1d1}
