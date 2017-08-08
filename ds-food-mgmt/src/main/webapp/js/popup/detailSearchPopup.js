@@ -822,6 +822,9 @@ window.$DetailSearchPopup = {
 			$("div._allergy input, div._certify input, div._noadd input").each(function(){
 				$(this).prop("checked", false);
 			});
+			
+			//선택한 카테고리 초기화
+			$("div.choicewrap .choice_value a", this._jPopUpElement).html("")
 		});
 		
 		//적용 버튼 처리
