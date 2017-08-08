@@ -3,6 +3,8 @@
 window.$DetailPrdView = {
 	detailPrdInfo: {},
 	init:function(){
+		this.showLoading();
+		
 		//Header 공통 그리기
 		$Layout.setSearchHeader();
 		
@@ -12,20 +14,24 @@ window.$DetailPrdView = {
 	},
 	_getData:function(){
 		var _this = this;
-		
+
 		var _sendData = {"query":{"fudId":fudId,"fudNm":fudNm}};
-		
 		$.ajax({
 			url: "/portal/searchDetail/result",
 			data:JSON.stringify(_sendData),
 		    type:"POST",
 			contentType: "application/json; charset=UTF-8",
 			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-			async: false	//동기화처리
-		}).done(function(data) {
-			console.log(data);
+			async: true	//동기화처리
+		}).success(function(data){
+			console.log("data::::"+data);
 			_this.detailPrdInfo = data;
 			_this._setDetailPrdInfo();
+		}).error(function(){
+			alert("상세정보를 가져오는중 오류가 발생하였습니다.");
+			_this.hideLoading();
+		}).done(function() {
+			_this.hideLoading();
 		});
 	},
 	_getCategoryRank:function(){
@@ -45,11 +51,6 @@ window.$DetailPrdView = {
 		});
 	},
 	_onClickEvent:function(){
-		//목록으로
-		$("#btnGoBack").on("click", function(event){
-			event.preventDefault();
-		});
-		
 		//수정요청팝업
 		$("#btnPrdMod").on("click", function(event){
 			event.preventDefault();
@@ -160,6 +161,9 @@ window.$DetailPrdView = {
 							'</li>');
 				$("div.nutri_comp ul.component" , _prdViewArea).append(_jEl);
 			});
+		}else{
+			var _jEl = $('<li style="text-align:center;line-height:30px;">영양성분이 존재하지 않습니다.</li>');
+			$("div.nutri_comp ul.component" , _prdViewArea).append(_jEl);
 		}
 		
 		//원재료
@@ -185,7 +189,16 @@ window.$DetailPrdView = {
 		//유기농 함량
   		$(".prd_ognCntn", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.ognCntn) ? this.detailPrdInfo.ognCntn : "-");
 		//인증 - 확인필요
-  	
+  		var _html = "";
+  		if(!_isNullChk(this.detailPrdInfo.mta08)){
+  			var _certifyTxts = this.detailPrdInfo.mta08.split(",");
+  			$.each(_certifyTxts, function(i){
+  				_html += _certifyTxts[i]+"<span class='mark'>?</span><div class='infodetail'></div>";
+  			});
+  		}
+  		$(".prd_certify", _prdViewArea).html(_html);
+  		
+  		
 		//무첨가
   		$(".prd_notAdd", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.notAdd) ? this.detailPrdInfo.notAdd : "-");
 		//기타 마케팅문구
@@ -266,6 +279,12 @@ window.$DetailPrdView = {
 		}
 		
 		
+	},
+	showLoading:function(){		
+		$("body").css("overflow", "hidden").find("#loadingArea").removeClass("hidden");	
+	},
+	hideLoading:function(){
+		$("body").css("overflow", "auto").find("#loadingArea").addClass("hidden");	
 	}
 };
 

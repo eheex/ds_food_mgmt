@@ -26,6 +26,11 @@ jQuery(document).ready(function($){
 </script>
 </head>
 	<body>
+		<div id="loadingArea" class="loading_area hidden" style="position:absolute;overflow:hidden;zoom:1;top:0;bottom:0;left:0;right:0;z-index:99999">
+			<div class="loading_cover" style="z-index:1;position:absolute;overflow:hidden;zoom:1;top:0;bottom:0;left:0;right:0;"></div>
+			<div class="loading_content" style="z-index:10;margin:-60px 0 0 -60px;width:120px;height:100px;border:1px solid #5f7693;background:#fff url(../images/common/bx_loader.gif) no-repeat center center;position:absolute;top:50%;left:50%;"><div class="msg" style="position:absolute;bottom:40px;left:0;right:0;text-align:center;text-indent:-9999px;">loading...</div></div>
+			<iframe class="zfix" style="position:absolute;width:100%;height:100%;top:0;left:0;opacity:0.6;background:#ccc;filter:Alpha(Opacity=60);border:0 !important"></iframe>
+		</div>
 		<div id="skipnav"><a  href="#container">skip to content</a></div>
 		<!-- wrap -->	
 		<div id="wrap">
@@ -146,11 +151,11 @@ jQuery(document).ready(function($){
 								<li><div class="dt">유기농 함량</div><div class="dd prd_ognCntn"></div></li>
 								<li>
 									<div class="dt">인증</div>
-									<div class="dd">
-										HACCP인증<span class="mark">?</span>
+									<div class="dd prd_certify">
+										<!-- HACCP인증<span class="mark">?</span>
 										<div class="infodetail">
 											이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong>무첨가: 합성보존료, 합성착향료</strong>
-										</div>
+										</div> -->
 									</div>
 								</li>
 								<li><div class="dt">무첨가</div><div class="dd prd_notAdd"></div></li>
