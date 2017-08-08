@@ -4,6 +4,9 @@
  *	푸드TFT 
  */
 window.$DetailSearchPopup = {
+	bigTxt: "",
+	middleTxt: "",
+	smallTxt: "",
 	_choiceDrawData : {},
 	_searchDetailData: {},
 	_jPopUpElement: $('<!-- detail search -->'+
@@ -651,6 +654,8 @@ window.$DetailSearchPopup = {
 								'</div>'+
 								'<!-- 상세검색>선택값 -->'+
 								'<div class="choicewrap">'+
+									'<span class="title">선택한 카테고리</span>'+
+									'<span class="choice_value"><a class="choice_cancel"></a></span>'+
 									'<a id="btnReset" style="position:absolute;right:95px;cursor:pointer">초기화</a>'+
 									'<button id="btnDetailSearch" class="srh_detail_apply">적용</button>'+
 								'</div>'+
@@ -757,6 +762,8 @@ window.$DetailSearchPopup = {
 		$(".finder_cell._big li a").on("click", function(event){
 			event.preventDefault();
 			
+			_this.bigTxt = $(this).text();
+			
 			$(".finder_cell._big li a, .finder_cell._mid li a, .finder_cell._small li a").removeClass("on");
 			$(this).addClass("on");
 			
@@ -766,9 +773,13 @@ window.$DetailSearchPopup = {
 			
 			$("div.finder_cell._mid .finder_list, div.finder_cell._small .finder_list").addClass("hidden");
 			$("div.finder_cell._mid .finder_list._mid"+sBigClassNo).removeClass("hidden");
+			
+			_this._setSelectTxt("big");
 		});
 		$(".finder_cell._mid li a").on("click", function(event){
 			event.preventDefault();
+			
+			_this.middleTxt = $(this).text();
 			
 			$(".finder_cell._mid li a, .finder_cell._small li a").removeClass("on");
 			$(this).addClass("on");
@@ -780,13 +791,18 @@ window.$DetailSearchPopup = {
 			
 			$("div.finder_cell._small .finder_list").addClass("hidden");
 			$("div.finder_cell._small .finder_list._small"+nFindSmallNo).removeClass("hidden");
+			
+			_this._setSelectTxt("mid");
 		});
 		$(".finder_cell._small li a").on("click", function(event){
 			event.preventDefault();
 			
+			_this.smallTxt = $(this).text();
+			
 			$(".finder_cell._small li a").removeClass("on");
 			$(this).addClass("on");
 			
+			_this._setSelectTxt("small");
 		});
 		
 		//초기화 버튼 처리
@@ -843,6 +859,17 @@ window.$DetailSearchPopup = {
 				});
 			}
 		});
+	},
+	_setSelectTxt:function(sArea){
+		
+		// 대,중,소 선택한 속성 처리
+		this.bigTxt = (sArea == undefined || (sArea == "big" || sArea == "mid" || sArea == "small")) ? $("div.finder_cell._big").find("a.on").text() : "";
+		this.middleTxt = (sArea == undefined || (sArea == "mid" || sArea == "small")) ? " > " + $("div.finder_cell._mid").find("a.on").text() : "";
+		this.smallTxt = (sArea == undefined || sArea == "small") ? " > " + $("div.finder_cell._small").find("a.on").text() : "";
+		
+		var _selectTxt = this.bigTxt+this.middleTxt+this.smallTxt;
+		
+		$("div.choicewrap .choice_value a", this._jPopUpElement).html(_selectTxt);
 	},
 	_setSearchData:function(){
 		var _this = this;
