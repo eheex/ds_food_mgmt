@@ -30,6 +30,8 @@ $(document).ready(function(){
 			var userId = $('#j_username').val();
             var password = $('#j_password').val();
             
+            $.support.cors = true;	//IE9 AJAX "No Transport" 오류 수정
+            
             $.ajax({
             	url: url,
             	data: { j_username: userId, j_password: password },
