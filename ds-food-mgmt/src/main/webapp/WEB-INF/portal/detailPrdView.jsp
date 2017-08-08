@@ -13,7 +13,7 @@
 <script type="text/javascript" src="./js/popup/prdModifyPopup.js"></script>
 <script type="text/javascript" src="./js/detailPrdView.js"></script>
 <script>
-//테스트 입니다.
+var console = window.console || { log: function() {} };
 
 var fudId = "${fudId}";
 var fudNm = "${fudNm}";

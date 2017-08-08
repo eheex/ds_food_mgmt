@@ -28,6 +28,8 @@
 <![endif]-->
 <script type="text/javascript" src="./js/popup/categoryPopup.js"></script>
 <script>
+var console = window.console || { log: function() {} };
+
 window.$ServerInfo = {
 	ip:"<%=request.getServerName()%>",
 	port:"<%=request.getServerPort()%>",
