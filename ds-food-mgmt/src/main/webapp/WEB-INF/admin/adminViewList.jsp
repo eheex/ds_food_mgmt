@@ -32,6 +32,8 @@
 <script type="text/javascript" src="../js/admin/adminViewList.js"></script>
 <script type="text/javascript">
 
+var console = window.console || { log: function() {} };
+
 var viewType = "${viewType}";
 
 function initMenu() {

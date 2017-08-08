@@ -19,6 +19,9 @@
 </style>
 <script type="text/javascript" src="../js/lib/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript">
+
+var console = window.console || { log: function() {} };
+
 $(document).ready(function(){
 	$("#btnLogin").on("click", function(event){
 		event.preventDefault();
@@ -42,7 +45,7 @@ $(document).ready(function(){
                  
                   $(location).attr('href','/admin/viewRank');    
               }).error(function(error){
-                  alert(error.responseJSON.error.message);
+                  alert("로그인도중 오류가 발생하였습니다."+error);
               });
 		}
 	});

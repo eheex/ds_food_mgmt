@@ -23,6 +23,8 @@ table tbody img {width:145px;height:145px;border:1px solid #ccc}
 <script type="text/javascript" src="../js/admin/adminViewDetail.js"></script>
 <script type="text/javascript">
 
+var console = window.console || { log: function() {} };
+
 var reqSeq = "${reqSeq}";
 var viewType = "${viewType}";
 
