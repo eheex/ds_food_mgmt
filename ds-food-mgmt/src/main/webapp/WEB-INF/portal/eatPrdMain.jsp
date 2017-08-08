@@ -80,7 +80,7 @@ $(document).ready(function(){
 			    	  } 
 			    	  
 			    	  for(var i=0; i < maxCount; i++){
-			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
+			    		  _tagEl += '<a href="#" title="'+_tags[i]+'"><span class="hashtag">#'+_tags[i]+'</span><a/>';
 			    	  }
 		    	}
 		    	
@@ -133,19 +133,29 @@ $(document).ready(function(){
 									"</div>"+
 									"<div class='info2'><span class='prdname'>"+this.fudNm+"</span><span class='kcal1-1'>"+_cal+"</span><span class='kcal1-2'>kcal</span></div>"+
 									"<div class='info3'><span class='materialname'>"+_materialTxt+"</span></div>"+
-									//"<div class='info4'><a href='#'><span class='hashtag'>#태그</span></a><a href='#'><span class='hashtag'>#태그</span></a></div>"+
-									"<div class='info4'><a href='#'>"+_tagEl+"</a></div>"+
-								"</li>").data("rowData", this).on("click", function(event){
-									//해당 식품 상세화면으로 이동
-									var _fudId = $(this).data("rowData").fudId;
-									var _fudNm = $(this).data("rowData").fudNm;
-									
-									self.location.href = "detailView?fudId="+_fudId+"&fudNm="+encodeURI(encodeURIComponent(_fudNm));
-								
-									//태그 검색화면 이동
-							});
+									"<div class='info4'>"+_tagEl+"</div>"+
+								"</li>").data("rowData", this).on("click", ".hashtag", function(event){
+									//태그명 클릭 시 리스트 태그검색이동
+									event.preventDefault();
+									var _tagNm = $(this).text().replace("#","");
+									var _query = encodeURI(encodeURIComponent(_tagNm));
+									var _hash = $.param({type:"tag"});
+									self.location.href = "list?tag="+_query+"#"+_hash;
+								});
 				
 				$("#slider1").append(_jEl);
+				
+				//슬라이더 클릭
+				_jEl.on("click", function(event){
+		  	  		event.preventDefault();
+		  	  		if(event.target.className != "hashtag"){
+		  	  			//해당 식품 상세화면으로 이동
+						var _fudId = $(this).data("rowData").fudId;
+						var _fudNm = $(this).data("rowData").fudNm;
+						
+						self.location.href = "detailView?fudId="+_fudId+"&fudNm="+encodeURI(encodeURIComponent(_fudNm));
+		  	  		}
+				});
 				
 				/* 알레르기 */
 	           	if(typeof this.allrgyIgdCt != "undefined" && this.allrgyIgdCt != ""){

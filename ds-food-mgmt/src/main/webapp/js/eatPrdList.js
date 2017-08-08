@@ -7,7 +7,7 @@ window.$EatPrdList = {
 	init:function(){
 		//Header 공통 그리기
 		$Layout.setSearchHeader();
-		 // 테스트
+
 		//식품 정보 가이드
 		$GuidePopup.open();
 		
@@ -42,41 +42,47 @@ window.$EatPrdList = {
 			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 			async: false	//동기화처리
 		}).done(function(data) {
-			console.log(data.data);
-			if(data != undefined && data.data.length > 0){
-				_this._listData = data.data;
-				$(".noresult1").addClass("hidden");
-				$("#listResultArea").removeClass("hidden");
-				$(".prdpage_info1").append("총&nbsp;<strong>"+_this._listData.length+"건</strong>");
-				
-				//Location 처리
-				if(_this._listData[0].clsGroup != undefined && _this._listData[0].clsGroup.length > 0){
-					var _clsGroupArr = _this._listData[0].clsGroup.split(">");
-					var _jLocationEl = $(".location_wrap .location");
-					$.each(_clsGroupArr, function(i, value){
-						var _li = "<li>"+value+"</li>";
-						if(_clsGroupArr.length-1 == i) _li = "<li class=\"here\">"+value+"</li>";
-						_jLocationEl.append(_li)
-					});
-				}else{
-					$(".location_wrap .location").append("<li>카테고리전체</li>");
-				}
-				
-				_this._drawDataTable();
+			_this.drawCallBack(data);
+		});
+	},
+	drawCallBack:function(data){
+		var _this = this;
+		
+		if(data != undefined && data.data.length > 0){
+			_this._listData = data.data;
+			$("#searchNoResult").addClass("hidden");
+			$("#listResultArea").removeClass("hidden");
+			$(".prdpage_info1 .info_1-1").html("총&nbsp;<strong>"+_this._listData.length+"건</strong>");
+			
+			//Location 처리
+			if(_this._listData[0].clsGroup != undefined && _this._listData[0].clsGroup.length > 0){
+				var _clsGroupArr = _this._listData[0].clsGroup.split(">");
+				var _jLocationEl = $(".location_wrap .location");
+				$.each(_clsGroupArr, function(i, value){
+					var _li = "<li>"+value+"</li>";
+					if(_clsGroupArr.length-1 == i) _li = "<li class=\"here\">"+value+"</li>";
+					_jLocationEl.append(_li)
+				});
 			}else{
-				//No Result 처리
-				$("#listResultArea").addClass("hidden");
-				$(".noresult1").removeClass("hidden");
-				$(".prdpage_info1").append("<strong>‘"+fudNm+categoryNm+"’</strong>(으)로 <strong>0건</strong>의 제품이 검색되었습니다.");
-				
 				$(".location_wrap .location").append("<li>카테고리전체</li>");
 			}
-		});
+			
+			_this._drawDataTable();
+		}else{
+			//No Result 처리
+			$("#listResultArea").addClass("hidden");
+			$("#searchNoResult").removeClass("hidden");
+			$(".prdpage_info1 .info_1-1").html("<strong>‘"+fudNm+categoryNm+"’</strong>(으)로 <strong>0건</strong>의 제품이 검색되었습니다.");
+			
+			$(".location_wrap .location").append("<li>카테고리전체</li>");
+		}
 	},
 	_drawDataTable:function(){
 		var _this = this;
 		
 		$.fn.dataTable.ext.errMode = "none";	//dataTable error시  alert창 안띄우게 함
+		
+		console.log("_this._listData@@@@@@@@@@@"+_this._listData);
 		
 		/* DataTable Plug-in */
 		this._jFoodTable = $("#prdListTable").DataTable({
@@ -98,163 +104,164 @@ window.$EatPrdList = {
 		    	"info": ""
 		    },
 		    rowCallback : function( row, data, index ) {
-		    	  $(row).children().remove();
-		    	  
-		    	  console.log("rowData::::::::"+data);
-		    	  
-		    	  /* 중량 처리 */
-		    	  var _vlm = "";
-		    	  if(typeof data.vlm != "undefined" && data.vlm != ""){
-		    		  _vlm = data.vlm;
-		    	  }
-		    	  
-		    	  /* 열량 처리 */
-		    	  var _kcal = "";
-		    	  if(typeof data.cal != "undefined" && data.cal != ""){
-		    		  _kcal = data.cal+"kcal";
-		    	  }
-		    	  
-		    	  /* 원재료 처리 */
-		    	  var _materialTxt = "";
-		    	  if(typeof data.rawmtrlRuleStrct != "undefined" && data.rawmtrlRuleStrct != ""){
-		    		  var _materialData = data.rawmtrlRuleStrct;
-		    		  _materialData = _materialData.replace(/\#\|\MTRL\|/g, '<span class="static-text" data-type="MTRL" data-name="" data-code="" data-nick="" data-highlight="" data-agree="">');
-		    		  _materialData = _materialData.replace(/\#\|\ORIGIN\|/g, '<span class="static-text" data-type="ORIGIN" data-name="" data-code="" data-nick="">');
-		    		  _materialData = _materialData.replace(/\#\|\CNAMT\|/g, '<span class="static-text" data-type="CNAMT" data-number="" data-unittext="" data-unitcode="">');
-		    		  _materialData = _materialData.replace(/\|\#/g, '</span>');
-		    		  _materialData = _materialData.replace(/\<b\>/g, '<b class="bold">');
-		    		  _materialData = _materialData.replace(/\<em\>/g, '<em class="big">');
-		    		  
-		    		  var _dom = $('<div></div>');
-		              _dom.append(_materialData);
-		              var elements = _dom.find('span')
-		    		  $.each(elements, function(){
-		    			 
-		    			  var text = $(this).text().split('|'),
-		                    type = $(this).data('type'),
-		                    html, node, currenttext;
-		    			  
-		    			  //함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
-		    			  if(type == "CNAMT" && type =="ORIGIN"){}
-		    			  
-		    			  if (type == 'MTRL'){
-		    				  _materialTxt += text[0]; 
-		                  }else if (type == 'ORIGIN'){
-		                	  _materialTxt += (text[2] !== '') ?text[2] : text[0];
-		                  }else if (type == 'CNAMT'){
-		                	  _materialTxt += (text[1] !== '') ? text[0] + ' ' + text[1] : text[0];
-		                  }
-
-		    		  });
-		    	  }
-		    	  
-		    	  /* 이미지 처리 */
-		    	  var _imgUrl = "../images/common/noimg145.jpg";
-		    	  if(typeof data.fudUrl != "undefined" && data.fudUrl != ""){
-		    		  _imgUrl = data.fudUrl;
-		    	  }
-		    	  
-		    	  /* 태그처리 */
-		    	  var _tagEl = "";
-		    	  if(typeof data.tag != "undefined" && data.tag != ""){
-		    		  var _tags = [];
-			    	  
-			    	  _tags = data.tag.split(",");
-			    	  
-			    	  for(var i=0; i<_tags.length; i++){
-			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
-			    	  }
-		    	  }
-		    	  
-		           $(row).data("rowData", data).append($('<img src="'+_imgUrl+'" alt="메인제품썸네일">'+
-			           	  '<div class="info2">'+
-							'<div class="info2-1">'+
-								'<span class="mark1 visibility">알레르기'+
-									'<div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br><strong></strong></div>'+
-								'</span>'+
-								'<span class="mark2 visibility">인증'+
-									'<div class="infodetail">이 제품은 인증 인증을 받았습니다.<br><strong></strong></div>'+
-								'</span>'+
-								'<span class="mark3 visibility">무첨가'+
-									'<div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br><strong></strong></div>'+
-								'</span>'+
-								'<span class="mark4 visibility">영양성분주의'+
-									'<div class="infodetail"></div>'+
-								'</span>'+
-							'</div>'+
-							'<div class="info2-2"><p class="prdname">'+data.fudNm+'</p></div>'+
-							'<div class="info2-3">'+_tagEl+'</div>'+
-						   '</div>'+
-						   '<div class="info3">'+
-								'<span class="vam">'+data.cpnNm+'</span>'+
-							'</div>'+
-							'<div class="info4">'+
-								'<div class="vam">'+
-									'<span class="title">중&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;량</span><span class="weight">'+_vlm+'</span>'+
-									'<span class="title">열&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;량</span><span class="kcal">'+_kcal+'</span>'+
-									'<span class="title">주원료명</span><span class="materialname">'+_materialTxt+'</span>'+
-								'</div>'+
-							'</div>').on("click", ".hashtag", function(event){
-								//태그명 클릭 시 리스트 태그검색이동
-								event.preventDefault();
-								var _tagNm = $(this).text().replace("#","");
-								var _query = encodeURI(encodeURIComponent(_tagNm));
-								var _hash = $.param({type:"tag"});
-								self.location.href = "list?tag="+_query+"#"+_hash;
-							})
-							
-					);
-		           
-		           /* 알레르기 */
-		           if(typeof data.allrgyIgdCt != "undefined" && data.allrgyIgdCt != ""){
-		        	   $("span.mark1",row).removeClass("visibility").find(".infodetail strong").html("포함 성분 : " + data.allrgyIgdCt);
-		        	   if(data.allrgyIgdCt.length > 20){
-		        		   var _length = (data.allrgyIgdCt.length-20) * 7;
-		        		   var _infoDetailW = 200;
-		        		   $("span.mark1 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
-		        	   }
-		           }
-		           /* 인증 */
-		           if(typeof data.cert != "undefined" && data.cert != ""){
-		        	   $("span.mark2",row).removeClass("visibility").find(".infodetail strong").html(data.cert);
-		        	   if(data.cert.length > 20){
-		        		   var _length = (data.cert.length-20) * 7;
-		        		   var _infoDetailW = 200;
-		        		   $("span.mark2 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
-		        	   }
-		           }
-		           /* 무첨가 */
-		           if(typeof data.notAdd != "undefined" && data.notAdd != ""){
-		        	   $("span.mark3",row).removeClass("visibility").find(".infodetail strong").html("무첨가 : " + data.notAdd);
-		        	   if(data.notAdd.length > 20){
-		        		   var _length = (data.notAdd.length-20) * 8;
-		        		   var _infoDetailW = 200;
-		        		   $("span.mark3 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
-		        	   }
-		           }
-		           /* 영양영분주의 */
-		           if(typeof data.ntrIgdNm != "undefined" && data.ntrIgdNm != ""){
-		        	   $("span.mark4",row).removeClass("visibility").find(".infodetail").html("해당 제품의 <strong>"+data.ntrIgdNm+"</strong>은(는) 1일 영양성분 기준치에 50%를 넘습니다.");
-		        	   if(data.ntrIgdNm.length > 16){
-		        		   var _length = (data.ntrIgdNm.length-16) * 2;
-		        		   var _infoDetailW = 200;
-		        		   $("span.mark4 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
-		        	   }
-		           }
-		           
-		           //Row 클릭 시 제품상세페이지로 이동
-		           $(row).on("click", function(event){
-		        	   event.preventDefault();
-		        	   if(event.target.className != "hashtag"){
-			        	   var _fudId = $(this).data("rowData").fudId;
-			        	   var _fudNm = $(this).data("rowData").fudNm;
-			        	   self.location.href = "detailView?fudId="+_fudId+"&fudNm="+encodeURI(encodeURIComponent(_fudNm));
-		        	   }
-		           });
+		    	_this.rowCallBack(row, data, index);
 		    }
 		});
 		
 		this._drawTableHeader();
+	},
+	rowCallBack:function(row, data, index){
+		$(row).children().remove();
+  	  
+  	  	/* 중량 처리 */
+  	  	var _vlm = "";
+  	  	if(typeof data.vlm != "undefined" && data.vlm != ""){
+  	  		_vlm = data.vlm;
+  	  	}
+  	  
+  	  	/* 열량 처리 */
+  	  	var _kcal = "";
+  	  	if(typeof data.cal != "undefined" && data.cal != ""){
+  	  		_kcal = data.cal+"kcal";
+  	  	}
+  	  
+  	  	/* 원재료 처리 */
+  	  	var _materialTxt = "";
+  	  	if(typeof data.rawmtrlRuleStrct != "undefined" && data.rawmtrlRuleStrct != ""){
+  	  		var _materialData = data.rawmtrlRuleStrct;
+  	  		_materialData = _materialData.replace(/\#\|\MTRL\|/g, '<span class="static-text" data-type="MTRL" data-name="" data-code="" data-nick="" data-highlight="" data-agree="">');
+  	  		_materialData = _materialData.replace(/\#\|\ORIGIN\|/g, '<span class="static-text" data-type="ORIGIN" data-name="" data-code="" data-nick="">');
+  	  		_materialData = _materialData.replace(/\#\|\CNAMT\|/g, '<span class="static-text" data-type="CNAMT" data-number="" data-unittext="" data-unitcode="">');
+  	  		_materialData = _materialData.replace(/\|\#/g, '</span>');
+  	  		_materialData = _materialData.replace(/\<b\>/g, '<b class="bold">');
+  	  		_materialData = _materialData.replace(/\<em\>/g, '<em class="big">');
+  		  
+  	  		var _dom = $('<div></div>');
+  	  		_dom.append(_materialData);
+            var elements = _dom.find('span')
+  		  	$.each(elements, function(){
+  			 
+  		  		var text = $(this).text().split('|'),
+  		  		type = $(this).data('type'),
+  		  		html, node, currenttext;
+  			  
+  		  		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
+  		  		if(type == "CNAMT" && type =="ORIGIN"){}
+  			  
+  		  		if (type == 'MTRL'){
+  		  			_materialTxt += text[0]; 
+  		  		}else if (type == 'ORIGIN'){
+  		  			_materialTxt += (text[2] !== '') ?text[2] : text[0];
+  		  		}else if (type == 'CNAMT'){
+  		  			_materialTxt += (text[1] !== '') ? text[0] + ' ' + text[1] : text[0];
+  		  		}
+
+  		  	});
+  	  	}
+  	  
+  	  	/* 이미지 처리 */
+  	  	var _imgUrl = "../images/common/noimg145.jpg";
+  	  	if(typeof data.fudUrl != "undefined" && data.fudUrl != ""){
+  	  		_imgUrl = data.fudUrl;
+  	  	}
+  	  
+  	  	/* 태그처리 */
+  	  	var _tagEl = "";
+  	  	if(typeof data.tag != "undefined" && data.tag != ""){
+  		 	var _tags = [];
+	    	  
+  		 	_tags = data.tag.split(",");
+	    	  
+  		 	for(var i=0; i<_tags.length; i++){
+  		 		_tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
+  		 	}
+  	  	}
+  	  
+  	  	$(row).data("rowData", data).append($('<img src="'+_imgUrl+'" alt="메인제품썸네일">'+
+	           	  '<div class="info2">'+
+					'<div class="info2-1">'+
+						'<span class="mark1 visibility">알레르기'+
+							'<div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br><strong></strong></div>'+
+						'</span>'+
+						'<span class="mark2 visibility">인증'+
+							'<div class="infodetail">이 제품은 인증 인증을 받았습니다.<br><strong></strong></div>'+
+						'</span>'+
+						'<span class="mark3 visibility">무첨가'+
+							'<div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br><strong></strong></div>'+
+						'</span>'+
+						'<span class="mark4 visibility">영양성분주의'+
+							'<div class="infodetail"></div>'+
+						'</span>'+
+					'</div>'+
+					'<div class="info2-2"><p class="prdname">'+data.fudNm+'</p></div>'+
+					'<div class="info2-3">'+_tagEl+'</div>'+
+				   '</div>'+
+				   '<div class="info3">'+
+						'<span class="vam">'+data.cpnNm+'</span>'+
+					'</div>'+
+					'<div class="info4">'+
+						'<div class="vam">'+
+							'<span class="title">중&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;량</span><span class="weight">'+_vlm+'</span>'+
+							'<span class="title">열&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;량</span><span class="kcal">'+_kcal+'</span>'+
+							'<span class="title">주원료명</span><span class="materialname">'+_materialTxt+'</span>'+
+						'</div>'+
+					'</div>').on("click", ".hashtag", function(event){
+						//태그명 클릭 시 리스트 태그검색이동
+						event.preventDefault();
+						var _tagNm = $(this).text().replace("#","");
+						var _query = encodeURI(encodeURIComponent(_tagNm));
+						var _hash = $.param({type:"tag"});
+						self.location.href = "list?tag="+_query+"#"+_hash;
+					})
+					
+			);
+         
+  	  	/* 알레르기 */
+  	  	if(typeof data.allrgyIgdCt != "undefined" && data.allrgyIgdCt != ""){
+  	  		$("span.mark1",row).removeClass("visibility").find(".infodetail strong").html("포함 성분 : " + data.allrgyIgdCt);
+  	  		if(data.allrgyIgdCt.length > 20){
+  	  			var _length = (data.allrgyIgdCt.length-20) * 7;
+  	  			var _infoDetailW = 200;
+  	  			$("span.mark1 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+  	  		}
+  	  	}
+  	  	/* 인증 */
+  	  	if(typeof data.cert != "undefined" && data.cert != ""){
+  	  		$("span.mark2",row).removeClass("visibility").find(".infodetail strong").html(data.cert);
+  	  		if(data.cert.length > 20){
+  	  			var _length = (data.cert.length-20) * 7;
+  	  			var _infoDetailW = 200;
+  	  			$("span.mark2 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+  	  		}
+  	  	}
+  	  	/* 무첨가 */
+  	  	if(typeof data.notAdd != "undefined" && data.notAdd != ""){
+  	  		$("span.mark3",row).removeClass("visibility").find(".infodetail strong").html("무첨가 : " + data.notAdd);
+  	  		if(data.notAdd.length > 20){
+  	  			var _length = (data.notAdd.length-20) * 8;
+  	  			var _infoDetailW = 200;
+  	  			$("span.mark3 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+  	  		}
+  	  	}
+  	  	/* 영양영분주의 */
+  	  	if(typeof data.ntrIgdNm != "undefined" && data.ntrIgdNm != ""){
+  	  		$("span.mark4",row).removeClass("visibility").find(".infodetail").html("해당 제품의 <strong>"+data.ntrIgdNm+"</strong>은(는) 1일 영양성분 기준치에 50%를 넘습니다.");
+  	  		if(data.ntrIgdNm.length > 16){
+  	  			var _length = (data.ntrIgdNm.length-16) * 2;
+  	  			var _infoDetailW = 200;
+  	  			$("span.mark4 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+  	  		}
+  	  	}
+         
+  	  	//Row 클릭 시 제품상세페이지로 이동
+  	  	$(row).on("click", function(event){
+  	  		event.preventDefault();
+  	  		if(event.target.className != "hashtag"){
+  	  			var _fudId = $(this).data("rowData").fudId;
+  	  			var _fudNm = $(this).data("rowData").fudNm;
+  	  			self.location.href = "detailView?fudId="+_fudId+"&fudNm="+encodeURI(encodeURIComponent(_fudNm));
+  	  		}
+  	  	});
 	},
 	_drawTableHeader:function(){
 		var _this = this;

@@ -22,6 +22,7 @@
 		<result property="regYn" column="REG_YN"/>
 		<result property="regDt" column="REG_DT"/>
 		<result property="email" column="EMAIL"/>
+		<result property="addrUrl" column="ADDR_URL"/>
 	</resultMap>
 	
 	<resultMap type="FoodRest" id="FoodRestResult">
@@ -35,6 +36,16 @@
 	<resultMap type="FoodProdHitMgmt" id="FoodProdHitMgmtResult">
 		<result property="fudNm" column="FUD_NM"/>
 		<result property="cnt" column="CNT"/>
+		<result property="seq" column="SEQ"/>
+		<result property="no" column="NO"/>
+		<result property="gbn" column="GBN"/>
+		<result property="stYmd" column="ST_YMD"/>
+		<result property="stTime" column="ST_TIME"/>
+		<result property="edYmd" column="ED_YMD"/>
+		<result property="edTime" column="ED_TIME"/>
+		<result property="prdNm" column="PRD_NM"/>
+		<result property="refTime" column="REF_TIME"/>
+		<result property="modDt" column="MOD_DT"/>
 	</resultMap>
 	
 	<!-- 관리자 로그인정보 조회 -->
@@ -115,7 +126,8 @@
 			   DATE_FORMAT(MOD_DT,'%Y-%m-%d %T') AS MOD_DT, 
 			   REG_YN, 
 			   DATE_FORMAT(REG_DT,'%Y-%m-%d %T') AS REG_DT, 
-			   EMAIL
+			   EMAIL,
+			   ADDR_URL
 		  FROM FOOD_PROD_REQ
 		 WHERE 1=1
 		 <if test="query.reqGb != null and query.reqGb != ''">
@@ -138,4 +150,45 @@
 		   AND REQ_SEQ				= #{query.reqSeq}		 	
 		 </if>
 	</select>
+	
+	<delete id="deleteFoodProdHitMgmt">
+    	DELETE FROM FOOD_PROD_HIT_MGMT
+    </delete>
+	
+	<insert id="insertSaveKeyword" parameterType="FoodProdHitMgmt">
+		<![CDATA[
+			INSERT INTO 
+		    FOOD_PROD_HIT_MGMT (
+		    			   SEQ,
+		    			   NO,
+		    			   GBN,
+		    			   ST_YMD,
+		    			   ST_TIME,
+		    			   ED_YMD,
+		    			   ED_TIME,
+		    			   PRD_NM,
+		    			   REF_TIME,
+		    			   MOD_DT)
+			        VALUES(
+			        	   #{seq}
+			        	   , #{no}
+			        	   , #{gbn}
+			        	   , #{stYmd}
+			        	   , #{stTime}
+			        	   , #{edYmd}
+			        	   , #{edTime}
+			        	   , #{prdNm}
+			        	   , #{refTime}
+			        	   , NOW()
+			        	  )
+		]]>
+	</insert>
+	
+	<update id="updateFoodProdReq" parameterType="FoodProdReq">
+        UPDATE FOOD_PROD_REQ
+        SET
+              ADDR_URL 	= #{addrUrl}
+            , MOD_DT 	= NOW()
+        WHERE REQ_SEQ 	= #{reqSeq}
+    </update>
 </mapper>

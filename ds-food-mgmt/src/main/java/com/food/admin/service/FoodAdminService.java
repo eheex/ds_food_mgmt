@@ -30,6 +30,13 @@ public interface FoodAdminService {
 	List<FoodProdHitMgmt> getMaualOption(String searchTime);
 	
 	/**
+	 * 인기검색어관리 저장
+	 * @param keyWordInfo
+	 * @return
+	 */
+	int setSaveKeyword(FoodProdHitMgmt keyWordInfos);
+	
+	/**
 	 * 관리자 등록/수정요청 정보 조회
 	 * @param searchRequest
 	 * @return

@@ -184,7 +184,7 @@ jQuery(document).ready(function($){
 						</div>
 					</div>					
 					<!-- //Prd View -->
-					<div class="prd_btnarear2"><button id="btnGoBack" type="button" title="목록" class="prd_smit1">목록</button></div>
+					<div class="prd_btnarear2"><button onclick="javascript:history.go(-1)" id="btnGoBack" type="button" title="목록" class="prd_smit1">목록</button></div>
 					
 					<div class="prd_btnarear1 mrgb50">제품의 잘못된 정보를 발견하셨나요? 수정 요청을 통해 알려주시면 최대한 빨리 수정하겠습니다.<button id="btnPrdMod" type="button" title="제품수정요청" class="prd_viewbtn1">제품수정요청</button></div>
 					

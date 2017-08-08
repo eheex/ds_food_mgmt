@@ -142,7 +142,7 @@ a.detail_tit:hover{background:#59504a;}
 .srh_detail .finder_cell.last{width:199px;border-right:none !important}
 .srh_detail .finder_cell_tit{font-size:13px;color:#666;text-align:center;height:40px;line-height:40px;border-bottom:1px solid #ddd;}
 .srh_detail .finder_list{padding:10px 0 9px 0;height:154px;overflow-y:auto;}
-.srh_detail .finder_list li{font-size:12px;color:#666;padding-left:19px;height:22px;line-height:22px;}
+.srh_detail .finder_list li{font-size:12px;color:#666;padding-left:19px;height:22px;line-height:22px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .srh_detail .finder_list li a{}
 .srh_detail .finder_list li .on{color:#f45329;text-decoration:underline}
 .srh_detail .finder_list li .off{color:#666;}
@@ -151,8 +151,8 @@ a.detail_tit:hover{background:#59504a;}
 .srh_detail .finder_range_list li{height:31px;line-height:30px;}
 .srh_detail .finder_range_list li:last-child{margin-bottom:11px}
 .srh_detail .rang_tit{display:block;float:left;width:65px;font-size:12px;color:#666;}
-.srh_detail .range_in{width:153px;padding-right:12px;}
-.srh_detail .rangenum {width:28px;height:21px;margin:0 3px;padding:0 5px;text-align:right;font-size:12px;color:#666;}
+.srh_detail .range_in{width:142px;padding-right:12px;}
+.srh_detail .rangenum {width:28px;height:21px;margin:0 3px;padding:0 5px;text-align:right;font-size:12px;color:#666;margin-left:10px;}
 .srh_detail ._allergy{width:599px;border-right:1px solid #ddd;}
 .srh_detail ._allergy>.finder_cell{width:599px !important;}
 .srh_detail ._allergy>.finder_cell>.finder_list{height:110px !important;overflow-y:auto;}

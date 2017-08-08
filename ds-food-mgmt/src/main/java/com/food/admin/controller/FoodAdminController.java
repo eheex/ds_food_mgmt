@@ -45,13 +45,17 @@ public class FoodAdminController {
 		return foodAdminService.getMaualOption(searchTime);
 	}
 	
+	/**
+	 * 인기검색어관리 저장
+	 * @param keyWordInfo
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/saveKeyword", method = RequestMethod.POST)
 	@ResponseBody
-	public int setFoodProdReq(@RequestBody FoodProdHitMgmt foodProdHitMgmt) throws Exception{
+	public int setSaveKeyword(@RequestBody FoodProdHitMgmt keyWordInfos) throws Exception{
 
-		
-		return 1;
-		//return foodAdminService.setAdminReg(fud);
+		return foodAdminService.setSaveKeyword(keyWordInfos);
 	}
 
 	/**

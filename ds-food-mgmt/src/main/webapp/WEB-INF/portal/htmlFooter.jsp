@@ -9,8 +9,8 @@
 						<span><a href="https://www.facebook.com/EatSight" target="_blank" title="facebook새창으로이동" class="sns1-1">facebook</a></span><span><a href="http://blog.naver.com/villaapp" target="_blank" title="naverblog새창으로이동" class="sns1-2">blog</a></span><span><a href="http://post.naver.com/my.nhn?memberNo=5869589" target="_blank" title="naverpost새창으로이동" class="sns1-3">naver</a></span>
 				</div>
 				<div class="copyright">
-				서울시 중랑구 면목로470 대상빌딩 4층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />
-				Copyright 2014 daesangit.com. All Rights Reserved
+				서울시 중랑구 면목로470 대상빌딩 5층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />
+				Copyright 2017 daesangit.com. All Rights Reserved
 				</div>
 			</div>
 		</div>

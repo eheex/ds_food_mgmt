@@ -20,6 +20,7 @@ window.$AdminRank = {
 		    success :function(data) {
 		    	var loopCount = 1;
 				$.each(data,function(){
+					console.log(this);
 					 $("#rankListTable tbody").append('<tr><td>'+ loopCount++ +'</td><td>'+this.fudNm+'</td></tr>');
 				});		
 			},

@@ -15,6 +15,7 @@ import com.food.portal.mapper.SearchResultMapper;
 import com.food.portal.model.CPN;
 import com.food.portal.model.Fud;
 import com.food.portal.model.FudDetail;
+import com.food.portal.model.FudList;
 import com.food.portal.model.NTR;
 import com.food.portal.service.SearchDetailResultService;
 
@@ -109,6 +110,53 @@ public class SearchDetailResultServiceImpl implements SearchDetailResultService 
 		detailSearchData.put("notAddCds", searchDetailResultMapper.selectSearchNotAddCd());
 		
 		return detailSearchData;
+	}
+
+	/**
+	 * 상세조회 검색
+	 * @param searchRequest
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<FudList> getDetailSearch(SearchRequest searchRequest) {
+
+		searchRequest.setData();
+		
+		List<FudList> fudList = new ArrayList<FudList>();
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(String)searchRequest.getQueryData("isNutriYn"));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(String)searchRequest.getQueryData("categoryId"));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(String)searchRequest.getQueryData("allergys"));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(String)searchRequest.getQueryData("certifys"));
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(String)searchRequest.getQueryData("noAdds"));
+		/*if(){
+			//영양성분 검색 데이터 없을 시
+			fudList = searchDetailResultMapper.selectDetailSearchExceptNutri(searchRequest);
+		}else{
+			//영양성분 포함 상세검색
+			fudList = searchDetailResultMapper.selectDetailSearchAll(searchRequest);
+		}*/
+		
+		String isNutriYn = (String)searchRequest.getQueryData("isNutriYn");
+		String categoryId = (String)searchRequest.getQueryData("categoryId");
+		String allergys = (String)searchRequest.getQueryData("allergys");
+		String certifys= (String)searchRequest.getQueryData("certifys");
+		String noAdds = (String)searchRequest.getQueryData("noAdds");
+		
+		//영양성분 상세검색 안할경우
+		//카테고리, 알레르기성분, 인증, 무첨가성분 조회일 경우
+		if(categoryId.length() > 0 || allergys.length() > 0 || certifys.length() > 0 
+				|| noAdds.length() > 0 || "N".equals(isNutriYn)){
+			System.out.println("=================== 전체 상세검색 ======================");
+			fudList = searchDetailResultMapper.selectDetailSearchAll(searchRequest);
+		}else{
+			//영양성분만 상세검색 할 경우
+			System.out.println("=================== 영양성분 상세검색 ======================");
+			fudList = searchDetailResultMapper.selectDetailSearchOnlyNutri(searchRequest);
+		}
+		
+		return fudList;
 	}
 
 }

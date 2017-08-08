@@ -26,7 +26,7 @@ window.$CategoryPopup = {
 									'<ul class="ul_class">'+
 										'<li><a id="100190" href="#" title="분유이유식">분유이유식</a></li>'+
 										'<li><a id="100191" href="#" title="아기과자">아기과자</a></li>'+
-										'<li><a id="100197" href="#" title="임신,수유부용 식품">임신,수유부용 식품</a></li>'+
+										'<li><a id="100197" href="#" title="임산·수유부용 식품">임산·수유부용 식품</a></li>'+
 										'<li><a id="100196" href="#" title="냉장두유">냉장두유</a></li>'+
 										'<li><a id="100195" href="#" title="선물용두유">선물용두유</a></li>'+
 										'<li><a id="100194" href="#" title="아기두유">아기두유</a></li>'+
@@ -56,7 +56,7 @@ window.$CategoryPopup = {
 									'<a id="100076" href="#" title="초콜릿/캔디/껌">초콜릿/캔디/껌</a>'+
 									'<ul class="ul_class">'+
 										'<li><a id="100175" href="#" title="엿">엿</a></li>'+
-										'<li><a id="100174" href="#" title="수입 초콜릿/사탕">수입 초콜릿/사탕</a></li>'+
+										'<li><a id="100174" href="#" title="수입초콜릿/사탕">수입초콜릿/사탕</a></li>'+
 										'<li><a id="100173" href="#" title="젤리">젤리</a></li>'+
 										'<li><a id="100172" href="#" title="껌">껌</a></li>'+
 										'<li><a id="100171" href="#" title="막대/츄잉사탕">막대/츄잉사탕</a></li>'+
@@ -85,7 +85,7 @@ window.$CategoryPopup = {
 									'<a id="100074" href="#" title="커피/녹차/차">커피/녹차/차</a>'+
 									'<ul class="ul_class">'+
 										'<li><a id="100140" href="#" title="커피믹스">커피믹스</a></li>'+
-										'<li><a id="100141" href="#" title="헤즐넛/카푸치노향 커피믹스">헤즐넛/카푸치노향 커피믹스</a></li>'+
+										'<li><a id="100141" href="#" title="헤즐넛,카푸치노향 커피믹스">헤즐넛,카푸치노향 커피믹스</a></li>'+
 										'<li><a id="100142" href="#" title="블랙믹스(설탕함유)">블랙믹스(설탕함유)</a></li>'+
 										'<li><a id="100143" href="#" title="블랙믹스(무설탕)">블랙믹스(무설탕)</a></li>'+
 										'<li><a id="100144" href="#" title="원두커피">원두커피</a></li>'+
@@ -163,7 +163,6 @@ window.$CategoryPopup = {
 									'<a id="100083" href="#" title="식용유/참기름/파스타/소스">식용유/참기름/파스타/소스</a>'+
 									'<ul class="ul_class">'+
 										'<li><a id="100226" href="#" title="대두유/옥수수유">대두유/옥수수유</a></li>'+
-										'<li><a id="100230" href="#" title="참기름/들기름">참기름/들기름</a></li>'+
 										'<li><a id="100237" href="#" title="기타기름">기타기름</a></li>	'+
 										'<li><a id="100236" href="#" title="드레싱">드레싱</a></li>'+
 										'<li><a id="100235" href="#" title="양념/소스">양념/소스</a></li>'+
@@ -171,9 +170,10 @@ window.$CategoryPopup = {
 										'<li><a id="100233" href="#" title="케찹/마요네즈">케찹/마요네즈</a></li>'+
 										'<li><a id="100232" href="#" title="물엿/액젓">물엿/액젓</a></li>'+
 										'<li><a id="100231" href="#" title="식초/음용식초">식초/음용식초</a></li>'+
+										'<li><a id="100227" href="#" title="올리브유/포도씨유">올리브유/포도씨유</a></li>'+
 										'<li><a id="100229" href="#" title="현미유/쌀눈유/해바라기유">현미유/쌀눈유/해바라기유</a></li>'+
 										'<li><a id="100228" href="#" title="카놀라유">카놀라유</a></li>'+
-										'<li><a id="100227" href="#" title="올리브유/포도씨유">올리브유/포도씨유</a></li>'+
+										'<li><a id="100230" href="#" title="참기름/들기름">참기름/들기름</a></li>'+
 									'</ul>'+
 								'</li>'+
 								'<li>'+
@@ -207,7 +207,7 @@ window.$CategoryPopup = {
 										'<li><a id="100212" href="#" title="선식">선식</a></li>'+
 										'<li><a id="100211" href="#" title="즉석국/밥양념">즉석국/밥양념</a></li>'+
 										'<li><a id="100210" href="#" title="죽/스프">죽/스프</a></li>'+
-										'<li><a id="100209" href="#" title="덮밥/덮밥스프">덮밥/덮밥스프</a></li>'+
+										'<li><a id="100209" href="#" title="덮밥/덮밥소스">덮밥/덮밥소스</a></li>'+
 										'<li><a id="100208" href="#" title="짜장/즉석짜장">짜장/즉석짜장</a></li>'+
 									'</ul>'+
 								'</li>'+
@@ -235,7 +235,7 @@ window.$CategoryPopup = {
 										'<li><a id="100299" href="#" title="볶음류">볶음류</a></li>'+
 										'<li><a id="100298" href="#" title="삼각김밥/죽/면류">삼각김밥/죽/면류</a></li>'+
 										'<li><a id="100297" href="#" title="국/탕/찌개">국/탕/찌개</a></li>'+
-										'<li><a id="100296" href="#" title="냉동밥/스파게티">냉동밥/스파게티</a></li>'+
+										'<li><a id="100296" href="#" title="냉동 밥/스파게티">냉동 밥/스파게티</a></li>'+
 										'<li><a id="100304" href="#" title="찜">찜</a></li>'+
 									'</ul>'+
 								'</li>'+  
@@ -244,10 +244,10 @@ window.$CategoryPopup = {
 									'<ul class="ul_class">'+
 										'<li><a id="100287" href="#" title="식빵/일반빵">식빵/일반빵</a></li>'+         /*소분류*/
 										'<li><a id="100295" href="#" title="베이킹도구/재료">베이킹도구/재료</a></li>'+
-										'<li><a id="100294" href="#" title="냉동생지/즉성빵">냉동생지/즉성빵</a></li>'+
+										'<li><a id="100294" href="#" title="냉동생지/즉석빵">냉동생지/즉석빵</a></li>'+
 										'<li><a id="100293" href="#" title="호두파이/와플/츄러스">호두파이/와플/츄러스</a></li>'+
 										'<li><a id="100292" href="#" title="베이글/머핀/도너츠">베이글/머핀/도너츠</a></li>'+
-										'<li><a id="100291" href="#" title="롤케익/카스테라/쿠키">롤케익/카스테라/쿠키</a></li>'+
+										'<li><a id="100291" href="#" title="롤케익/카스텔라/쿠키">롤케익/카스텔라/쿠키</a></li>'+
 										'<li><a id="100290" href="#" title="케익/케익선물세트">케익/케익선물세트</a></li>'+
 										'<li><a id="100289" href="#" title="찐빵/호빵">찐빵/호빵</a></li>'+
 										'<li><a id="100288" href="#" title="과일잼">과일잼</a></li>'+
@@ -301,9 +301,9 @@ window.$CategoryPopup = {
 									'</ul>'+
 								'</li>'+ 
 								'<li>'+
-									'<a id="100088" href="#" title="햄/어묵/맛살/면류 냉장식품">햄/어묵/맛살/면류 냉장식품</a>'+
+									'<a id="100087" href="#" title="햄/어묵/맛살/면류 냉장식품">햄/어묵/맛살/면류 냉장식품</a>'+
 									'<ul class="ul_class">'+
-										'<li><a id="100255" href="#" title="소세지/베이컨">소세지/베이컨</a></li>'+         /*소분류*/
+										'<li><a id="100255" href="#" title="소시지/베이컨">소시지/베이컨</a></li>'+         /*소분류*/
 										'<li><a id="100254" href="#" title="햄/김밥재료">햄/김밥재료</a></li>'+
 										'<li><a id="100260" href="#" title="냉장간식">냉장간식</a></li>'+
 										'<li><a id="100259" href="#" title="냉장면류">냉장면류</a></li>'+
@@ -322,8 +322,8 @@ window.$CategoryPopup = {
 									'<ul class="ul_class">'+
 										'<li><a id="100316" href="#" title="국산꿀">국산꿀</a></li>'+         /*소분류*/
 										'<li><a id="100317" href="#" title="수입꿀">수입꿀</a></li>'+
-										'<li><a id="100319" href="#" title="로얄제리/프로폴리스">로얄제리/프로폴리스</a></li>'+
 										'<li><a id="100318" href="#" title="꿀가공품">꿀가공품</a></li>'+
+										'<li><a id="100319" href="#" title="로얄제리/프로폴리스">로얄제리/프로폴리스</a></li>'+
 									'</ul>'+
 								'</li>'+
 								'<li>'+
@@ -345,7 +345,7 @@ window.$CategoryPopup = {
 								'<li>'+
 									'<a id="100099" href="#" title="친환경 가공식품">친환경 가공식품</a>'+
 									'<ul class="ul_class">'+
-										'<li><a id="100337" href="#" title="통조림/잼">통조림/잼</a></li>'+         /*소분류*/
+										'<li><a id="100337" href="#" title="통조림/쨈">통조림/쨈</a></li>'+         /*소분류*/
 										'<li><a id="100338" href="#" title="커피/차">커피/차</a></li>'+
 										'<li><a id="100339" href="#" title="과자/캔디">과자/캔디</a></li>'+
 										'<li><a id="100340" href="#" title="면류/시리얼/즉석식품">면류/시리얼/즉석식품</a></li>'+
@@ -380,6 +380,7 @@ window.$CategoryPopup = {
 										'<li><a id="101005" href="#" title="비타민 C">비타민 C</a></li>'+
 										'<li><a id="101035" href="#" title="비타민 D">비타민 D</a></li>'+
 										'<li><a id="101034" href="#" title="비타민 E">비타민 E</a></li>'+
+										'<li><a id="101040" href="#" title="빌베리추출물">빌베리추출물</a></li>'+
 										'<li><a id="100321" href="#" title="오메가3">오메가3</a></li>'+
 										'<li><a id="101006" href="#" title="감마리놀렌산">감마리놀렌산</a></li>'+
 										'<li><a id="100322" href="#" title="철분">철분</a></li>'+
@@ -417,7 +418,7 @@ window.$CategoryPopup = {
 										'<li><a id="101031" href="#" title="회화나무 열매 추출물">회화나무 열매 추출물</a></li>'+
 										'<li><a id="101032" href="#" title="홍경전 추출물">홍경전 추출물</a></li>'+
 										'<li><a id="101033" href="#" title="난소화성말토덱스트린">난소화성말토덱스트린</a></li>'+
-										'<li><a id="101036" href="#" title="은행잎 추출물">은행잎추출물</a></li>'+
+										'<li><a id="101036" href="#" title="은행잎추출물">은행잎추출물</a></li>'+
 										'<li><a id="101037" href="#" title="셀레늄">셀레늄</a></li>'+
 										'<li><a id="101038" href="#" title="베타카로틴">베타카로틴</a></li>'+
 										'<li><a id="101041" href="#" title="피크노제놀-프랑스해안송껍질추출물">피크노제놀-프랑스해안송껍질추출물</a></li>'+
@@ -435,6 +436,12 @@ window.$CategoryPopup = {
 										'<li><a id="100345" href="#" title="메추리알">메추리알</a></li>'+         /*소분류*/
 									'</ul>'+
 								'</li>'+
+								'<li>'+  
+									'<a id="101046" href="#" title="정육">정육</a>'+    /*중분류*/
+									'<ul class="ul_class">'+
+										'<li><a id="101047" href="#" title="계육">계육</a></li>'+         /*소분류*/
+									'</ul>'+
+								'</li>'+
 							'</ul>'+
 						'</li>'+
 						'<li>'+
@@ -450,12 +457,12 @@ window.$CategoryPopup = {
 								'<li>'+ 
 									'<a id="100104" href="#" title="수수/조/깨/잡곡">수수/조/깨/잡곡</a>'+
 									'<ul class="ul_class">'+
+										'<li><a id="100354" href="#" title="수수">수수</a></li>'+
+										'<li><a id="100355" href="#" title="조류">조류</a></li>'+
 										'<li><a id="100356" href="#" title="기장">기장</a></li>'+         /*소분류*/
 										'<li><a id="100357" href="#" title="깨">깨</a></li>'+
 										'<li><a id="100358" href="#" title="율무/녹두">율무/녹두</a></li>'+
 										'<li><a id="100359" href="#" title="기타잡곡">기타잡곡</a></li>'+
-										'<li><a id="100354" href="#" title="수수">수수</a></li>'+
-										'<li><a id="100355" href="#" title="조류">조류</a></li>'+
 									'</ul>'+
 								'</li>'+
 								'<li>'+ 

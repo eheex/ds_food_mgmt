@@ -40,6 +40,7 @@ public class LoginOutSuccessHandler implements LogoutSuccessHandler
 //        response.getWriter().write(mapper.writeValueAsString(mm));
 //        response.getWriter().flush();
 //        response.getWriter().close();
+    	System.out.println("@@@@@@@@@@@@@@@오잉?");
         response.sendRedirect("/admin/login");
         
     }

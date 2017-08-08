@@ -5,6 +5,7 @@ import java.util.List;
 import com.food.common.model.SearchRequest;
 import com.food.portal.model.Fud;
 import com.food.portal.model.FudDetail;
+import com.food.portal.model.FudList;
 
 public interface SearchDetailResultService {
 
@@ -27,4 +28,12 @@ public interface SearchDetailResultService {
 	 * @return
 	 */
 	public Object getDetailSearchPopupData();
+	
+	/**
+	 * 상세조회 검색
+	 * @param searchRequest
+	 * @return
+	 * @throws Exception
+	 */
+	public List<FudList> getDetailSearch(SearchRequest searchRequest);
 }

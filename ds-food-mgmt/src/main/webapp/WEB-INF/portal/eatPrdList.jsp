@@ -36,6 +36,11 @@ jQuery(document).ready(function($){
 </script>
 </head>
 	<body>
+		<div id="loadingArea" class="loading_area hidden" style="position:absolute;overflow:hidden;zoom:1;top:0;bottom:0;left:0;right:0;z-index:99999">
+			<div class="loading_cover" style="z-index:1;position:absolute;overflow:hidden;zoom:1;top:0;bottom:0;left:0;right:0;"></div>
+			<div class="loading_content" style="z-index:10;margin:-60px 0 0 -60px;width:120px;height:100px;border:1px solid #5f7693;background:#fff url(../images/common/bx_loader.gif) no-repeat center center;position:absolute;top:50%;left:50%;"><div class="msg" style="position:absolute;bottom:40px;left:0;right:0;text-align:center;text-indent:-9999px;">loading...</div></div>
+			<iframe class="zfix" style="position:absolute;width:100%;height:100%;top:0;left:0;opacity:0.6;filter:Alpha(Opacity=60);border:0 !important"></iframe>
+		</div>
 		<div id="skipnav"><a  href="#container">skip to content</a></div>
 		<!-- wrap -->	
 		<div id="wrap">
@@ -48,7 +53,10 @@ jQuery(document).ready(function($){
 						</ol>
 					</div>
 					<!-- //category Area -->
-					<div class="prdpage_info1"><a id="btnSearchDetail" href="#srh_detail" class="detail_tit">상세검색<img src="../images/common/btn_detailplus.gif" alt="열기" /></a></div>
+					<div class="prdpage_info1">
+						<span class="info_1-1"></span>
+						<a id="btnSearchDetail" href="#srh_detail" class="detail_tit">상세검색<img src="../images/common/btn_detailplus.gif" alt="열기" /></a>
+					</div>
 					
 					<div id="listResultArea" class="hidden">
 						<div class="prdarea">
@@ -58,7 +66,7 @@ jQuery(document).ready(function($){
 					</div>
 					
 					<!-- No result -->
-					<div class="noresult1 hidden">
+					<div id="searchNoResult" class="noresult1 hidden">
 						<p class="result"><strong>'<c:out value="${fudNm}"/><c:out value="${categoryNm}"/><c:out value="${tag}"/>'</strong>에 대한 검색 결과가 없습니다.</p>
 						<p class="info1">
 							입력하신 검색어가 정확한지 다시 한번 확인해주세요.<br />

@@ -8,6 +8,7 @@ import com.food.portal.model.CPN;
 import com.food.portal.model.Code;
 import com.food.portal.model.Fud;
 import com.food.portal.model.FudDetail;
+import com.food.portal.model.FudList;
 import com.food.portal.model.NTR;
 
 @Mapper
@@ -58,4 +59,20 @@ public interface SearchDetailResultMapper {
 	 * 상세조회팝업 - 무첨가 조회
 	 */
 	public List<Code> selectSearchNotAddCd();
+	
+	/**
+	 * 상세조회 전체 검색
+	 * @param searchRequest
+	 * @return
+	 */
+	public List<FudList> selectDetailSearchAll(SearchRequest searchRequest);
+	
+	/**
+	 * 상세조회  검색 - 영양성분만
+	 * @param searchRequest
+	 * @return
+	 */
+	public List<FudList> selectDetailSearchOnlyNutri(SearchRequest searchRequest);
+	
+	
 }

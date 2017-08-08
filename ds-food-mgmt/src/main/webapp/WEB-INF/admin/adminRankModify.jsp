@@ -20,7 +20,9 @@
 <style type="text/css">
 .hidden {display:none !important}
 
+#loadingBox {position:absolute;top:50%;left:60%}
 #manualKeywordList tbody tr {height:39px}
+#manualKeywordList thead tr th.th_center {padding:0 !important;text-align:center}
 </style>
 <script type="text/javascript" src="../js/lib/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="../js/lib/jquery.ui/jquery-ui.min.js"></script>
@@ -137,9 +139,9 @@ $(document).ready(function() {
 									<thead>
 										<tr>
 											<th scope="col">순위</th>
-											<th scope="col">검색어</th>
-											<th scope="col">검색량</th>
-											<th scope="col"><input type="checkbox" title="선택" name="checkAll" id="checkAll"></th>
+											<th scope="col" class="th_center">검색어</th>
+											<th scope="col" class="th_center">검색량</th>
+											<th scope="col" class="th_center"><input type="checkbox" title="선택" name="checkAll" id="checkAll"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -311,13 +313,16 @@ $(document).ready(function() {
 				<button type="button" class="bg2" id="btnCancel"><span>취소</span></button>
 				<button type="button" class="bg1" id="btnSave"><span>저장</span></button>
 			</div>
+			<div id="loadingBox" class="hidden">
+				<img src="../images/common/bx_loader.gif" />
+			</div>
 		</div>
 		<!-- //contents -->
 	</div>
 	<!-- //container -->
 	<div class="footer">
 		<div class="footerwrap">
-			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 4층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2014 daesangit.com. All Rights Reserved</p>
+			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 5층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2017 daesangit.com. All Rights Reserved</p>
 		</div>
 	</div>
 </body>

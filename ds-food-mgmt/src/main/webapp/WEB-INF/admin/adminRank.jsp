@@ -77,6 +77,7 @@ $(document).ready(function() {
 		<!-- contents -->
 		<div id="contents">
 			<h3>인기검색어 관리</h3>
+			<span style="display:inline-block;margin-bottom:10px;font-weight:bold">현재 인기검색어 순위</span>
 			<table id="rankListTable" class="tableTy1" cellpadding="0" cellspacing="0">
 				<colgroup>
 					<col width="8.4%" />
@@ -102,7 +103,7 @@ $(document).ready(function() {
 	<!-- //container -->
 	<div class="footer">
 		<div class="footerwrap">
-			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 4층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2014 daesangit.com. All Rights Reserved</p>
+			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 5층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2017 daesangit.com. All Rights Reserved</p>
 		</div>
 	</div>
 </body>

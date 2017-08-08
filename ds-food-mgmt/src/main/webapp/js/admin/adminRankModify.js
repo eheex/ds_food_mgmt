@@ -71,6 +71,7 @@ window.$AdminRankModify = {
 			var searchTime = $("#manualSelectTime option:selected").val();
 
 			_this._clear();
+			_this.showLoadingBox();
 
 			$.ajax({
 				url: "/admin/getMaualOption",
@@ -87,6 +88,9 @@ window.$AdminRankModify = {
 				},
 				error :function() {
 					alert("조회오류");
+				},
+				complete : function(){
+					_this.hideLoadingBox();
 				}
 			});
 		});
@@ -129,46 +133,50 @@ window.$AdminRankModify = {
 			if(_this._validation()){
 				var _data = {};
 				
+				_this.showLoadingBox();
+				
 				if($("input#regTypeM").prop("checked")){
 					//수동등록 Data
-					_data.foodProdHitMgmt = [];
+					_data.foodProdHitMgmts = [];
 					var loopCount = 1;
-					$("input:text[name='keywordNm']").each(function(e){
-						_data.foodProdHitMgmt.push({
-							seq : "1",
-							no : loopCount,
-						    gbn : "M",
-						    stYmd : $("input#startDate").val(),
-						    stTime : $("select#startTime option:selected").val(),
-						    edYmd : $("input#endDate").val(),
-						    edTime : $("select#endTime option:selected").val(),
-						    prdNm : $(this).val(),
-						    refTim : $("select#manualSelectTime").val()
+					$("input:text[name='keywordNm']").each(function(){
+						_data.foodProdHitMgmts.push({
+							seq 		: 1,
+							no 			: loopCount++,
+						    gbn 		: "M",
+						    stYmd 		: $("input#startDate").val(),
+						    stTime		: $("select#startTime option:selected").val(),
+						    edYmd 		: $("input#endDate").val(),
+						    edTime		: $("select#endTime option:selected").val(),
+						    prdNm 		: $(this).val(),
+						    refTime 	: $("select#manualSelectTime option:selected").val()
 						});
 					});
 				}else{
 					//자동등록 Data
-					_data = {seq: "1",
-							 no: "1",
-							 gbn: "A",
-							 stYmd: $("input#startDate").val(),
-							 stTime: $("select#autoSelectTime option:selected").val(),
-							 edYmd:"",
-							 edTime:""};
+					_data = {seq		: 1,
+							 no			: loopCount,
+							 gbn		: "A",
+							 refTime	: $("select#autoSelectTime option:selected").val()
+							};
 				}
 				
 				$.ajax({
 					url: "/admin/saveKeyword",
 					contentType: "application/json; charset=UTF-8",
-					data :JSON.stringify(_data),
+					data : JSON.stringify(_data),
 					type : "POST",
 					dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 					async: false,	//동기화처리
 				    success :function(data) {
 						alert("저장되었습니다.");
+						location.href = "/admin/viewRank";
 					},
 					error :function() {
 						alert("처리중 오류가 발생하였습니다.");
+					},
+					complete: function(){
+						_this.hideLoadingBox();
 					}
 				});
 			}
@@ -199,14 +207,20 @@ window.$AdminRankModify = {
 				}
 			});
 			
-			if($("input#startTime").val() <= $("input#endTime").val()){
-				alert("서비스기간의 시간의 종료시간이 \n시작시간 이후로 설정해주십시오. ");
+			if($("select#startTime option:selected").val() > $("select#endTime option:selected").val()){
+				alert("서비스기간의 종료시간은 \n시작시간 이후로 설정해주십시오. ");
 				rtnValue = false;
 			}
 		}
 		
 		return rtnValue;
-	}
+	},
+	showLoadingBox:function(){
+		$("body").find("#loadingBox").removeClass("hidden");
+	},
+	hideLoadingBox:function(){
+		$("body").find("#loadingBox").addClass("hidden");	
+	},
 };
 
 })(window, window.jQuery);

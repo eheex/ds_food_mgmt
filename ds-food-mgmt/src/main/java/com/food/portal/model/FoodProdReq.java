@@ -30,6 +30,8 @@ public class FoodProdReq {
 	
 	private String email;
 	
+	private String addrUrl;
+	
 	/* 
 	 *  이미지 추가건
 	 */
@@ -161,6 +163,14 @@ public class FoodProdReq {
 
 	public void setRegDt(String regDt) {
 		this.regDt = regDt;
+	}
+
+	public String getAddrUrl() {
+		return addrUrl;
+	}
+
+	public void setAddrUrl(String addrUrl) {
+		this.addrUrl = addrUrl;
 	}
 	
 }

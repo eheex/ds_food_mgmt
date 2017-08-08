@@ -17,9 +17,9 @@ public class FoodProdHitMgmt {
 	
 	private String cnt;	// 검색량
 	
-	private String seq;	// 순번
+	private int seq;	// 순번
 	
-	private String no;  // 순번-순서
+	private int no;  // 순번-순서
 	
 	private String gbn;  // 구분
 	
@@ -55,19 +55,19 @@ public class FoodProdHitMgmt {
 		this.cnt = cnt;
 	}
 
-	public String getSeq() {
+	public int getSeq() {
 		return seq;
 	}
 
-	public void setSeq(String seq) {
+	public void setSeq(int seq) {
 		this.seq = seq;
 	}
 
-	public String getNo() {
+	public int getNo() {
 		return no;
 	}
 
-	public void setNo(String no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 

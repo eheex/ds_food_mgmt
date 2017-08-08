@@ -33,6 +33,19 @@ public interface FoodAdminMapper {
 	List<FoodProdHitMgmt> selectMaualOption(String searchTime);
 	
 	/**
+	 * 인기검색어관리 저장
+	 * @param keyWordInfo
+	 * @return
+	 */
+	int insertSaveKeyword(FoodProdHitMgmt keyWordInfo);
+	
+	/**
+	 * 인기검색어관리 삭제
+	 * @return
+	 */
+	int deleteFoodProdHitMgmt();
+	
+	/**
 	 * 관리자 등록/수정요청 정보 조회
 	 * @param searchRequest
 	 * @return
@@ -45,4 +58,11 @@ public interface FoodAdminMapper {
 	 * @return
 	 */
 	List<FoodRest> selectFoodProdImg(SearchRequest searchRequest);
+	
+	/**
+	 * 수정요청제품  정보 수정
+	 * @param foodProdReq
+	 * @return
+	 */
+	int updateFoodProdReq(FoodProdReq foodProdReq);
 }

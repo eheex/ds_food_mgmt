@@ -58,7 +58,6 @@ $(document).ready(function() {
 			<h1 class="logo"><a href="/" title="eatsight 관리자 메인페이지로 이동합니다."><img src="../images/common/logo.png" alt="eatsight 관리자 홈" /></a></h1>
 			<ul class="util_menu">
 				<li><span class="id"></span> 님 좋은 하루 보내세요</li>
-				<!-- <li><a href="#" class="my">마이페이지</a></li>마이페이지 li class="on" -->
 				<li><button type="button" class="logout" id="btnLogout"><span>로그아웃</span></button></li>
 			</ul>		
 		</div>
@@ -92,19 +91,19 @@ $(document).ready(function() {
 					</colgroup>
 					<tbody id="registViewBody">
 						<tr>
-							<th scope="row"><label for="adminid">제품명</label></th>
+							<th scope="row"><label>제품명</label></th>
 							<td id="prdNm"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminpw">회사/브랜드</label></th>
+							<th scope="row"><label>회사/브랜드</label></th>
 							<td id="comNa"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminpwr">바코드</label></th>
+							<th scope="row"><label>바코드</label></th>
 							<td id="barCd"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminpwr">제품 이미지</label></th>
+							<th scope="row"><label>제품 이미지</label></th>
 							<td id="foodImg">
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
@@ -115,15 +114,15 @@ $(document).ready(function() {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="division">요청자 이메일</label></th>
+							<th scope="row"><label>요청자 이메일</label></th>
 							<td id="email"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminhp">요청 일시</label></th>
+							<th scope="row"><label>요청 일시</label></th>
 							<td id="regDt"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminhp">등록제품 URL </label></th>
+							<th scope="row"><label>등록제품 URL </label></th>
 							<td>
 								<input type="text" title="등록제품URL" name="adminid" id="adminid" style="width:133px" value=""/>
 								<button id="btnUrlSave" type="button" class="btn80_mg1"><span>저장</span></button>
@@ -132,31 +131,35 @@ $(document).ready(function() {
 					</tbody>
 					<tbody id="modifyViewBody" class="hidden">
 						<tr>
-							<th scope="row"><label for="adminid">제품명</label></th>
+							<th scope="row"><label>제품명</label></th>
 							<td id="prdNm"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminpw">제조원</label></th>
+							<th scope="row"><label>제조원</label></th>
 							<td id="comNa"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminpwr">제품 URL</label></th>
-							<td id="foodImg">
-								<img src="../images/common/noimg145.jpg" />
-							</td>
+							<th scope="row"><label>제품 URL</label></th>
+							<td id="addrUrl"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminhp">수정요청 내용</label></th>
+							<th scope="row"><label>수정요청 내용</label></th>
 							<td id="modNt">
 								<textarea name="comm_contents" id="comm_contents" title="내용" style="width:500px;height:100px;" readonly >에디터</textarea>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="division">요청자 이메일</label></th>
+							<th scope="row"><label>이미지</label></th>
+							<td id="foodImg">
+								<img src="../images/common/noimg145.jpg" />
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label>요청자 이메일</label></th>
 							<td id="email"></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="adminhp">   요청 일시</label></th>
+							<th scope="row"><label>요청 일시</label></th>
 							<td id="regDt"></td>
 						</tr>
 					</tbody>
@@ -164,7 +167,7 @@ $(document).ready(function() {
 			</div>
 			<!-- BTN -->
 			<div class="btnAreaR">
-				<button type="button" class="bg2" id=""><span>목록</span></button>
+			<button onclick="javascript:history.go(-1)" type="button" class="bg2" id=""><span>목록</span></button>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -172,7 +175,7 @@ $(document).ready(function() {
 	<!-- //container -->
 	<div class="footer">
 		<div class="footerwrap">
-			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 4층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2014 daesangit.com. All Rights Reserved</p>
+			<p class="copyright">서울시 중랑구 면목로470 대상빌딩 5층 (131-220)  Tel. 02-3408-0114 | Fax. 02-439-0453<br />Copyright 2017 daesangit.com. All Rights Reserved</p>
 		</div>
 	</div>
 </body>

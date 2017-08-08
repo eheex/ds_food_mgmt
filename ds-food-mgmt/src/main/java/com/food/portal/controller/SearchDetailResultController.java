@@ -1,5 +1,6 @@
 package com.food.portal.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.food.common.model.SearchRequest;
 import com.food.portal.model.Fud;
 import com.food.portal.model.FudDetail;
+import com.food.portal.model.FudList;
 import com.food.portal.service.SearchDetailResultService;
 
 @Controller
@@ -61,5 +63,22 @@ public class SearchDetailResultController {
 	public Object getDetailSearchPopupData() throws Exception{
 		
 		return searchDetailResultService.getDetailSearchPopupData();
+	}
+	
+	/**
+	 * 상세조회 검색
+	 * @param searchRequest
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/search", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getDetailSearch(@RequestBody SearchRequest searchRequest) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		List<FudList> searchData = searchDetailResultService.getDetailSearch(searchRequest);
+		
+		map.put("data", searchData);
+		return map;
 	}
 }

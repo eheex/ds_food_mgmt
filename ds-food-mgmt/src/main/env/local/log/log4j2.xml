@@ -7,7 +7,10 @@
 		
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework" level="info" additivity="false">
+		<Logger name="org.springframework" level="info" additivity="true">
+			<AppenderRef ref="console"/>
+		</Logger>
+		<Logger name="java.sql.ResultSet" level="DEBUG" additivity="false">
 			<AppenderRef ref="console"/>
 		</Logger>
    		<Logger name="net.sf.ehcache" level="info" additivity="false">
