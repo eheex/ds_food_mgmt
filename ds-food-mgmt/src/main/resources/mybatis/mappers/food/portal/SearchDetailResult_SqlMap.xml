@@ -32,6 +32,7 @@
 		<result property="mta06" column="MTA_06"/>
 		<result property="mta07" column="MTA_07"/>
 		<result property="mta08" column="MTA_08"/>
+		<result property="mta08Sub" column="MTA_08_SUB"/>
 		<result property="mta09" column="MTA_09"/>
 		<result property="mta10" column="MTA_10"/>
 		<result property="mta11" column="MTA_11"/>
@@ -155,6 +156,9 @@
 			,	   (SELECT GROUP_CONCAT(cc.CD_NM SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
 				   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
 				   GROUP BY A.FUD_ID) AS MTA_08										/* 인증 */
+			,	   (SELECT GROUP_CONCAT(cc.CD_TX SEPARATOR ',') FROM FUD_MTA fm,CM_CD cc 
+	   			   WHERE fm.MTA_ATRB = cc.CD_ID AND fm.MTA_ID = 110 AND fm.FUD_ID=A.FUD_ID 
+	   			   GROUP BY A.FUD_ID) AS MTA_08_SUB									/* 인증 설명 */
 			,	   (SELECT  GROUP_CONCAT(AA.MTA_ATRB SEPARATOR ',')  FROM FUD_MTA AA 
 			        WHERE AA.MTA_ID = '112' AND AA.FUD_ID = A.FUD_ID 
 			        GROUP BY AA.FUD_ID) AS MTA_09									/* 기타마케팅 문구    */

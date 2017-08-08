@@ -188,12 +188,13 @@ window.$DetailPrdView = {
   	  	$(".prd_spcIgd", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.spcIgd) ? this.detailPrdInfo.spcIgd : "-");
 		//유기농 함량
   		$(".prd_ognCntn", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.ognCntn) ? this.detailPrdInfo.ognCntn : "-");
-		//인증 - 확인필요
+		//인증
   		var _html = "";
   		if(!_isNullChk(this.detailPrdInfo.mta08)){
   			var _certifyTxts = this.detailPrdInfo.mta08.split(",");
+  			var _certifySubTxts = this.detailPrdInfo.mta08Sub.split(",");
   			$.each(_certifyTxts, function(i){
-  				_html += _certifyTxts[i]+"<span class='mark'>?</span><div class='infodetail'></div>";
+  				_html += _certifyTxts[i]+"<span class='mark'>?<div class='infodetail'><strong>"+_certifySubTxts[i]+"</strong></div></span>  ";
   			});
   		}
   		$(".prd_certify", _prdViewArea).html(_html);

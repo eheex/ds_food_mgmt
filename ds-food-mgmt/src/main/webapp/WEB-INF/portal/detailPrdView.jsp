@@ -147,7 +147,7 @@ jQuery(document).ready(function($){
 							</div>
 							<ul class="report_st3 w2">
 								<li><div class="dt">알레르기성분</div><div class="dd prd_allrgy"></div></li>
-								<li><div class="dt">특정성분</div><div class="dd prd_spcIgd"></div></li>
+								<li><div class="dt">특정성분</div><div class="dd prd_spcIgd" style="line-height:26px;padding-left:18px;padding-bottom:8px"></div></li>
 								<li><div class="dt">유기농 함량</div><div class="dd prd_ognCntn"></div></li>
 								<li>
 									<div class="dt">인증</div>

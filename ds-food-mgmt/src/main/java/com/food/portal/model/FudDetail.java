@@ -43,6 +43,8 @@ public class FudDetail extends Fud{
 	
 	private String mta08;			//인증
 	
+	private String mta08Sub;		//인증설명
+	
 	private String mta09;			//기타마케팅 문구
 	
 	private String mta10;			//특허
@@ -271,6 +273,14 @@ public class FudDetail extends Fud{
 
 	public void setRawmtrlRuleStrcts(List<String> rawmtrlRuleStrcts) {
 		this.rawmtrlRuleStrcts = rawmtrlRuleStrcts;
+	}
+
+	public String getMta08Sub() {
+		return mta08Sub;
+	}
+
+	public void setMta08Sub(String mta08Sub) {
+		this.mta08Sub = mta08Sub;
 	}
 	
 }

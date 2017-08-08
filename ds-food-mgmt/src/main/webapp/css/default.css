@@ -442,11 +442,11 @@ text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-
 .prd_view .report_st3 li{border-bottom:1px solid #ddd;}
 .prd_view .report_st3 .dt{float:left;width:143px;padding-left:16px;height:50px;line-height:50px;}
 .prd_view .report_st3 .dd{float:left;line-height:50px;padding-right:16px;position:relative;}
-.prd_view .dd .mark{display:inline-block;font-size:18px;line-height:140%;text-align:center;vertical-align:middle;font-family:'dotum','����','���� ���' !important;font-weight:bold;color:#fff;background:#dec4b1;letter-spacing:-1px;width:22px;height:22px;border-radius:22px;margin-left:7px;}
+.prd_view .dd .mark{position:relative;display:inline-block;font-size:18px;line-height:140%;text-align:center;vertical-align:middle;font-family:'dotum','����','���� ���' !important;font-weight:bold;color:#fff;background:#dec4b1;letter-spacing:-1px;width:22px;height:22px;border-radius:22px;margin-left:7px;}
 .prd_view .dd .mark:hover{cursor:pointer;transition: 0.5s;}
-.prd_view .dd .mark:hover+.infodetail{ visibility: visible;z-index:10001}
+.prd_view .dd .mark:hover .infodetail{ visibility: visible;z-index:10001}
 /*BalloonBox*/
-.prd_view .dd .infodetail{position:absolute;top:-42px;left:62px;font-size:11px;letter-spacing:-1.1px;line-height:1.45;height:26px;width:200px;padding:7px 11px 13px 11px;visibility: hidden;
+.prd_view .dd .infodetail{position:absolute;top:-60px;left:-17px;font-size:11px;letter-spacing:-1.1px;line-height:1.45;height:26px;width:200px;padding:7px 11px 13px 11px;visibility: hidden;
 color:#666;border:1px solid #aaa;border-radius:2px;background:#fff}
 .prd_view .dd .infodetail:after{content: "";position: absolute;top: 87%;left:20px;
 	-webkit-transform: rotate(45deg);
