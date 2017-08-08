@@ -148,7 +148,6 @@ window.$PrdModifyPopup = {
 				// 폼초기화
 				$('#myform')[0].reset();
 								
-				event.preventDefault();
 				_this.destroy();
 				//_jEl.find("#pauseLayer").remove();
 				_jEl.before(_this._jPopUpSucess);
