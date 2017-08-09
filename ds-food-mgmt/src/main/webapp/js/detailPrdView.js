@@ -215,7 +215,7 @@ window.$DetailPrdView = {
 		//실용신안
   		$(".prd_mta11", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta11) ? this.detailPrdInfo.mta11 : "-");
 		//주의사항
-  		$(".prd_mta06", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta06) ? this.detailPrdInfo.mta06 : "-");
+  		$(".prd_mta06 .multitext2", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta06) ? this.detailPrdInfo.mta06 : "-");
 		//제조시설 안내
   		$(".prd_mta07", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta07) ? this.detailPrdInfo.mta07 : "-");
 		//포장형태

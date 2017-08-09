@@ -23,8 +23,8 @@ h1{position:relative;top:20px;width:220px;color:#fff;}
 .snswrap span a.sns1-3{background: url(../images/main/btn_sns1-3.png) no-repeat 50% 50%;}
 .snswrap span a.sns1-3:hover{background:#00c23a url(../images/common/btn_sns1-3.png) no-repeat 50% 50%;}
 .main_sentence1{font-size:54px;color:#fff;font-family: 'notokrm';line-height:1.18;letter-spacing:-0.25;margin-bottom:14px;}
-.main_sentence2{font-size:20px;color:#fff;font-family: 'notokrl';border-top: 1px solid rgba(255, 255, 255, .4);border-bottom: 1px solid rgba(255, 255, 255, .4);width:429px;padding: 8px 0 8px 0;margin:0 auto;}
-.mainsch{margin-top:58px;position:relative;}
+.main_sentence2{font-size:20px;color:#fff;font-family: 'notokrl';border-top: 1px solid #8b8881;border-bottom: 1px solid #8b8881;width:429px;padding: 8px 0 8px 0;margin:0 auto;}
+.mainsch{top:58px;position:relative;}
 .maininput{width:510px;height:60px;padding-left:20px;font-family: 'notokrl';font-size:20px;color:#333;border:none;-webkit-border-radius:5px;border-radius:5px}
 .maininput:focus,.maininput:active{border:0;outline:0}
 :root .maininput{width:495px\9;height:58px\9;}
