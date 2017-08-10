@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,10 +19,20 @@
 <link rel="stylesheet" type="text/css" href="../css/style.admin.css">
 <style type="text/css">
 table tbody img {width:145px;height:145px;border:1px solid #ccc}
+button#btnAllDownload {background-color:#4dade6}
+button:disabled {background-color:#dadada !important;color:#b1aaaa !important}
 </style>
 <script type="text/javascript" src="../js/lib/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="../js/admin/adminViewDetail.js"></script>
 <script type="text/javascript">
+window.$ServerInfo = {
+	ip:"<%=request.getServerName()%>",
+	port:"<%=request.getServerPort()%>",
+	dateTime: new Date(<%=(new Date()).getTime()%>),
+	getURL:function(){
+		return "http://" + this.ip + ":" + this.port;
+	}
+};
 
 var console = window.console || { log: function() {} };
 
@@ -107,12 +118,13 @@ $(document).ready(function() {
 						<tr>
 							<th scope="row"><label>제품 이미지</label></th>
 							<td id="foodImg">
+								<!-- <img src="../images/common/noimg145.jpg" /> -->
+								<img src="../foodImg/10000023_PNG_500.png" />
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
-								<img src="../images/common/noimg145.jpg" />
-								<button id="btnUrlSave" type="button" class="btn80_mg1" style="width:95px !important"><span>전체 다운로드</span></button>
+								<button id="btnAllDownload" type="button" class="btn80_mg1" style="width:95px !important;display:block;margin:0 auto;margin-top:5px"><span>전체 다운로드</span></button>
 							</td>
 						</tr>
 						<tr>
@@ -126,7 +138,7 @@ $(document).ready(function() {
 						<tr>
 							<th scope="row"><label>등록제품 URL </label></th>
 							<td>
-								<input type="text" title="등록제품URL" name="adminid" id="adminid" style="width:133px" value=""/>
+								<input type="text" title="등록제품URL" name="addrUrl" id="addrUrl" style="width:500px" value=""/>
 								<button id="btnUrlSave" type="button" class="btn80_mg1"><span>저장</span></button>
 							</td>
 						</tr>

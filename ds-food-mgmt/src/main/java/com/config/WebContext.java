@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -59,13 +60,13 @@ public class WebContext extends WebMvcConfigurationSupport  {
     public ViewResolver viewResolver()
     {
         BeanNameViewResolver resolver = new BeanNameViewResolver();
-        resolver.setOrder(1);
+        resolver.setOrder(0);
         return resolver;
     }
     @Bean
     public ViewResolver JstlViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setOrder(2);
+        resolver.setOrder(1);
         resolver.setPrefix("/WEB-INF/");
         resolver.setViewClass(JstlView.class);
         resolver.setSuffix(".jsp");
@@ -78,5 +79,6 @@ public class WebContext extends WebMvcConfigurationSupport  {
         return multipartResolver;
     }
 
+    
 }
 

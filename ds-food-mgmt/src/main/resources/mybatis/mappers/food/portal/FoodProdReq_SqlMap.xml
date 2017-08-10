@@ -37,7 +37,7 @@
 	        	   #{prdNm},
 	        	   #{comNa},
 	        	   '',
-	        	   NOW(),
+	        	   #{modNt},
 	        	   NOW(),
 	        	   'Y',
 	        	   NOW(),

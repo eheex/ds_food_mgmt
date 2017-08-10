@@ -27,6 +27,8 @@ window.$EatPrdList = {
 	_getData:function(){
 		var _this = this;
 
+		_this.showLoading();
+		
 		$.ajax({
 			url: "/portal/search/result",
 			data: {
@@ -40,9 +42,14 @@ window.$EatPrdList = {
 		    },
 			contentType: "application/json; charset=UTF-8",
 			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-			async: false	//동기화처리
-		}).done(function(data) {
+			async: true	//동기화처리
+		}).success(function(data){
 			_this.drawCallBack(data);
+		}).error(function(){
+			alert("상품 검색중 오류가 발생하였습니다.");
+			_this.hideLoading();
+		}).done(function() {
+			_this.hideLoading();
 		});
 	},
 	drawCallBack:function(data){
@@ -81,8 +88,6 @@ window.$EatPrdList = {
 		var _this = this;
 		
 		$.fn.dataTable.ext.errMode = "none";	//dataTable error시  alert창 안띄우게 함
-		
-		console.log("_this._listData@@@@@@@@@@@"+_this._listData);
 		
 		/* DataTable Plug-in */
 		this._jFoodTable = $("#prdListTable").DataTable({
@@ -249,7 +254,12 @@ window.$EatPrdList = {
   	  		if(data.ntrIgdNm.length > 16){
   	  			var _length = (data.ntrIgdNm.length-16) * 2;
   	  			var _infoDetailW = 200;
+  	  			var _infoDetailH = 26;
   	  			$("span.mark4 .infodetail",row).css("width", (_infoDetailW+_length)+"px");
+  	  			if(data.ntrIgdNm.length > 50){	//3줄 이상
+  	  				$("span.mark4 .infodetail",row).css("height", (_infoDetailH+10)+"px"); 	//height + 10px
+  	  				$("span.mark4 .infodetail",row).css("top", (-57-10)+"px"); 				//top + 10px
+  	  			}
   	  		}
   	  	}
          
@@ -316,6 +326,12 @@ window.$EatPrdList = {
 			event.preventDefault();
 			$PrdRegistPopup.open();
 		});
+	},
+	showLoading:function(){		
+		$("body").css("overflow", "hidden").find("#loadingArea").removeClass("hidden");	
+	},
+	hideLoading:function(){
+		$("body").css("overflow", "auto").find("#loadingArea").addClass("hidden");	
 	}
 };
 })(window, window.jQuery);

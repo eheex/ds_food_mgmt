@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.food.admin.model.FoodProdHitMgmt;
 import com.food.admin.service.FoodAdminService;
 import com.food.common.model.SearchRequest;
+import com.food.portal.model.FoodProdReq;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -71,5 +72,18 @@ public class FoodAdminController {
 		map.put("data", foodAdminService.getFoodReqData(searchRequest));
 		
 		return map;
+	}
+	
+	/**
+	 * 관리자 등록/수정요청 정보 수정
+	 * @param foodProdReq
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/modifyFoodReqData", method = RequestMethod.POST)
+	@ResponseBody
+	public int modifyFoodReqData(@RequestBody FoodProdReq foodProdReq) throws Exception{
+
+		return foodAdminService.modifyFoodReqData(foodProdReq);
 	}
 }

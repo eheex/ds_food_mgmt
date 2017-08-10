@@ -43,4 +43,11 @@ public interface FoodAdminService {
 	 */
 	List<FoodProdReq> getFoodReqData(SearchRequest searchRequest);
 	
+	/**
+	 * 관리자 등록/수정요청 정보 수정
+	 * @param foodProdReq
+	 * @return
+	 * @throws Exception
+	 */
+	int modifyFoodReqData(FoodProdReq foodProdReq);
 }

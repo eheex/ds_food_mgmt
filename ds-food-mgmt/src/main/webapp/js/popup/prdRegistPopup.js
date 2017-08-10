@@ -87,6 +87,18 @@ window.$PrdRegistPopup = {
 						'</div>'+
 					'</div></div>'+
 				'</div>'),
+	_jPopUpSucess: $('<!-- layerpop	-->'
+					+'<div id="pauseLayer">'
+					+	'<div id="alertLayer" class="prd_done">'
+					+		'<button id="btnClose" class="close"><img src="../images/common/btn_close4.png" alt="팝업창 닫기" /></button>'
+					+		'<div class="cont">'
+					+			'<p class="p1">제품등록 요청이 완료되었습니다!</p>'
+					+			'<p class="p2">빠른 시일 내에 등록하도록 하겠습니다.</p>'
+					+			'<button id="btnConfirm" type="button" title="팝업닫기" class="prd_smit1" onclick="">확인</button>'
+					+		'</div>'
+					+	'</div>'
+					+'</div>'
+					+'<!-- //layerpop	-->'),
 	open:function(){
 		var _jEl = $("body #wrap");
 		
@@ -127,7 +139,6 @@ window.$PrdRegistPopup = {
 		return true;
 	},
 	_onRequest:function(){
-
 		//제품등록 요청 Ajax 처리
 		var _this = this;
 		if(_this._onUpload() == "1"){
@@ -147,7 +158,7 @@ window.$PrdRegistPopup = {
 			$.each(_this.rtFile, function(key,value){
 				var _file = {"imgID":value[1],
 							 "imgNM":value[0],
-							 "imgPth":value[3]
+							 "imgPth":value[2]
 				};
 				_data.foodRest.push(_file);
 			});
@@ -159,8 +170,17 @@ window.$PrdRegistPopup = {
 				contentType: "application/json; charset=UTF-8",
 				dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 				async: false	//동기화처리
-			}).done(function(data) {
-				console.log(data);
+			}).success(function(data) {
+				_this.destroy();
+				
+				$("body #wrap").before(_this._jPopUpSucess);
+				_this._jPopUpSucess.on("click","#btnConfirm, #btnClose", function(event){
+					//팝업창 닫기
+					event.preventDefault();
+					_this.destroy();
+				});
+			}).error(function(){
+				alert("제품등록 요청 정보를 저장도중 오류가 발생하였습니다.");
 			});
 
 		} else {alert("첨부실패");}
@@ -179,25 +199,16 @@ window.$PrdRegistPopup = {
 		if($("input[name=file5]", this._jPopUpElement).val() != "") fileCheck = "1";
 
 		if(fileCheck == "1") { 	
-		
 			$("#myform").ajaxForm({
-	
 				url: "/portal/upload/imageSave",
-				
 				type: "POST",
-				
 				enctype: "multipart/form-data", // 여기에 url과 enctype은 꼭 지정해주어야 하는 부분이며 multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
-	
 				async: false,	//동기화처리
-	
 				success: function(result){
-					console.log(result);
 					_this.rtFile = result;
 					rtnValue = "1";
 				},
 				error:function(xhr,ajaxOptions,thrownError){
-					//alert(xhr.responseText);
-					//alert(thrownError);
 					rtnValue = "0";
 				}
 			}).submit();
@@ -205,7 +216,6 @@ window.$PrdRegistPopup = {
 		
 		return rtnValue;
 	},
-
 	destroy: function(){
 		var _jEl = $("body");
 		

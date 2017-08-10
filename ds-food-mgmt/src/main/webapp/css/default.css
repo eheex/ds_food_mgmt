@@ -526,9 +526,9 @@ color:#666;border:1px solid #aaa;border-radius:2px;background:#fff}
 	box-shadow: 1px 1px 1px #aaa;
 	border: 4px solid;border-color: #fff;
 }
-.prdhit .main_prd .info1 .mark1+.infodetail:after{}
-.prdhit .main_prd .info1 .mark2+.infodetail:after{}
-.prdhit .main_prd .info1 .mark3+.infodetail:after{}
+.prdhit .main_prd .info1 .mark1+.infodetail:after{left:15px}
+.prdhit .main_prd .info1 .mark2+.infodetail:after{left:63px}
+.prdhit .main_prd .info1 .mark3+.infodetail:after{left:98px}
 .prdhit .main_prd .info1 .infodetail strong{font-weight:normal;color:#ff6200;}
 .prdhit .main_prd .info1 .mark1{background:#995bea;border:1px solid #8d54d7;}
 .prdhit .main_prd .info1 .mark2{background:#27c7c7;border:1px solid #1fadae;}

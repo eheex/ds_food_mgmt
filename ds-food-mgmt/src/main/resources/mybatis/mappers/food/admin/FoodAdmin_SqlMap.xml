@@ -187,8 +187,10 @@
 	<update id="updateFoodProdReq" parameterType="FoodProdReq">
         UPDATE FOOD_PROD_REQ
         SET
-              ADDR_URL 	= #{addrUrl}
-            , MOD_DT 	= NOW()
+        	  MOD_DT 		= NOW()
+        	  <if test="addrUrl != null and addrUrl !=''">
+              , ADDR_URL 	= #{addrUrl}
+              </if>
         WHERE REQ_SEQ 	= #{reqSeq}
     </update>
 </mapper>

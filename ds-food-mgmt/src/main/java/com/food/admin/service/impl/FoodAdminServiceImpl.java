@@ -106,4 +106,15 @@ public class FoodAdminServiceImpl implements FoodAdminService {
 		return listData;
 	}
 
+	/**
+	 * 관리자 등록/수정요청 정보 수정
+	 * @param foodProdReq
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public int modifyFoodReqData(FoodProdReq foodProdReq) {
+		return foodAdminMapper.updateFoodProdReq(foodProdReq);
+	}
+
 }
