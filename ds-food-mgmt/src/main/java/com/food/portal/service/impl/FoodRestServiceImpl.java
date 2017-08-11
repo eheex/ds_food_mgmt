@@ -39,7 +39,8 @@ public class FoodRestServiceImpl implements FoodRestService{
 	 */
 	private static Object dump = new Object();
 	
-	private static String UPLOAD_FILE_DIR = "C:/project/food_workspaces/ds-food-mgmt/src/main/webapp/foodupload/";
+	//private static String UPLOAD_FILE_DIR = "C:/project/food_workspaces/ds-food-mgmt/src/main/webapp/foodupload/";	//로컬
+		private static String UPLOAD_FILE_DIR = "/usr/local/tomcat9/webapps/ds-food-mgmt/foodImg/";						//운영서버
 	
 	/**
 	 * 식품 이미지 저장
@@ -72,11 +73,9 @@ public class FoodRestServiceImpl implements FoodRestService{
 		
 		
 		List<FoodRest> imgInfos = foodRest.getFoodRests();
-		System.out.println("##########################"+imgInfos.size());
 		for(int i=0; i<imgInfos.size(); i++){
 			FoodRest imgInfo = imgInfos.get(i);
 			String imgName = imgInfo.getImgNM();
-			System.out.println("@@@@@@@@@@@@@@@@@@@"+UPLOAD_FILE_DIR + imgName);
 			boolean successCopy = fileCopy(UPLOAD_FILE_DIR + imgName, 
 					makeFolderPath +"/"+ imgName);
 			if(!successCopy){
@@ -106,7 +105,7 @@ public class FoodRestServiceImpl implements FoodRestService{
 			}
 		}
 		
-		System.out.println("targetFileName@@@@@@@@@@@@@@@@@@"+targetFileName);
+		System.out.println("targetFileName =========================> "+targetFileName);
 		
 		return targetFileName;
 	}

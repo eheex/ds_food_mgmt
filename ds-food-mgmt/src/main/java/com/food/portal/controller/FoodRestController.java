@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,10 +45,11 @@ public class FoodRestController {
 	@Autowired
     FoodRestService foodRestService;
 	
-	@Autowired(required = false)
+	@Autowired
 	DownloadView downloadView;
    
-	private static String UPLOAD_FILE_DIR = "C:/project/food_workspaces/ds-food-mgmt/src/main/webapp/foodupload/";
+	//private static String UPLOAD_FILE_DIR = "C:/project/food_workspaces/ds-food-mgmt/src/main/webapp/foodupload/";	//로컬
+	private static String UPLOAD_FILE_DIR = "/usr/local/tomcat9/webapps/ds-food-mgmt/foodImg/";							//운영서버
 	
     /**
      * 식품 이미지 저장
@@ -245,10 +243,8 @@ public class FoodRestController {
 	@RequestMapping(value = "/file/fileDownload.do", method = RequestMethod.GET)
 	public ModelAndView download(HttpServletRequest request,
 			@RequestParam(value="serverFileDir", required=false, defaultValue="") String serverFileDir) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+serverFileDir);
 		Map<String, Object> model = new HashMap<String, Object>(); 
 		File downloadFile = null;
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+UPLOAD_FILE_DIR + filePathBlackList(serverFileDir));
 		downloadFile = new File(UPLOAD_FILE_DIR + filePathBlackList(serverFileDir));
 		if(!downloadFile.exists()) {
 			return new ModelAndView("redirect:/error.do");

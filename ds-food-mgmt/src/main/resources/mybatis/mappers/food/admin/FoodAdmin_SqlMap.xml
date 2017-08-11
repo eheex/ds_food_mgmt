@@ -115,6 +115,7 @@
 	   	]]>
     </select>
 	
+	<!-- 등록/수정 요청제품 리스트 -->
 	<select id="selectFoodProdReq" resultMap="FoodProdReqResult">
 		SELECT REQ_SEQ, 
 			   REQ_GB, 
@@ -136,6 +137,7 @@
 		 <if test="query.reqSeq != null and query.reqSeq != ''">
 		   AND REQ_SEQ				= #{query.reqSeq}		 	
 		 </if>
+	  ORDER BY REG_DT DESC, MOD_DT DESC
 	</select>
 	
 	<select id="selectFoodProdImg" resultMap="FoodProdReqResult">

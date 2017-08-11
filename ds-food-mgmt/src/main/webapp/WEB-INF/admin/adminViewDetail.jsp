@@ -118,8 +118,7 @@ $(document).ready(function() {
 						<tr>
 							<th scope="row"><label>제품 이미지</label></th>
 							<td id="foodImg">
-								<!-- <img src="../images/common/noimg145.jpg" /> -->
-								<img src="../foodImg/10000023_PNG_500.png" />
+								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />
 								<img src="../images/common/noimg145.jpg" />

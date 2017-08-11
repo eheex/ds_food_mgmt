@@ -49,7 +49,7 @@ window.$AdminViewList = {
 		/* DataTable Plug-in */
 		this._jDataTable = $("#registTable").DataTable({
 			lengthChange: false,	//paging 콤보박스 disable
-			ordering: true,			//기본 정렬을 해제함(쿼리정렬사용위함)
+			ordering: false,			//기본 정렬을 해제함(쿼리정렬사용위함)
 			searching: false,
 			data: oData,
 		 	columns: [

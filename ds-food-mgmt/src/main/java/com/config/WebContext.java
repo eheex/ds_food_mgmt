@@ -27,6 +27,8 @@ import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.food.common.web.DownloadView;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(
@@ -79,6 +81,15 @@ public class WebContext extends WebMvcConfigurationSupport  {
         return multipartResolver;
     }
 
-    
+    /**
+     * DownloadView Bean 등록
+     * 2017.08.11
+     * @author 푸드TFT
+     * @return
+     */
+    @Bean
+    public DownloadView downloadView(){
+    	return new DownloadView();
+    }
 }
 

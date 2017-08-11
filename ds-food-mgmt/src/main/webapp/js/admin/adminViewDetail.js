@@ -63,8 +63,9 @@ window.$AdminViewDetail = {
 			$("#btnAllDownload").prop("disabled", false);
 			
 			$.each(oData[0].foodRest, function(index){
-				console.log(this);
-				$("#foodImg img:eq("+index+")").data("foodImg", this);
+				//var _imgUrl = "http://52.68.7.98:8080" + this.imgPth + this.imgNM;
+				var _imgUrl = $ServerInfo.getURL() + this.imgPth + this.imgNM;
+				$("#foodImg img:eq("+index+")").data("foodImg", this).attr("src", _imgUrl);
 			});
 		}
 	},
@@ -97,8 +98,7 @@ window.$AdminViewDetail = {
 					if($("#fileAllDownloadFrm").length == 0){
 						$('<iframe height="0" width="0" id="fileAllDownloadFrm" src=""></iframe>').appendTo("body");
 					}
-					$("#fileAllDownloadFrm")[0].src = "http://localhost/portal/upload/file/fileDownload.do?serverFileDir=" + data.fileName;
-					$("#fileAllDownloadFrm").remove();
+					$("#fileAllDownloadFrm")[0].src = $ServerInfo.getURL() + "/portal/upload/file/fileDownload.do?serverFileDir=" + data.fileName;
 				}else{
 					alert("다운로드에 실패하였습니다.");
 				}
