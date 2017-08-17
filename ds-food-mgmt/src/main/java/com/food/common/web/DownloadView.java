@@ -116,7 +116,7 @@ public class DownloadView implements View {
 				fis = new FileInputStream(serverFile);                         
 				copy(fis, out);                                  
 			} catch(Exception e){    
-				throw new ServiceException("ERROR", e.getMessage());
+				System.out.println("ERROR ======================> " + e.getMessage());
 			}finally{                         
 				if(fis != null){                                 
 					try{                    

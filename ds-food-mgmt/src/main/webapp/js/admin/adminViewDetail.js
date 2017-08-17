@@ -95,10 +95,7 @@ window.$AdminViewDetail = {
 				async: true	//동기화처리
 			}).success(function(data){
 				if(data.success){
-					if($("#fileAllDownloadFrm").length == 0){
-						$('<iframe height="0" width="0" id="fileAllDownloadFrm" src=""></iframe>').appendTo("body");
-					}
-					$("#fileAllDownloadFrm")[0].src = $ServerInfo.getURL() + "/portal/upload/file/fileDownload.do?serverFileDir=" + data.fileName;
+				    location.href = $ServerInfo.getURL() + "/portal/upload/file/fileDownload.do?serverFileDir=" + data.fileName;
 				}else{
 					alert("다운로드에 실패하였습니다.");
 				}
@@ -136,5 +133,4 @@ window.$AdminViewDetail = {
 	},
 	
 };
-
 })(window, window.jQuery);
