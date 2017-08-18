@@ -63,9 +63,12 @@ window.$AdminViewDetail = {
 			$("#btnAllDownload").prop("disabled", false);
 			
 			$.each(oData[0].foodRest, function(index){
-				//var _imgUrl = "http://52.68.7.98:8080" + this.imgPth + this.imgNM;
-				var _imgUrl = $ServerInfo.getURL() + this.imgPth + this.imgNM;
-				$("#foodImg img:eq("+index+")").data("foodImg", this).attr("src", _imgUrl);
+				var _data = this;
+				var _imgUrl = $ServerInfo.getURL() + _data.imgPth + _data.imgNM;
+				$("#foodImg img:eq("+index+")").data("foodImg", _data).css("cursor","pointer").attr("src", _imgUrl).on("click", function(event){
+					event.preventDefault();
+					location.href = $ServerInfo.getURL() + "/portal/upload/file/fileDownload.do?serverFileDir=" + _data.imgNM;
+				});
 			});
 		}
 	},
