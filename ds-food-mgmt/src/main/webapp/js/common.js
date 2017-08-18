@@ -68,7 +68,7 @@ function fnkeywordRoll(){
 			};
 		});
 	};
-	noticeRollingOff = setInterval(noticeRolling,1000);
+	noticeRollingOff = setInterval(noticeRolling,3000); //3초
 	$(".rolling_class").append($(".rolling_class li").first().clone());
 }
 
