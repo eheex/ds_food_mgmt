@@ -127,7 +127,7 @@ $(document).ready(function(){
 											"<div class='infodetail'>원재료에 알레르기성분이 포함되어 있습니다.<br ><strong></strong></div>"+
 										"</span>"+
 										"<span class='mark2 visibility'>인증"+
-											"<div class='infodetail'>이 제품은 인증 인증을 받았습니다.<br /><strong></strong></div>"+
+											"<div class='infodetail'>해당 인증을 받았습니다.<br /><strong></strong></div>"+
 										"</span>"+
 										"<span class='mark3 visibility'>무첨가"+
 											"<div class='infodetail'>이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong></strong></div>"+
@@ -312,7 +312,8 @@ $(document).ready(function(){
 			</div>
 			<div id="main_container">
 				<div class="contents">
-					<h3>실시간 검색 인기상품</h3>
+					<h3>실시간 검색 식품</h3>
+					<h1>지금 다른 사람들은 어떤 식품을 검색할까요?</h1>
 					<!--Main Rolling 40-->
 					<div class="main_prd">
 						<ul id="slider1">

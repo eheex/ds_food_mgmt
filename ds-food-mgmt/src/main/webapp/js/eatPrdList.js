@@ -189,7 +189,7 @@ window.$EatPrdList = {
 							'<div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br><strong></strong></div>'+
 						'</span>'+
 						'<span class="mark2 visibility">인증'+
-							'<div class="infodetail">이 제품은 인증을 받았습니다.<br><strong></strong></div>'+
+							'<div class="infodetail">해당 인증을 받았습니다.<br><strong></strong></div>'+
 						'</span>'+
 						'<span class="mark3 visibility">무첨가'+
 							'<div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br><strong></strong></div>'+

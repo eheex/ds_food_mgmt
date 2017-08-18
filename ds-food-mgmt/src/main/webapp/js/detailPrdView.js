@@ -258,7 +258,7 @@ window.$DetailPrdView = {
 				var _jEl = $('<li id="'+this.fudId+'">'+
 								'<img src="'+_fudUrl+'" alt="'+this.fudNm+'" />'+
 								'<div class="info1">'+
-									'<span class="mark1">알레르기</span><div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br ><strong>포함 성분: 밀, 대두</strong></div><span class="mark2">인증</span><div class="infodetail">이 제품은 인증 인증을 받았습니다.<br /><strong>HACCP 인증</strong></div><span class="mark3">무첨가</span><div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong>무첨가: 합성보존료, 합성착향료</strong></div>'+
+									'<span class="mark1">알레르기</span><div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br ><strong>포함 성분: 밀, 대두</strong></div><span class="mark2">인증</span><div class="infodetail">해당 인증을 받았습니다.<br /><strong>HACCP 인증</strong></div><span class="mark3">무첨가</span><div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong>무첨가: 합성보존료, 합성착향료</strong></div>'+
 								'</div>'+
 								'<div class="info2"><span class="prdname">'+this.fudNm+'</span><span class="kcal1-1">'+_cal+'</span><span class="kcal1-2">kcal</span></div>'+
 								'<div class="info3"><span class="materialname">'+_materialTxt+'</span></div>'+

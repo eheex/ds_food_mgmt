@@ -41,7 +41,8 @@ h1{position:relative;top:20px;width:220px;color:#fff;}
 #mainwrap .btn_category{position:relative;top:0px;}
 #mainwrap .hotkeyword{float:right;margin-right:0;top:-45px;}
 /***** Contents *****/
-#main_container .contents h3{font-size:26px;color:#333;text-align:center;font-family: 'notokrm';margin-bottom:20px;}
+#main_container .contents h3{font-size:26px;color:#333;text-align:center;font-family: 'notokrm';margin-bottom:-10px;}
+#main_container .contents h1{width:1000px;margin-bottom:35px;text-align:center;color:#ff6200;}
 .main_prd{width:1000px;}
 .main_prd:after { content:""; display:block; clear:both;}
 .main_prd ul{}
