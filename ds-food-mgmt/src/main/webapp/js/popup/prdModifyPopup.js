@@ -76,9 +76,17 @@ window.$PrdModifyPopup = {
 		_jEl.before(this._jPopUpElement);
 		$MakeObjFile();	//파일찾기 기능
 		
+		var _cpn = "-";
+		if($DetailPrdView.detailPrdInfo != undefined){
+			//제조원 셋팅
+			$.each($DetailPrdView.detailPrdInfo.cpn, function(key,value){
+				if(this.cpnCtgNm == "제조원"){
+					_cpn = this.cpnNm;
+				}
+			});
+		}
 		$("#fudnm").html(fudNm);
-		console.log($(".prd_cpn p").text());
-		$("#fudCpn").html($(".prd_cpn p").text());
+		$("#fudCpn").html(_cpn);
 		
 		this._onClickEvent();
 	},
@@ -111,18 +119,18 @@ window.$PrdModifyPopup = {
 		
 		if(_this._onUpload() == "1" || _this._onUpload() == "2"){
 		
-			var prdcd   = fudId;
-			var prdname = fudNm;
-			var brand   = $("#fudCpn",   this._jPopUpElement).val();
-			var email   = $("input#email",   this._jPopUpElement).val();
-			var modnt   = $("textarea#comm_contents",   this._jPopUpElement).val();
+			var prdCd   = fudId;
+			var prdName = fudNm;
+			var brand   = $("#fudCpn", this._jPopUpElement).text();
+			var email   = $("input#email", this._jPopUpElement).val();
+			var modNt   = $("textarea#comm_contents",   this._jPopUpElement).val();
 			
 			var _data  = {
-					"prdNm":prdname,
+					"prdNm":prdName,
 					"comNa":brand,
 					"reqGb":"U",
-					"prdCd":prdcd,
-					"modNt":modnt,
+					"prdCd":prdCd,
+					"modNt":modNt,
 					"email":email
 			    };
 			

@@ -47,7 +47,6 @@ window.$AdminViewDetail = {
 			//수정사유
 			if(key == "modNt"){			
 				$("td#"+key+" textarea", _this._tableBody).val(value);
-			//등록제품 URL
 			}else if(key == "addrUrl"){
 				$("#addrUrl").val(value);
 			}else{
@@ -70,6 +69,17 @@ window.$AdminViewDetail = {
 					location.href = $ServerInfo.getURL() + "/portal/upload/file/fileDownload.do?serverFileDir=" + _data.imgNM;
 				});
 			});
+		}
+		
+		//수정요청제품 제품 URL
+		if(viewType == "mod"){
+			if(oData[0].prdCd != ""){
+				var _adminUrl = "http://mgmt.eatsight.com/front/eatsight/index.html#/food/foodinfo_basic?id="+oData[0].prdCd;
+				$("#addrUrl",_this._tableBody).html('<a href="'+_adminUrl+'" target="_blank" style="text-decoration:underline">'+_adminUrl+'</a>');
+			}else{
+				$("#addrUrl",_this._tableBody).html('-');
+			}
+			
 		}
 	},
 	_onClickEvent:function(){
