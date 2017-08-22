@@ -97,10 +97,15 @@ $(document).ready(function(){
 	    		  	_materialData = _materialData.replace(/\<b\>/g, '<b class="bold">');
 	    		  	_materialData = _materialData.replace(/\<em\>/g, '<em class="big">');
 	    		  
+	    		  	
 	    		  	var _dom = $('<div></div>');
 	              	_dom.append(_materialData);
 	              	var elements = _dom.find('span')
-	    		  	$.each(elements, function(){
+					var _mtrlCheck = "N";
+	              	var _originCheck = "N";
+	              	var _cnamtCheck = "N";
+    			  	
+	              	$.each(elements, function(){
 	    			 
 	    			  	var text = $(this).text().split('|'),
 	                    	type = $(this).data('type'),
@@ -108,13 +113,16 @@ $(document).ready(function(){
 	    			  
 	    			  	//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
 	    			  	if(type == "CNAMT" && type =="ORIGIN"){}
-	    			  
-	    			  	if (type == 'MTRL'){
+	    			  	
+	    			  	if (type == 'MTRL' && _mtrlCheck == 'N'){
 	    				  	_materialTxt += text[0];
-	                  	}else if (type == 'ORIGIN'){
-	                	  	_materialTxt += (text[2] !== '') ? text[2] : text[0];
-	                  	}else if (type == 'CNAMT'){
-	                	  	_materialTxt += (text[1] !== '') ? text[0] + ' ' + text[1] : text[0];
+	    				  	_mtrlCheck = "Y";
+	    			  	}else if (type == 'ORIGIN' && _originCheck =='N'){
+	                	  	_materialTxt += (text[2] !== '') ? "(" +  text[2] + ")" : "(" +  text[0] + ")";
+	                	  	_originCheck = "Y";
+	                  	}else if (type == 'CNAMT' && _cnamtCheck == 'N'){
+	                	  	_materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+	                	  	_cnamtCheck = "Y";
 	                  	}
 
 	    		  	});
