@@ -177,6 +177,15 @@ window.$EatPrdList = {
   		 	}
   	  	}
   	  
+  	  	
+  	 	/* Undefined 처리 */
+  	  	var _cpnNm = "";
+  	  	if(typeof data.cpnNm != "undefined"&& data.cpnNm != ""){
+  	  		_cpnNm = data.cpnNm;
+  	  	}
+  	  	
+ 
+  	  	
   	  	$(row).data("rowData", data).append($('<img src="'+_imgUrl+'" alt="메인제품썸네일">'+
 	           	  '<div class="info2">'+
 					'<div class="info2-1">'+
@@ -197,7 +206,9 @@ window.$EatPrdList = {
 					'<div class="info2-3">'+_tagEl+'</div>'+
 				   '</div>'+
 				   '<div class="info3">'+
-						'<span class="vam">'+data.cpnNm+'</span>'+
+				   
+				   
+						'<span class="vam">'+_cpnNm+'</span>'+
 					'</div>'+
 					'<div class="info4">'+
 						'<div class="vam">'+
