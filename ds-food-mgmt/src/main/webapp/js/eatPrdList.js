@@ -144,13 +144,19 @@ window.$EatPrdList = {
   	  		var _dom = $('<div></div>');
   	  		_dom.append(_materialData);
             var elements = _dom.find('span')
-  		  	$.each(elements, function(){
+
+            var _mtrlCheck = "N";
+          	var _originCheck = "N";
+          	var _cnamtCheck = "N";
+            
+            $.each(elements, function(){
   			 
   		  		var text = $(this).text().split('|'),
   		  		type = $(this).data('type'),
   		  		html, node, currenttext;
   			  
   		  		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
+  		  		/*
   		  		if(type == "CNAMT" && type =="ORIGIN"){}
   			  
   		  		if (type == 'MTRL'){
@@ -160,6 +166,20 @@ window.$EatPrdList = {
   		  		}else if (type == 'CNAMT'){
   		  			_materialTxt += (text[1] !== '') ? text[0] + ' ' + text[1] : text[0];
   		  		}
+  		  		*/
+  		  		
+	  		  	if(type == "CNAMT" && type =="ORIGIN"){}
+			  	
+			  	if (type == 'MTRL' && _mtrlCheck == 'N'){
+				  	_materialTxt += text[0];
+				  	_mtrlCheck = "Y";
+			  	}else if (type == 'ORIGIN' && _originCheck =='N'){
+	        	  	_materialTxt += (text[2] !== '') ? "(" +  text[2] + ")" : "(" +  text[0] + ")";
+	        	  	_originCheck = "Y";
+	          	}else if (type == 'CNAMT' && _cnamtCheck == 'N'){
+	        	  	_materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+	        	  	_cnamtCheck = "Y";
+	          	}
 
   		  	});
   	  	}

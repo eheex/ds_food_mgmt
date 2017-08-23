@@ -239,7 +239,8 @@ window.$DetailPrdView = {
 				var _fudUrl = !_isNullChk(this.fudUrl) ? this.fudUrl : "../images/common/noimg145.jpg";
 				var _materialTxt = "";
 				if(!_isNullChk(this.rawmtrlRuleStrct)){
-					_materialTxt = _rawmtrlRuleStrctTxt(this.rawmtrlRuleStrct);
+					// 하단에 슬라이더 표새
+					_materialTxt = _rawmtrlRuleStrctTxt1(this.rawmtrlRuleStrct);
 				}
 				var _tagEl = "";
 		    	if(!_isNullChk(this.tag)){
@@ -299,6 +300,9 @@ function _isNullChk(obj){
 	return (typeof obj != "undefined" && obj != null && obj != "") ? false : true;
 }
 
+// 원재료 구분자 표시하기 위한 값
+var firstCheck = "N";
+
 /* 원재료 텍스트 처리 함수 */
 function _rawmtrlRuleStrctTxt(rawmtrlData){
 	
@@ -313,6 +317,7 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 	_dom.append(rawmtrlData);
 	var elements = _dom.find('span');
 	var materialTxt = "";
+		
 	$.each(elements, function(){
 		var text = $(this).text().split('|'),
 		type = $(this).data('type'),
@@ -320,7 +325,7 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 	 
 		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
 		if(type == "CNAMT" && type =="ORIGIN"){}
-	 
+		/*
 		if (type == 'MTRL'){
 			materialTxt += text[0] + " "; 
 		}else if (type == 'ORIGIN'){
@@ -328,10 +333,72 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 		}else if (type == 'CNAMT'){
 			materialTxt += (text[1] !== '') ? text[0] + text[1] + " " : text[0] + " ";
 		}
-	
+	    */
+		
+	  	if (type == 'MTRL'){
+	  		if(firstCheck == "N"){
+	  			materialTxt += text[0];
+	  			firstCheck = "Y";
+	  		} else {
+	  			materialTxt += ", " + text[0];
+	  		}
+	  	}else if (type == 'ORIGIN'){
+	  		materialTxt += (text[2] !== '') ? "(" +  text[2] + ") " : "(" +  text[0] + ")";
+      	}else if (type == 'CNAMT'){
+      		materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+      	}
+		
+		
 	});
 	
 	return materialTxt;
 }
+
+
+/* 원재료 텍스트 처리 함수, 슬라이더 */
+function _rawmtrlRuleStrctTxt1(rawmtrlData){
+	
+	rawmtrlData = rawmtrlData.replace(/\#\|\MTRL\|/g, '<span class="static-text" data-type="MTRL" data-name="" data-code="" data-nick="" data-highlight="" data-agree="">');
+	rawmtrlData = rawmtrlData.replace(/\#\|\ORIGIN\|/g, '<span class="static-text" data-type="ORIGIN" data-name="" data-code="" data-nick="">');
+	rawmtrlData = rawmtrlData.replace(/\#\|\CNAMT\|/g, '<span class="static-text" data-type="CNAMT" data-number="" data-unittext="" data-unitcode="">');
+	rawmtrlData = rawmtrlData.replace(/\|\#/g, '</span>');
+	rawmtrlData = rawmtrlData.replace(/\<b\>/g, '<b class="bold">');
+	rawmtrlData = rawmtrlData.replace(/\<em\>/g, '<em class="big">');
+	  
+	var _dom = $('<div></div>');
+	_dom.append(rawmtrlData);
+	var elements = _dom.find('span');
+	var materialTxt = "";
+	var _mtrlCheck = "N";
+  	var _originCheck = "N";
+  	var _cnamtCheck = "N";
+	
+	
+	$.each(elements, function(){
+		var text = $(this).text().split('|'),
+		type = $(this).data('type'),
+		html, node, currenttext;
+	 
+		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
+		if(type == "CNAMT" && type =="ORIGIN"){}
+	  	
+	  	if (type == 'MTRL' && _mtrlCheck == 'N'){
+	  		materialTxt += text[0];
+		  	_mtrlCheck = "Y";
+	  	}else if (type == 'ORIGIN' && _originCheck =='N'){
+	  		materialTxt += (text[2] !== '') ? "(" +  text[2] + ")" : "(" +  text[0] + ")";
+    	  	_originCheck = "Y";
+      	}else if (type == 'CNAMT' && _cnamtCheck == 'N'){
+      		materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+    	  	_cnamtCheck = "Y";
+      	}
+		
+		
+	});
+	
+	return materialTxt;
+}
+
+
 
 })(window, window.jQuery);
