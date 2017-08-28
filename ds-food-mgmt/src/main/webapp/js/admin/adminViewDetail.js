@@ -124,6 +124,7 @@ window.$AdminViewDetail = {
 			event.preventDefault();
 			
 			if($("#addrUrl").val() != ""){
+				var _UrlSave  = $("#addrUrl").val();
 				var _sendData = {reqSeq  : reqSeq,
 						 		 addrUrl : $("#addrUrl").val()
 							    };
@@ -141,6 +142,16 @@ window.$AdminViewDetail = {
 				}).done(function() {
 					
 				});
+			}
+		});
+		//등록제품 URL 링크
+		$("#btnUrlLink").on("click", function(event){
+			event.preventDefault();
+
+			if($("#addrUrl").val() != ""){
+				var _UrlSave  = $("#addrUrl").val();
+			alert(_UrlSave);
+			 location.href = _UrlSave;
 			}
 		});
 	},
