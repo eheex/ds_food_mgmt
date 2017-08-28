@@ -31,7 +31,6 @@ window.$AdminViewList = {
 			dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 			async: false	//동기화처리
 		}).done(function(data) {
-			console.log(data.data);
 			if(_this._jDataTable){
 				_this._jDataTable.clear();
 	            _this._jDataTable.destroy();
@@ -49,7 +48,7 @@ window.$AdminViewList = {
 		/* DataTable Plug-in */
 		this._jDataTable = $("#registTable").DataTable({
 			lengthChange: false,	//paging 콤보박스 disable
-			ordering: true,			//기본 정렬을 해제함(쿼리정렬사용위함)
+			ordering: false,			//기본 정렬을 해제함(쿼리정렬사용위함)
 			searching: false,
 			data: oData,
 		 	columns: [
@@ -72,6 +71,12 @@ window.$AdminViewList = {
 		    	});
 		    }
 		});
+		
+		//수정요청 제품 리스트일경우 컬럼명을 바꾼다.
+		if(_viewType == "mod"){
+		    var title = this._jDataTable.column(1).header();
+		    $(title).html("제조원");
+		}
 	}
 };
 

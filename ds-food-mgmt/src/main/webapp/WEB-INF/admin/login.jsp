@@ -19,6 +19,9 @@
 </style>
 <script type="text/javascript" src="../js/lib/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript">
+
+var console = window.console || { log: function() {} };
+
 $(document).ready(function(){
 	$("#btnLogin").on("click", function(event){
 		event.preventDefault();
@@ -26,6 +29,8 @@ $(document).ready(function(){
 			var url = "/j_spring_security_check";
 			var userId = $('#j_username').val();
             var password = $('#j_password').val();
+            
+            $.support.cors = true;	//IE9 AJAX "No Transport" 오류 수정
             
             $.ajax({
             	url: url,
@@ -42,7 +47,7 @@ $(document).ready(function(){
                  
                   $(location).attr('href','/admin/viewRank');    
               }).error(function(error){
-                  alert(error.responseJSON.error.message);
+                  alert("로그인도중 오류가 발생하였습니다."+error);
               });
 		}
 	});

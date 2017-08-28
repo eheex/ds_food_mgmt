@@ -76,8 +76,17 @@ window.$PrdModifyPopup = {
 		_jEl.before(this._jPopUpElement);
 		$MakeObjFile();	//파일찾기 기능
 		
+		var _cpn = "-";
+		if($DetailPrdView.detailPrdInfo != undefined){
+			//제조원 셋팅
+			$.each($DetailPrdView.detailPrdInfo.cpn, function(key,value){
+				if(this.cpnCtgNm == "제조원"){
+					_cpn = this.cpnNm;
+				}
+			});
+		}
 		$("#fudnm").html(fudNm);
-		$("#fudCpn").html($(".prd_cpn p").text());
+		$("#fudCpn").html(_cpn);
 		
 		this._onClickEvent();
 	},
@@ -110,18 +119,18 @@ window.$PrdModifyPopup = {
 		
 		if(_this._onUpload() == "1" || _this._onUpload() == "2"){
 		
-			var prdcd   = fudId;
-			var prdname = fudNm;
-//			var brand   = $("input#brand",   this._jPopUpElement).val();
-			var email   = $("input#email",   this._jPopUpElement).val();
-			var modnt   = $("textarea#comm_contents",   this._jPopUpElement).val();
+			var prdCd   = fudId;
+			var prdName = fudNm;
+			var brand   = $("#fudCpn", this._jPopUpElement).text();
+			var email   = $("input#email", this._jPopUpElement).val();
+			var modNt   = $("textarea#comm_contents",   this._jPopUpElement).val();
 			
 			var _data  = {
-					"prdNm":prdname,
-//					"comNa":brand,
+					"prdNm":prdName,
+					"comNa":brand,
 					"reqGb":"U",
-					"prdCd":prdcd,
-					"modNt":modnt,
+					"prdCd":prdCd,
+					"modNt":modNt,
 					"email":email
 			    };
 			
@@ -142,24 +151,19 @@ window.$PrdModifyPopup = {
 				dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 				async: false	//동기화처리				
 		
-			}).done(function(data) {
-				console.log(data);
+			}).success(function(data){
 				var _jEl = $("body #wrap");
-				// 폼초기화
-				$('#myform')[0].reset();
 								
-				event.preventDefault();
 				_this.destroy();
-				//_jEl.find("#pauseLayer").remove();
-				_jEl.before(_this._jPopUpSucess);
-
 				
+				_jEl.before(_this._jPopUpSucess);
 				_this._jPopUpSucess.on("click","#btnConfirm, #btnClose", function(event){
 					//팝업창 닫기
 					event.preventDefault();
 					_this.destroy();
 				});
-
+			}).error(function(){
+				alert("수정 요청도중 오류가 발생하였습니다.");
 			});
 
 		} else {alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');}
@@ -183,13 +187,10 @@ window.$PrdModifyPopup = {
 				enctype: "multipart/form-data", // 여기에 url과 enctype은 꼭 지정해주어야 하는 부분이며 multipart로 지정해주지 않으면 controller로 파일을 보낼 수 없음
 				async: false,	//동기화처리
 				success: function(result){
-					console.log(result);
 					_this.rtFile = result;
 					rtnValue = "1";
 				},
 				error:function(xhr,ajaxOptions,thrownError){
-					//alert(xhr.responseText);
-					//alert(thrownError);
 					rtnValue = "0";
 				}
 			}).submit();
@@ -201,7 +202,7 @@ window.$PrdModifyPopup = {
 		var _jEl = $("body");
 		
 		if(_jEl.find("#pauseLayer").length > 0){
-			$("#myform")[0].reset(); // 폼 초기화
+			if($("#myform").length > 0) $("#myform")[0].reset(); // 폼 초기화
 			_jEl.find("#pauseLayer").remove();
 		}
 	}

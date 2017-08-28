@@ -46,8 +46,8 @@
 				FROM
 				(
 					SELECT SEQ,NO,PRD_NM
-					,      CONCAT(ST_YMD,ST_TIME) STARTDATE
-					,	   CONCAT(ED_YMD,ED_TIME) ENDDATE
+					,      CONCAT(replace(ST_YMD,'-',''),ST_TIME) STARTDATE
+					,	   CONCAT(replace(ED_YMD,'-',''),ED_TIME) ENDDATE
 					,CONCAT(CAST( DATE_FORMAT( NOW(),'%Y%m%d' ) AS CHAR(8) ) 
 							,CAST( DATE_FORMAT( NOW(),'%I' ) AS CHAR(2) )) YYYYMMDDHH
 					/* ,'2017061001' YYYYMMDDHH */  
@@ -57,7 +57,7 @@
 				WHERE (A.STARTDATE <= A.YYYYMMDDHH AND  A.ENDDATE >= A.YYYYMMDDHH) /* 현재날짜 시작일시간 종료일시간  체크*/
 			) A 
 			ORDER BY CHK DESC,A.CNT DESC
-			LIMIT 10 
+			LIMIT 10  
 		]]>
     </select>
     

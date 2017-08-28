@@ -1,12 +1,10 @@
 package com.food.portal.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,17 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.food.common.web.DownloadView;
+import com.food.portal.model.FoodRest;
 import com.food.portal.service.FoodRestService;
 
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Food api controller
@@ -42,13 +44,15 @@ public class FoodRestController {
 
 	@Autowired
     FoodRestService foodRestService;
+	
+	@Autowired
+	DownloadView downloadView;
    
+	//private static String UPLOAD_FILE_DIR = "C:/project/food_workspaces/ds-food-mgmt/src/main/webapp/foodupload/";	//로컬
+	private static String UPLOAD_FILE_DIR = "/usr/local/tomcat9/webapps/ds-food-mgmt/foodImg/";							//운영서버
+	
     /**
      * 식품 이미지 저장
-     *
-     * @param foodId            the food id
-     * @param imageCategoryCode the image category code
-     * @param imageFile         the image file
      * @return the object
      * @throws IOException the io exception
      */
@@ -80,8 +84,9 @@ public class FoodRestController {
 	    
 	        System.out.println("fileName[" +fileName+ "]");
 	        // 업로드 경로 설정
-	        String sRootPath = "C:\\project\\food_workspaces\\ds-food-mgmt\\src\\main\\webapp\\foodupload";  // Application.xml 에 선언한 값 가져오기
-	        String sSvrFilePath = "/upload_root/";
+	        //String sRootPath = "C:\\project\\food_workspaces\\ds-food-mgmt\\src\\main\\webapp\\foodupload";  // Application.xml 에 선언한 값 가져오기
+	        String sRootPath = "/usr/local/tomcat9/webapps/ds-food-mgmt/foodImg/";
+	        String sSvrFilePath = "/foodImg/";
 	        
 	        Date now = new Date();
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -207,6 +212,61 @@ public class FoodRestController {
         */
         return rtHashMap;
     }
-     
     
+    /**
+     * 제품이미지 전체 다운로드 시 Zip파일로 다운받도록 처리
+     * @param foodRest
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/allDownload", method = RequestMethod.POST)
+    @ResponseBody
+    public Object imgDownloadToZipFile(@RequestBody FoodRest foodRest) throws IOException {
+    	HashMap<String, Object> map = new HashMap<String, Object>();
+    	
+    	try{
+    		String fileName = foodRestService.imgDownloadToZipFile(foodRest);
+    		
+    		map.put("fileName", fileName);
+    		map.put("success", true);
+		}catch(Exception e){
+			map.put("success", false);
+		}
+    	
+		return map;
+    }
+    
+    /**
+	 * 파일을 다운로드한다
+	 * @param request 요청 Request 객체	 
+	 */
+	@RequestMapping(value = "/file/fileDownload.do", method = RequestMethod.GET)
+	public ModelAndView download(HttpServletRequest request,
+			@RequestParam(value="serverFileDir", required=false, defaultValue="") String serverFileDir) {
+		Map<String, Object> model = new HashMap<String, Object>(); 
+		File downloadFile = null;
+		downloadFile = new File(UPLOAD_FILE_DIR + filePathBlackList(serverFileDir));
+		if(!downloadFile.exists()) {
+			return new ModelAndView("redirect:/error.do");
+		}else{
+			model.put("serverFileDir", downloadFile);			
+			return new ModelAndView(downloadView, model); 
+		}
+	}
+	
+	/**
+	 * 상대경로 접근이 불가능하게 파일경로를 변경한다
+	 * @param value 파일경로
+	 * @return 변경된 경로
+	 */
+	public static String filePathBlackList(String value) {
+		String returnValue = value;
+		if (returnValue == null || returnValue.trim().equals("")) {
+			return "";
+		}				
+		
+		returnValue = returnValue.replaceAll("\\.\\./", ""); // ../
+		returnValue = returnValue.replaceAll("\\.\\.\\\\", ""); // ..\
+		return returnValue;
+	}
 }

@@ -554,6 +554,10 @@ window.$CategoryPopup = {
 			$(".ul_class").css({
 				"left":$(this).width()+"px"
 			});
+		}).on("mouseover", ".category_sub > li > ul", function(event){
+			$(this).parent().children("li>a").addClass("child_show");
+		}).on("mouseout", ".category_sub > li > ul", function(event){
+			$(this).parent().children("li>a").removeClass("child_show");
 		});
 	}
 }

@@ -80,7 +80,6 @@ window.$Layout = {
 				realTimeData = rData;	
 			    var loopCount = 1;
 			    var loopCountSub = 1;
-			    console.log(realTimeData);
 
 				$.each(realTimeData, function(){
 

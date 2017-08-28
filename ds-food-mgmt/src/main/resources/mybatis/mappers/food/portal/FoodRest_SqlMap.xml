@@ -18,12 +18,14 @@
     			   IMG_ID,
     			   IMG_PTH,
     			   IMG_NM,
-    			   MOD_DT)
+    			   MOD_DT
+    			   )
 	        VALUES(
 	        	   #{reqSeq},
 	        	   #{imgID},
 	        	   #{imgPth},
 	        	   #{imgNM},
 	        	   NOW()
+	        	  )
     </insert>
 </mapper>

@@ -215,7 +215,7 @@ window.$DetailPrdView = {
 		//실용신안
   		$(".prd_mta11", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta11) ? this.detailPrdInfo.mta11 : "-");
 		//주의사항
-  		$(".prd_mta06", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta06) ? this.detailPrdInfo.mta06 : "-");
+  		$(".prd_mta06 .multitext2", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta06) ? this.detailPrdInfo.mta06 : "-");
 		//제조시설 안내
   		$(".prd_mta07", _prdViewArea).html(!_isNullChk(this.detailPrdInfo.mta07) ? this.detailPrdInfo.mta07 : "-");
 		//포장형태
@@ -235,25 +235,31 @@ window.$DetailPrdView = {
 		
 		if(!_isNullChk(categoryRankData)){
 			$.each(categoryRankData, function(){
-				console.log("categoryRankData>>>>>" + this.rawmtrlRuleStrct);
-				
 				var _cal = !_isNullChk(this.cal) ? this.cal : "-";
 				var _fudUrl = !_isNullChk(this.fudUrl) ? this.fudUrl : "../images/common/noimg145.jpg";
 				var _materialTxt = "";
 				if(!_isNullChk(this.rawmtrlRuleStrct)){
-					_materialTxt = _rawmtrlRuleStrctTxt(this.rawmtrlRuleStrct);
+					// 하단에 슬라이더 표새
+					_materialTxt = _rawmtrlRuleStrctTxt1(this.rawmtrlRuleStrct);
 				}
 				var _tagEl = "";
 		    	if(!_isNullChk(this.tag)){
 		    		  var _tags = this.tag.split(",");
-			    	  $.each(_tags, function(i){
-			    		  _tagEl += '<span class="hashtag">#'+_tags[i]+'</span>';
-			    	  });
+		    		  
+		    		  //태그 한줄에 3개만 표시처리
+		    		  var maxCount = 3;
+			    	  if(_tags.length < 3){
+			    		  maxCount = _tags.length;
+			    	  } 
+			    	  
+			    	  for(var i=0; i < maxCount; i++){
+			    		  _tagEl += '<a href="#" title="'+_tags[i]+'"><span class="hashtag">#'+_tags[i]+'</span></a>';
+			    	  }
 		    	}
 				var _jEl = $('<li id="'+this.fudId+'">'+
 								'<img src="'+_fudUrl+'" alt="'+this.fudNm+'" />'+
 								'<div class="info1">'+
-									'<span class="mark1">알레르기</span><div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br ><strong>포함 성분: 밀, 대두</strong></div><span class="mark2">인증</span><div class="infodetail">이 제품은 인증 인증을 받았습니다.<br /><strong>HACCP 인증</strong></div><span class="mark3">무첨가</span><div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong>무첨가: 합성보존료, 합성착향료</strong></div>'+
+									'<span class="mark1">알레르기</span><div class="infodetail">원재료에 알레르기성분이 포함되어 있습니다.<br ><strong>포함 성분: 밀, 대두</strong></div><span class="mark2">인증</span><div class="infodetail">해당 인증을 받았습니다.<br /><strong>HACCP 인증</strong></div><span class="mark3">무첨가</span><div class="infodetail">이 제품은 무첨가 마케팅을 하고 있습니다.<br /><strong>무첨가: 합성보존료, 합성착향료</strong></div>'+
 								'</div>'+
 								'<div class="info2"><span class="prdname">'+this.fudNm+'</span><span class="kcal1-1">'+_cal+'</span><span class="kcal1-2">kcal</span></div>'+
 								'<div class="info3"><span class="materialname">'+_materialTxt+'</span></div>'+
@@ -294,6 +300,9 @@ function _isNullChk(obj){
 	return (typeof obj != "undefined" && obj != null && obj != "") ? false : true;
 }
 
+// 원재료 구분자 표시하기 위한 값
+var firstCheck = "N";
+
 /* 원재료 텍스트 처리 함수 */
 function _rawmtrlRuleStrctTxt(rawmtrlData){
 	
@@ -308,6 +317,7 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 	_dom.append(rawmtrlData);
 	var elements = _dom.find('span');
 	var materialTxt = "";
+		
 	$.each(elements, function(){
 		var text = $(this).text().split('|'),
 		type = $(this).data('type'),
@@ -315,7 +325,7 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 	 
 		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
 		if(type == "CNAMT" && type =="ORIGIN"){}
-	 
+		/*
 		if (type == 'MTRL'){
 			materialTxt += text[0] + " "; 
 		}else if (type == 'ORIGIN'){
@@ -323,10 +333,72 @@ function _rawmtrlRuleStrctTxt(rawmtrlData){
 		}else if (type == 'CNAMT'){
 			materialTxt += (text[1] !== '') ? text[0] + text[1] + " " : text[0] + " ";
 		}
-	
+	    */
+		
+	  	if (type == 'MTRL'){
+	  		if(firstCheck == "N"){
+	  			materialTxt += text[0];
+	  			firstCheck = "Y";
+	  		} else {
+	  			materialTxt += ", " + text[0];
+	  		}
+	  	}else if (type == 'ORIGIN'){
+	  		materialTxt += (text[2] !== '') ? "(" +  text[2] + ") " : "(" +  text[0] + ")";
+      	}else if (type == 'CNAMT'){
+      		materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+      	}
+		
+		
 	});
 	
 	return materialTxt;
 }
+
+
+/* 원재료 텍스트 처리 함수, 슬라이더 */
+function _rawmtrlRuleStrctTxt1(rawmtrlData){
+	
+	rawmtrlData = rawmtrlData.replace(/\#\|\MTRL\|/g, '<span class="static-text" data-type="MTRL" data-name="" data-code="" data-nick="" data-highlight="" data-agree="">');
+	rawmtrlData = rawmtrlData.replace(/\#\|\ORIGIN\|/g, '<span class="static-text" data-type="ORIGIN" data-name="" data-code="" data-nick="">');
+	rawmtrlData = rawmtrlData.replace(/\#\|\CNAMT\|/g, '<span class="static-text" data-type="CNAMT" data-number="" data-unittext="" data-unitcode="">');
+	rawmtrlData = rawmtrlData.replace(/\|\#/g, '</span>');
+	rawmtrlData = rawmtrlData.replace(/\<b\>/g, '<b class="bold">');
+	rawmtrlData = rawmtrlData.replace(/\<em\>/g, '<em class="big">');
+	  
+	var _dom = $('<div></div>');
+	_dom.append(rawmtrlData);
+	var elements = _dom.find('span');
+	var materialTxt = "";
+	var _mtrlCheck = "N";
+  	var _originCheck = "N";
+  	var _cnamtCheck = "N";
+	
+	
+	$.each(elements, function(){
+		var text = $(this).text().split('|'),
+		type = $(this).data('type'),
+		html, node, currenttext;
+	 
+		//함량, 원산지 정보 없으면 표시 안하도록 처리 (추후구현)
+		if(type == "CNAMT" && type =="ORIGIN"){}
+	  	
+	  	if (type == 'MTRL' && _mtrlCheck == 'N'){
+	  		materialTxt += text[0];
+		  	_mtrlCheck = "Y";
+	  	}else if (type == 'ORIGIN' && _originCheck =='N'){
+	  		materialTxt += (text[2] !== '') ? "(" +  text[2] + ")" : "(" +  text[0] + ")";
+    	  	_originCheck = "Y";
+      	}else if (type == 'CNAMT' && _cnamtCheck == 'N'){
+      		materialTxt += (text[1] !== '') ? " " + text[0] + text[1] : text[0];
+    	  	_cnamtCheck = "Y";
+      	}
+		
+		
+	});
+	
+	return materialTxt;
+}
+
+
 
 })(window, window.jQuery);

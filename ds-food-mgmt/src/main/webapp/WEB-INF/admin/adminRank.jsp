@@ -21,6 +21,8 @@
 <script type="text/javascript" src="../js/admin/adminRank.js"></script>
 <script type="text/javascript">
 
+var console = window.console || { log: function() {} };
+
 function initMenu() {
 	$('.lnb ul').show();
 	$('.lnb ul').children('.current').parent().show();

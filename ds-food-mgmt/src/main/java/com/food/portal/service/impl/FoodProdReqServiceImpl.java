@@ -1,10 +1,5 @@
 package com.food.portal.service.impl;
 
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,59 +15,39 @@ public class FoodProdReqServiceImpl implements FoodProdReqService {
 
 	@Autowired
 	FoodProdReqMapper foodProdReqMapper;
+	
 	@Autowired
 	FoodRestMapper foodRestMapper;
 	
 	@Override
 	@Transactional
-//    public int setFoodProdReq(FoodProdReq foodProdReq, ArrayList<FoodRest> listFoodRest) {
-	  public int setFoodProdReq(FoodProdReq foodProdReq) {
-		ArrayList<FoodRest> listFoodRest = null;
+	public int setFoodProdReq(FoodProdReq foodProdReq) {
+		
+		// 제품 요청/수정 등록
 		int rtnValue = foodProdReqMapper.insertFoodProdReq(foodProdReq);
-				
 		
 		System.out.println("FoodProdReqServiceImpl foodProdReq getReqSeq = [" +foodProdReq.getReqSeq()+ "]");
-		
-		
-		System.out.println("FoodProdReqServiceImpl setFoodProdReq rtnValue = [" +rtnValue+ "]");
-//		System.out.println("FoodProdReqServiceImpl listFoodRest.size() = [" +listFoodRest.size()+ "]");
-//		System.out.println("FoodProdReqServiceImpl setFoodProdReq listFoodRest.size() = [" +listFoodRest.size()+ "]");
 	
-		
-		
-		/*
-		for(int loopCount=0; loopCount < listFoodRest.size() ; loopCount++){
-
-			FoodRest recvFoodRest = null;
-			FoodRest sendFoodRest = null;
-			recvFoodRest = listFoodRest.get(loopCount);
+		if(rtnValue > 0){
 			
-			sendFoodRest.setReqSeq(rtnValue);
-			sendFoodRest.setImgID(recvFoodRest.getImgID());
-			sendFoodRest.setImgPth(recvFoodRest.getImgPth());
-			sendFoodRest.setImgNM(recvFoodRest.getImgNM());
-			
-			int rtnSub = foodRestMapper.insertFoodRest(sendFoodRest);
+			//이미지 정보 있을경우 추가
+			if(foodProdReq.getFoodRest().size() > 0){
 		
-			System.out.println(  "loopCount[" +loopCount + "] = ["+rtnSub+ "]");
+				int reqSeq = foodProdReq.getReqSeq();
+				
+				for(int i=0; i < foodProdReq.getFoodRest().size(); i++){
+					
+					FoodRest foodRest = foodProdReq.getFoodRest().get(i);
+					
+					foodRest.setReqSeq(reqSeq);
+					
+					rtnValue = foodRestMapper.insertFoodRest(foodRest);
+				}
+			
+			}
+			
 		}
-		*/
-		/*
-		Iterator <FoodRest> it = listFoodRest.iterator();  
 		
-		while(it.hasNext()){
-			FoodRest recvFoodRest = it.next();
-			FoodRest sendFoodRest = null;
-			
-			sendFoodRest.setReqSeq(rtnValue);
-			sendFoodRest.setImgID(recvFoodRest.getImgID());
-			sendFoodRest.setImgPth(recvFoodRest.getImgPth());
-			sendFoodRest.setImgNM(recvFoodRest.getImgNM());
-			
-			foodRestMapper.insertFoodRest(sendFoodRest);
-		
-		}
- 		*/
 		return rtnValue;
 	}
 

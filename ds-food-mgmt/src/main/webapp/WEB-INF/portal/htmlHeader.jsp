@@ -40,6 +40,8 @@ window.$ServerInfo = {
 		return "http://" + this.ip + ":" + this.port;
 	}
 };
+
+var console = window.console || { log: function() {} };
 </script>
 
 

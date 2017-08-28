@@ -33,11 +33,11 @@
     			   EMAIL)
 	        VALUES(
 	        	   #{reqGb},
-	        	   '',
+	        	   #{prdCd},
 	        	   #{prdNm},
 	        	   #{comNa},
-	        	   '',
-	        	   NOW(),
+	        	   #{barCd},
+	        	   #{modNt},
 	        	   NOW(),
 	        	   'Y',
 	        	   NOW(),

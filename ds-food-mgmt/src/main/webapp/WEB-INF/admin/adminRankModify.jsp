@@ -29,6 +29,8 @@
 <script type="text/javascript" src="../js/admin/adminRankModify.js"></script>
 <script type="text/javascript">
 
+var console = window.console || { log: function() {} };
+
 function initMenu() {
 	$('.lnb ul').show();
 	$('.lnb ul').children('.current').parent().show();
@@ -309,7 +311,7 @@ $(document).ready(function() {
 					</tr>
 				</tbody>
 			</table>
-			<div class="btnAreaR">
+			<div class="btnAreaR" style="margin-top:10px;">
 				<button type="button" class="bg2" id="btnCancel"><span>취소</span></button>
 				<button type="button" class="bg1" id="btnSave"><span>저장</span></button>
 			</div>

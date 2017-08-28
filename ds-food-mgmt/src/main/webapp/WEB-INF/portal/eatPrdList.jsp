@@ -25,6 +25,7 @@
 <script type="text/javascript" src="./js/popup/prdRegistPopup.js"></script>
 <script type="text/javascript" src="./js/popup/guidePopup.js"></script>
 <script>
+var console = window.console || { log: function() {} };
 
 var tag = "${tag}";
 var fudNm = "${fudNm}";
