@@ -139,7 +139,7 @@ $(document).ready(function() {
 							<td>
 								<input type="text" title="등록제품URL" name="addrUrl" id="addrUrl" style="width:500px" value=""/>
 								<button id="btnUrlSave" type="button" class="btn80_mg1"><span>저장</span></button>
-								<button id="btnUrlLink" type="button" class="btn80_mg1"><span>URL링크</span></button>						
+								<button id="btnUrlLink" type="button" class="btn80_mg1"><span>URL링크</span></button>	
 							</td>
 						</tr>
 					</tbody>

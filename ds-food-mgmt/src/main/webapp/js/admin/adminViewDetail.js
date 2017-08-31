@@ -137,12 +137,17 @@ window.$AdminViewDetail = {
 					async: true	//동기화처리
 				}).success(function(data){
 					alert("등록제품 URL이 성공적으로 저장되었습니다.");
+					//등록제품 URL 링크
+					alink.href = $("#addrUrl").val();
+					alink.click();
 				}).error(function() {
 					alert("등록제품 URL을 저장하는도중\n오류가 발생하였습니다.");
 				}).done(function() {
 					
 				});
 			}
+			
+			
 		});
 		//등록제품 URL 링크
 		$("#btnUrlLink").on("click", function(event){
@@ -150,8 +155,7 @@ window.$AdminViewDetail = {
 
 			if($("#addrUrl").val() != ""){
 				var _UrlSave  = $("#addrUrl").val();
-			alert(_UrlSave);
-			 location.href = _UrlSave;
+			 window.open(_UrlSave, "_blank");
 			}
 		});
 	},
